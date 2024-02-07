@@ -105,6 +105,35 @@
         </div>
         <!-- Header End -->
 
+        <!-- Registration Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <form action="" method="">
+                        <h3>Log in</h3>
+                        <p>Enter Email</p>
+                        <input type="email" name="" id="">
+                        <p>Enter Password</p>
+                        <input type="password" name="" id="">
+                    </form>
+                    <form action="" method="">
+                        <h3>Sign Up</h3>
+                        <p>First Name</p>
+                        <input type="text" name="" id="">
+                        <p>Last Name</p>
+                        <input type="text" name="" id="">
+                        <p>Phone Number</p>
+                        <input type="text" name="" id="">
+                        <p>Enter Email</p>
+                        <input type="email" name="" id="">
+                        <p>Enter Password</p>
+                        <input type="password" name="" id="">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Registration End -->
+
 
         <!-- Search Start -->
         <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
