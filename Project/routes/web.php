@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('/index');
 });
 
+//Map routes
+Route::get('/map', function () {
+    return view('/map');
+});
+
 //About page routes
 Route::get('/about',function(){
     return view('/about');
