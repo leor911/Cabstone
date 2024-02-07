@@ -14,18 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Index routes
 Route::get('/', function () {
-    return view('welcome');
+    return view('/index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//Map routes
+Route::get('/map', function () {
+    return view('/map');
 });
 
-require __DIR__.'/auth.php';
+//About page routes
+Route::get('/about',function(){
+    return view('/about');
+});
+
+//Contact page routes
+Route::get('/contact',function(){
+    return view('/contact');
+});
+
+//Property List page routes
+Route::get('/propertyList',function(){
+    return view('/propertyList');
+});
