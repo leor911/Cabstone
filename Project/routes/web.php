@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\test;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,3 +49,5 @@ Route::get('/createProperty',function(){
 Route::get('/textAction',function(){
     return view('/createProperty');
 });
+
+Route::get('/test', [test::class, 'show'])->name('test.show');
