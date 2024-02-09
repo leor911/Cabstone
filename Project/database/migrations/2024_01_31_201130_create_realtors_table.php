@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("adminID");
+        Schema::create('realtors', function (Blueprint $table) {
+            $table->bigIncrements("realtorID");
+            $table->string("firstName");
+            $table->string("lastName");
             $table->string("email");
             $table->string("password");
-            $table->primary("admin");
+            $table->integer("phoneNo");
+            $table->timestamps();
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('realtors');
     }
 };

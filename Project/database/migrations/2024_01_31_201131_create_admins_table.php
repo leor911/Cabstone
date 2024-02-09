@@ -11,16 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('realtors', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("realtorID");
-            $table->string("firstName");
-            $table->string("lastName");
+        Schema::create('admins', function (Blueprint $table) {
+            $table->bigIncrements("adminID");
             $table->string("email");
             $table->string("password");
-            $table->integer("phoneNo");
-            $table->primary("realtorID");
+            $table->timestamps();
         });
     }
 
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('realtors');
+        Schema::dropIfExists('admins');
     }
 };

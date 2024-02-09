@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("userID");
-            $table->integer("houseID");
-            $table->foreign("userID")->references("userID")->on("users");
-            $table->foreign("houseID")->references("houseID")->on("houses");
+            $table->unsignedBigInteger('userID');
+            $table->unsignedBigInteger('houseID');
+            $table->foreign('userID')->references('userID')->on('users');
+            $table->foreign('houseID')->references('houseID')->on('houses');
         });
     }
 

@@ -12,18 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('houses', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("houseID");
-            $table->integer("realtorID");
+            $table->bigIncrements("houseID");
+            $table->unsignedBigInteger("realtorID");
             $table->integer("price");
             $table->string("listingType");
             $table->string("description");
             $table->integer("coordinateLatitude");
             $table->integer("coordinateLongitude");
             $table->string("otherDesc");
-            $table->primary("houseID");
-            $table->foreign("realtorID")->references('realtorID')->on('realtors');
+            $table->timestamps();
+            $table->foreign('realtorID')->references('realtorID')->on('realtors');
         });
     }
 
