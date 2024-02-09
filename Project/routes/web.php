@@ -38,12 +38,3 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('/propertyList');
 });
-
-//Create Property page routes
-Route::get('/createProperty',function(){
-    return view('/createProperty');
-});
-
-Route::get('/textAction',function(){
-    return view('/createProperty');
-});
