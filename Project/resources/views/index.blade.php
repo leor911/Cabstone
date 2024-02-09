@@ -56,6 +56,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                            <div class="dropdown-menu rounded-0 m-0">
+                                <a href="" class="dropdown-item">First name here</a>
+                                <a href="" class="dropdown-item">Last name here</a>
+                                <a href="" class="dropdown-item">Email here</a>
+                                <a href="" class="dropdown-item">Sign Out</a>
+                            </div>
+                        </div>
                         <a href="index.html" class="nav-item nav-link active">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
@@ -104,6 +113,35 @@
             </div>
         </div>
         <!-- Header End -->
+
+        <!-- Registration Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                    <form action="" method="">
+                        <h3>Log in</h3>
+                        <p>Enter Email</p>
+                        <input type="email" name="" id="">
+                        <p>Enter Password</p>
+                        <input type="password" name="" id="">
+                    </form>
+                    <form action="" method="">
+                        <h3>Sign Up</h3>
+                        <p>First Name</p>
+                        <input type="text" name="" id="">
+                        <p>Last Name</p>
+                        <input type="text" name="" id="">
+                        <p>Phone Number</p>
+                        <input type="text" name="" id="">
+                        <p>Enter Email</p>
+                        <input type="email" name="" id="">
+                        <p>Enter Password</p>
+                        <input type="password" name="" id="">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Registration End -->
 
 
         <!-- Search Start -->
