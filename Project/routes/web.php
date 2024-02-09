@@ -3,6 +3,8 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\test;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +43,5 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('/propertyList');
 });
+
+Route::get('/test', [test::class, 'show'])->name('test.show');
