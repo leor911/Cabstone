@@ -29,6 +29,32 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!--Javascript Link-->
+    <script src="js/base.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        
+        (function () {
+            'use strict'
+        
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+        
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+        
+                form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+  </script>
 </head>
 
 <body>
@@ -111,17 +137,283 @@
                 </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.5s">
-                            <form action="testAction" method="POST">
+                            <form id="" class="needs-validation" action="createProperty" method="POST" novalidate>
                                 @csrf
-                                basic property information
-                                <div class="row g-3">
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Basic Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="description" placeholder="Descroo">
+                                            <label for="desc">houseID</label>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                            <label for="name">name</label>
+                                            <input type="text" class="form-control" name="realtorID" id="" placeholder="" required>
+                                            <label for="">realtorID*</label>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                              </div>
+                                            <div class="invalid-feedback">
+                                                Please choose a realtorID.
+                                            </div>
                                         </div>
-                                        <button type="submit">submit</button>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="price" id="" placeholder="" required>
+                                            <label for="">price*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="listingType" id="" placeholder=""required>
+                                            <label for="">listingType*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="description" id="" placeholder="">
+                                            <label for="">diesc</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="coordinateLatitude" id="" placeholder="">
+                                            <label for="">coordinateLatitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="coordinateLongitude" id="" placeholder="">
+                                            <label for="">coordinateLongitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">otherDesc</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Property Information</h3>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="prknSpacesNo" id="" placeholder="">
+                                            <label for="">Num Parking Spaces</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="garageSpacesNo" id="" placeholder="">
+                                            <label for="">Num gar Spaces</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="prknSize" id="" placeholder="">
+                                            <label for="">Parking size</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="acreSize" id="" placeholder="">
+                                            <label for="">arce size</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="squareFeet" id="" placeholder=""required>
+                                            <label for="">sqft*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Construction Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="homeType" id="" placeholder=""required>
+                                            <label for="">Home Type*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="archType" id="" placeholder="">
+                                            <label for="">arch type</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="constMaterials" id="" placeholder=""required>
+                                            <label for="">const materials*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="roof" id="" placeholder=""required>
+                                            <label for="">roof*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="builtYear" id="" placeholder=""required>
+                                            <label for="">year*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Location Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="country" id="" placeholder=""required>
+                                            <label for="">country*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="state" id="" placeholder=""required>
+                                            <label for="">state*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="county" id="" placeholder=""required>
+                                            <label for="">county*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="city" id="" placeholder=""required>
+                                            <label for="">city*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="zip" id="" placeholder=""required>
+                                            <label for="">zip*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="region" id="" placeholder="">
+                                            <label for="">region</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="street" id="" placeholder=""required>
+                                            <label for="">street*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="apptNo" id="" placeholder="">
+                                            <label for="">apptNo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Interior Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="bedroomNo" id="" placeholder=""required>
+                                            <label for="">bed*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="bathNo" id="" placeholder=""required>
+                                            <label for="">bath*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="kitchenNo" id="" placeholder=""required>
+                                            <label for="">kitchen*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="heatingDesc" id="" placeholder="">
+                                            <label for="">heating</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="basementDesc" id="" placeholder="">
+                                            <label for="">basement</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="applianceDesc" id="" placeholder="">
+                                            <label for="">appliance</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="floorsNo" id="" placeholder=""required>
+                                            <label for="">num foors*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="floorType" id="" placeholder="">
+                                            <label for="">floor type</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="coolingDesc" id="" placeholder="">
+                                            <label for="">cooling</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -224,6 +516,9 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    
+    <!--Required form-->
+    <script src="js/base.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
+use App\Http\Controllers\CreatePropertyController;
 
 
 /*
@@ -41,6 +42,13 @@ Route::get('/propertyList',function(){
     return view('/propertyList');
 });
 
+//Test
 Route::get('/test', [test::class, 'show'])->name('test.show');
+
+//Create Property page routes
+Route::get('/createProperty',function(){
+    return view('/createProperty');
+});
+Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
 
 require __DIR__.'/auth.php';
