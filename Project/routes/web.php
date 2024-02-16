@@ -19,7 +19,7 @@ use App\Http\Controllers\CreatePropertyController;
 
 //Index routes
 Route::get('/', function () {
-    return view('/index');
+    return view('index');
 });
 
 //Map routes
@@ -50,3 +50,5 @@ Route::get('/createProperty',function(){
     return view('/createProperty');
 });
 Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
+
+require __DIR__.'/auth.php';
