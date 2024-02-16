@@ -29,6 +29,16 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Map Stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>
+        #map{
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -138,6 +148,16 @@
         </div>
         <!-- Search End -->
 
+
+<!--Property Map Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div id="map"></div>
+        </div>
+    </div>
+</div>
+<!-- Property Map End -->
 
         <!-- Property List Start -->
         <div class="container-xxl py-5">
@@ -653,6 +673,17 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <!-- Map Javascript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    });
+    osm.addTo(map);
+</script>
 </body>
 
 </html>
