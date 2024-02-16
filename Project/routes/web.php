@@ -19,29 +19,35 @@ use App\Http\Controllers\test;
 
 //Index routes
 Route::get('/', function () {
-    return view('/index');
+    return view('index');
 });
 
-Route::post('/login', [LoginController::class, 'login']);
+Route::get('/login', function(){
+    return view('login');
+});
+
+Route::post('/login/confirm', [LoginController::class, 'login']);
 
 //Map routes
 Route::get('/map', function () {
-    return view('/map');
+    return view('map');
 });
 
 //About page routes
 Route::get('/about',function(){
-    return view('/about');
+    return view('about');
 });
 
 //Contact page routes
 Route::get('/contact',function(){
-    return view('/contact');
+    return view('contact');
 });
 
 //Property List page routes
 Route::get('/propertyList',function(){
-    return view('/propertyList');
+    return view('propertyList');
 });
 
 Route::get('/test', [test::class, 'show'])->name('test.show');
+
+require __DIR__.'/auth.php';
