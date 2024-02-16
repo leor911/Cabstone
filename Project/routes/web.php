@@ -18,7 +18,7 @@ use App\Http\Controllers\test;
 
 //Index routes
 Route::get('/', function () {
-    return view('/index');
+    return view('index');
 });
 
 //Map routes
@@ -42,3 +42,5 @@ Route::get('/propertyList',function(){
 });
 
 Route::get('/test', [test::class, 'show'])->name('test.show');
+
+require __DIR__.'/auth.php';
