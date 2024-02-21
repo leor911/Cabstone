@@ -3,7 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
+
 use App\Http\Controllers\Zillow;
+
+use App\Http\Controllers\CreatePropertyController;
+
 
 
 /*
@@ -19,7 +23,7 @@ use App\Http\Controllers\Zillow;
 
 //Index routes
 Route::get('/', function () {
-    return view('/index');
+    return view('index');
 });
 
 //Map routes
@@ -42,6 +46,7 @@ Route::get('/propertyList',function(){
     return view('/propertyList');
 });
 
+//Test
 Route::get('/test', [test::class, 'show'])->name('test.show');
 
 
@@ -50,3 +55,12 @@ Route::get('/test', [test::class, 'show'])->name('test.show');
 
 
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
+
+//Create Property page routes
+Route::get('/createProperty',function(){
+    return view('/createProperty');
+});
+Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
+
+require __DIR__.'/auth.php';
+
