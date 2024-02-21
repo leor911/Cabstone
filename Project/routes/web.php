@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
+use App\Http\Controllers\Zillow;
 
 
 /*
@@ -42,3 +43,10 @@ Route::get('/propertyList',function(){
 });
 
 Route::get('/test', [test::class, 'show'])->name('test.show');
+
+
+
+
+
+
+Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
