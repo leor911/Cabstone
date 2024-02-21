@@ -28,6 +28,9 @@ Route::get('/login', function(){
 
 Route::post('/login/confirm', [LoginController::class, 'login']);
 
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+
 //Map routes
 Route::get('/map', function () {
     return view('map');
@@ -47,6 +50,10 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('propertyList');
 });
+
+Route::get('/dashboard', function (){
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/test', [test::class, 'show'])->name('test.show');
 
