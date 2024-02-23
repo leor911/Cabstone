@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
 use App\Http\Controllers\CreatePropertyController;
+use App\Http\Controllers\ViewPropertiesController;
 
 
 /*
@@ -41,6 +42,7 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('/propertyList');
 });
+Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
 //Test
 Route::get('/test', [test::class, 'show'])->name('test.show');
