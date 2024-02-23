@@ -7,6 +7,7 @@ use App\Http\Controllers\test;
 use App\Http\Controllers\Zillow;
 
 use App\Http\Controllers\CreatePropertyController;
+use App\Http\Controllers\ViewPropertiesController;
 
 
 
@@ -45,6 +46,7 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('/propertyList');
 });
+Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
