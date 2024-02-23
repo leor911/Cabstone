@@ -29,6 +29,14 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Proza:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        h1,a{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,15 +74,14 @@
                         <div class="nav-item dropdown">
                         <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="{{ url('/propertyListing') }}" class="dropdown-item">Property List</a>
-                                <a href="#" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
+                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
                                 <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-                </div>
+                    <a href="{{url('/createProperty')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>                </div>
             </nav>
         </div>
         <!-- Navbar End -->
@@ -155,8 +162,8 @@
 </div>
 <!-- privacy end -->
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+       <!-- Footer Start -->
+       <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
@@ -176,8 +183,8 @@
                         <a class="btn btn-link text-white-50" href="{{ url('/about') }}">About Us</a>
                         <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
                         <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
+                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Photo Gallery</h5>
@@ -232,6 +239,7 @@
             </div>
         </div>
         <!-- Footer End -->
+
 
 
         <!-- Back to Top -->

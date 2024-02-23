@@ -29,6 +29,14 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        p,ul,li {
+            font-family: Forum,cursive;
+        }
+        h1,a{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,33 +66,22 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="" class="dropdown-item">First name here</a>
-                                <a href="" class="dropdown-item">Last name here</a>
-                                <a href="" class="dropdown-item">Email here</a>
                                 <a href="" class="dropdown-item">Sign Out</a>
                             </div>
                         </div>
-                        <a href="index.blade.php" class="nav-item nav-link active">Home</a>
-                        <a href="about.blade.php" class="nav-item nav-link">About</a>
+                        <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ url('/about') }}" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown">
-                            <a href="propertyList.blade.php" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
+                        <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
+                                <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
+                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.blade.php" class="nav-item nav-link">Contact</a>
+                        <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="createProperty.blade.php" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-                </div>
+                    <a href="{{url('/createProperty')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>                </div>
             </nav>
         </div>
         <!-- Navbar End -->
@@ -239,8 +236,8 @@
         </div>
         <!-- ourServices end -->
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
@@ -257,11 +254,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="./about.blade.php">About Us</a>
-                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/about') }}">About Us</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
+                        <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
+                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
+                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Photo Gallery</h5>
@@ -287,7 +284,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
-    <a href="index.html" class="navbar-brand d-flex justify-content-center">
+    <a href="{{ url('/') }}" class="navbar-brand d-flex justify-content-center">
         <img src="img/logo-no-background2.jpg" alt="Logo" style="max-width: 250px; height: auto; max-height: 170px; margin-top: 10px;">
     </a>
 </div>
@@ -316,6 +313,7 @@
             </div>
         </div>
         <!-- Footer End -->
+
 
 
         <!-- Back to Top -->
