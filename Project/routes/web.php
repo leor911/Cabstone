@@ -50,8 +50,12 @@ Route::get('/termsOfService',function(){
     return view('/termsOfService');
 });
 
+Route::get('/test',function(){
+    return view('/test5');
+});
+
 //Test
-Route::get('/test', [test::class, 'show'])->name('test.show');
+Route::get('/test2', [test::class, 'show'])->name('test.show');
 
 
 

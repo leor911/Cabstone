@@ -29,6 +29,16 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="img/favicon.ico" rel="icon">
+
+    <style>
+        p,ul,li {
+            font-family: Forum,cursive;
+        }
+        h1,a{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,15 +76,14 @@
                         <div class="nav-item dropdown">
                         <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
-                                <a href="{{ url('/propertyListing') }}" class="dropdown-item">Property List</a>
-                                <a href="#" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
+                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
                                 <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-                </div>
+                    <a href="{{url('/createProperty')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>                </div>
             </nav>
         </div>
         <!-- Navbar End -->
@@ -106,7 +115,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3" id="propertyTypes">Property Types</h1>
+                <h1 class="mb-3" id="PropertyTypes">Property Types</h1>
                     <p>Discover a diverse range of property types tailored to your preferences and lifestyle. Whether you're seeking a cozy apartment in the heart of the city, a spacious family home in a tranquil suburb, or a luxurious waterfront estate, our listings feature an array of options to suit every taste and need.</p>
                 </div>
                 <div class="row g-4">
@@ -209,7 +218,7 @@
        
       
                 <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
-                    <h1 class="mb-3">Property Listing</h1>
+                    <h1 class="mb-3; text-center">Property Listing</h1>
                     <p>Explore our exclusive listings to find your dream property. Our collection features a diverse range of options from modern apartments in bustling city centers to serene suburban homes and luxurious estates. Each property is carefully selected to ensure it meets our standards of quality, comfort, and style. Whether you're in search of a spacious family home with a backyard for your children to play in, a chic loft in the heart of the city, or a quiet retreat in the countryside, our portfolio is designed to cater to your unique lifestyle and preferences.</p>
                 </div>
             
