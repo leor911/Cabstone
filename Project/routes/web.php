@@ -46,6 +46,10 @@ Route::get('/propertyList',function(){
     return view('/propertyList');
 });
 
+Route::get('/termsOfService',function(){
+    return view('/termsOfService');
+});
+
 //Test
 Route::get('/test', [test::class, 'show'])->name('test.show');
 
