@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer("coordinateLongitude");
             $table->string("otherDesc");
             $table->primary("houseID");
-            // $table->foreign("realtorID")->references('realtorID')->on('realtors');
+            $table->foreign("realtorID")->references('realtorID')->on('realtors');
         });
     }
 
