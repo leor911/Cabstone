@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
 
 use App\Http\Controllers\Zillow;
-
+use App\Http\Controllers\MortgageCalculator;
 use App\Http\Controllers\CreatePropertyController;
 use App\Http\Controllers\ViewPropertiesController;
 
@@ -74,3 +74,11 @@ Route::post('/createProperty',[CreatePropertyController::class,'createProperty']
 
 require __DIR__.'/auth.php';
 
+
+Route::get('/mortgage-calc', [MortgageCalculator::class, 'showCalculator'])->name('mortgage.calculator');
+
+Route::post('/mortgage-calc', [MortgageCalculator::class, 'calculate'])->name('mortgage.calculate');
+
+Route::get('/mortgage-result', function () {
+    return view('mortgageCalc');
+})->name('mortgage.result');
