@@ -98,6 +98,9 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="nav-item nav-link">
+                    <h1>Mortgage Clalculator</h1>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <div class="nav-item dropdown">
@@ -112,7 +115,7 @@
                         <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
-                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
                                 <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
@@ -127,75 +130,71 @@
 
     
         <!-- Mortgage Start -->
-        <div class="container my-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1>Mortgage Calculator</h1>
             </div>
-            <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <!-- Form for mortgage input -->
-                <form method="post" action="{{ route('mortgage.calculate') }}">
-                    @csrf
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label for="principal">Principal Amount:</label>
-                                <input type="number" id="principal" name="principal" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="interest_rate">Interest Rate (%):</label>
-                                <input type="number" id="interest_rate" name="interest_rate" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="term">Term (years):</label>
-                                <input type="number" step=".01" name="term" class="form-control" required>
-                            </div>
-                            <div class="text-center"> <!-- Centering the button -->
-                                <button type="submit" class="btn btn-primary w-50 py-3 d-lg-flex">Calculate</button>
-                            </div>
+        <div class="wow fadeInUp" data-wow-delay="0.5s">
+            <!-- Form for mortgage input -->
+             <form method="post" action="{{ route('mortgage.calculate') }}">
+                 @csrf
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label for="principal">Principal Amount:</label>
+                            <input type="number" id="principal" name="principal" class="form-control" required>                            </div>
+                            <div class="mb-3"
+                              <label for="interest_rate">Interest Rate (%):</label>
+                            <input type="number" step=".01" id="interest_rate" name="interest_rate" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="term">Term (years):</label>
+                            <input type="number" step=".01" name="term" class="form-control" required>
+                        </div>
+                        <div class="text-center"> <!-- Centering the button -->
+                            <button type="submit" class="btn btn-primary w-50 py-3 d-lg-flex">Calculate</button>                            </div>
                         </div>
                     </div>
                 </form>
 
-
-                <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center">
-            <h1>Mortgage Calculation Result</h1>
+                                <h1>Mortgage Calculation Result</h1>
+                                        @isset($data['monthly_payment'])
+                                            <h2>Monthly Payment</h2>
+                                            <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
+                                            <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
+                                            <p>Property Tax: ${{ $data['monthly_payment']['property_tax'] }}</p>
+                                            <p>HOA: ${{ $data['monthly_payment']['hoa'] }}</p>
+                                            <p>Home Insurance: ${{ $data['monthly_payment']['annual_home_ins'] }}</p>
+                                        @endisset
 
-@isset($data['monthly_payment'])
-    <h2>Monthly Payment</h2>
-    <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
-    <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
-    <p>Property Tax: ${{ $data['monthly_payment']['property_tax'] }}</p>
-    <p>HOA: ${{ $data['monthly_payment']['hoa'] }}</p>
-    <p>Home Insurance: ${{ $data['monthly_payment']['annual_home_ins'] }}</p>
-@endisset
+                                        @isset($data['annual_payment'])
+                                            <h2>Annual Payment</h2>
+                                            <p>Total: ${{ $data['annual_payment']['total'] }}</p>
+                                            <p>Mortgage: ${{ $data['annual_payment']['mortgage'] }}</p>
+                                            <p>Property Tax: ${{ $data['annual_payment']['property_tax'] }}</p>
+                                            <p>HOA: ${{ $data['annual_payment']['hoa'] }}</p>
+                                            <p>Home Insurance: ${{ $data['annual_payment']['home_insurance'] }}</p>
+                                        @endisset
 
-@isset($data['annual_payment'])
-    <h2>Annual Payment</h2>
-    <p>Total: ${{ $data['annual_payment']['total'] }}</p>
-    <p>Mortgage: ${{ $data['annual_payment']['mortgage'] }}</p>
-    <p>Property Tax: ${{ $data['annual_payment']['property_tax'] }}</p>
-    <p>HOA: ${{ $data['annual_payment']['hoa'] }}</p>
-    <p>Home Insurance: ${{ $data['annual_payment']['home_insurance'] }}</p>
-@endisset
-
-@isset($data['total_interest_paid'])
-    <h2>Total Interest Paid</h2>
-    <p>${{ $data['total_interest_paid'] }}</p>
-@endisset
-            </div>
+                                        @isset($data['total_interest_paid'])
+                                            <h2>Total Interest Paid</h2>
+                                            <p>${{ $data['total_interest_paid'] }}</p>
+                                     @endisset
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
         </div>
     </div>
 </div>
-            </div>
-        </div>
-    </div>
-        </div>
-    </div>
               
         <!-- Mortgage End -->
 
@@ -205,27 +204,29 @@
             <div class="container py-5">
                 <div class="row g-5">
                     <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>2040 lane ln, lacaster,USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(778)-989-0987</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>Phillow@Phillow-houses.biz</p>
-                        <div class="d-flex pt-2">
+                            <h5 class="text-white mb-4">Get In Touch</h5>
+                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>2040 lane ln, lacaster,USA</p>
+                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(778)-989-0987</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>Phillow@Phillow-houses.biz</p>
+                            <div class="d-flex pt-2">
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
                             <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="{{ url('/about') }}">About Us</a>
-                        <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Photo Gallery</h5>
+
+<div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <a class="btn btn-link text-white-50" href="{{ url('/about') }}">About Us</a>
+                    <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
+                    <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
+                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
+                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
+                </div>
+
+<div class="col-lg-3 col-md-6">
+                <h5 class="text-white mb-4">Photo Gallery</h5>
                         <div class="row g-2 pt-2">
                             <div class="col-4">
                                 <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">

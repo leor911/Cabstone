@@ -76,7 +76,7 @@
                         <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="{{ url('/propertyListing') }}" class="dropdown-item">Property List</a>
-                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
                                 <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
@@ -128,7 +128,10 @@
     <div class="container">
         <div class="row g-0 gx-5">
             <div class="col-lg-6">
-                <div id="map" style="height: 400px;"></div>
+            <div style="height: 400px;">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+            width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+</div>
             </div>
             <div class="col-lg-6">
                 <div class="property-listings-container" style="height: 400px; overflow-y: auto;">
@@ -257,10 +260,11 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
     <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<script>
+    <script>
     var map = L.map('map').setView([51.505, -0.09], 13);
     var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
