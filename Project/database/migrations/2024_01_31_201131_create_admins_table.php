@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements("adminID");
             $table->string("email");
             $table->string("password");
+            $table->rememberToken();
             $table->timestamps();
         });
     }

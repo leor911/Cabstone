@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\Admin\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
@@ -26,10 +26,7 @@ Route::get('/login', function(){
     return view('login');
 });
 
-Route::post('/login/confirm', [LoginController::class, 'login']);
-
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-
 
 //Map routes
 Route::get('/map', function () {
@@ -51,9 +48,12 @@ Route::get('/propertyList',function(){
     return view('propertyList');
 });
 
+//Can only be seen when verified by login
 Route::get('/dashboard', function (){
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/admin/dashboard');
 
 Route::get('/test', [test::class, 'show'])->name('test.show');
 

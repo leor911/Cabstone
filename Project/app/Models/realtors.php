@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class realtors extends Model
+class realtors extends Authenticatable
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory;
+
+    protected $guard = 'realtors';
+
     protected $fillable = [
         'realtorID',
         'firstName',
@@ -15,5 +20,14 @@ class realtors extends Model
         'email',
         'password',
         'phoneNo'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'password' => 'hashed',
     ];
 }

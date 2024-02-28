@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("password");
             $table->integer("phoneNo");
+            $table->rememberToken();
             $table->timestamps();
         });
     }

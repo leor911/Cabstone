@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -25,11 +26,20 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        $url = RouteServiceProvider::HOME;
+
         $request->authenticate();
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if($request->input('is_admin')){
+            $url = "admin/dashboard";
+        }
+        elseif($request->input('is_realtor')){
+            $url = "realtor/dashboard";
+        }
+        
+        return redirect()->intended($url);
     }
 
     /**
