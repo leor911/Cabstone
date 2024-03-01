@@ -61,6 +61,9 @@
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="nav-item nav-link">
+                    <h1>About Us</h1>
+                </div>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto">
                         <div class="nav-item dropdown">
@@ -75,7 +78,7 @@
                         <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
-                                <a href="#PropertyTypes" class="dropdown-item">Property Type</a>
+                                <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
                                 <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                             </div>
                         </div>
