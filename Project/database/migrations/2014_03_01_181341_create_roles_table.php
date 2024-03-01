@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->bigIncrements("adminID");
-            $table->string("email");
-            $table->string("password");
-            $table->rememberToken();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->enum('role_name', ['customer', 'realtor', 'admin'])->unique();
             $table->timestamps();
         });
     }
@@ -25,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('roles');
     }
 };

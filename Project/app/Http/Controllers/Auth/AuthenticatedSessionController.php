@@ -31,13 +31,6 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        if($request->input('is_admin')){
-            $url = "admin/dashboard";
-        }
-        elseif($request->input('is_realtor')){
-            $url = "realtor/dashboard";
-        }
         
         return redirect()->intended($url);
     }

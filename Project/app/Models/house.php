@@ -10,7 +10,7 @@ class House extends Model
     use HasFactory;
     protected $fillable = [
         'houseID',
-        'realtorID',
+        'realtor_id',
         'price',
         'listingType',
         'description',
