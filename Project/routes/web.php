@@ -23,9 +23,9 @@ use App\Http\Controllers\ViewPropertiesController;
 */
 
 //Index routes
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('properties.index');
+
 
 //Map routes
 Route::get('/map', function () {
@@ -82,3 +82,8 @@ Route::post('/mortgage-calc', [MortgageCalculator::class, 'calculate'])->name('m
 Route::get('/mortgage-result', function () {
     return view('mortgageCalc');
 })->name('mortgage.result');
+
+
+Route::get('/header',function(){
+    return view('/header');
+});

@@ -16,69 +16,68 @@ class CreatePropertyController extends Controller
 {
     function createProperty(Request $request)
     {
-        //Arrays that take in specifics inputs 
-        $house=array(
-            "realtorID"=>$request->input("realtorID"),
-            "price"=>$request->input("price"),
-            "listingType"=>$request->input("listingType"),
-            "description"=>$request->input("description"),
-            "coordinateLatitude"=>$request->input("coordinateLatitude"),
-            "coordinateLongitude"=>$request->input("coordinateLongitude"),
-            "otherDesc"=>$request->input("otherDesc")
-        );
 
-        $property=array(
-            "houseID"=>$request->input("houseID"),
-            "prknSpacesNo"=>$request->input("prknSpacesNo"),
-            "garageSpacesNo"=>$request->input("garageSpacesNo"),
-            "prknSize"=>$request->input("prknSize"),
-            "acreSize"=>$request->input("acreSize"),
-            "squareFeet"=>$request->input("squareFeet"),
-            "otherDesc"=>$request->input("otherDesc")
+        $house = array(
+            "price" => $request->input("price"),
+            "listingType" => $request->input("listingType"),
+            "description" => $request->input("description"),
+            "coordinateLatitude" => $request->input("coordinateLatitude"),
+            "coordinateLongitude" => $request->input("coordinateLongitude"),
+            "otherDesc" => $request->input("otherDesc")
         );
-
-        $construction=array(
-            "houseID"=>$request->input("houseID"),
-            "homeType"=>$request->input("homeType"),
-            "archType"=>$request->input("archType"),
-            "constMaterials"=>$request->input("constMaterials"),
-            "roof"=>$request->input("roof"),
-            "builtYear"=>$request->input("builtYear"),
-            "squareFeet"=>$request->input("squareFeet"),
-            "otherDesc"=>$request->input("otherDesc")
+    
+        $property = array(
+            "prknSpacesNo" => $request->input("prknSpacesNo"),
+            "garageSpacesNo" => $request->input("garageSpacesNo"),
+            "prknSize" => $request->input("prknSize"),
+            "acreSize" => $request->input("acreSize"),
+            "squareFeet" => $request->input("squareFeet"),
+            "otherDesc" => $request->input("otherDesc")
         );
-
-        $location=array(
-            "houseID"=>$request->input("houseID"),
-            "country"=>$request->input("country"),
-            "state"=>$request->input("state"),
-            "county"=>$request->input("county"),
-            "city"=>$request->input("city"),
-            "zip"=>$request->input("zip"),
-            "region"=>$request->input("region"),
-            "street"=>$request->input("street"),
-            "apptNo"=>$request->input("apptNo")
+    
+        $construction = array(
+            "homeType" => $request->input("homeType"),
+            "archType" => $request->input("archType"),
+            "constMaterials" => $request->input("constMaterials"),
+            "roof" => $request->input("roof"),
+            "builtYear" => $request->input("builtYear"),
+            "squareFeet" => $request->input("squareFeet"),
+            "otherDesc" => $request->input("otherDesc")
         );
-
-        $interior=array(
-            "houseID"=>$request->input("houseID"),
-            "bedroomNo"=>$request->input("bedroomNo"),
-            "bathNo"=>$request->input("bathNo"),
-            "kitchenNo"=>$request->input("kitchenNo"),
-            "heatingDesc"=>$request->input("heatingDesc"),
-            "basementDesc"=>$request->input("basementDesc"),
-            "applianceDesc"=>$request->input("applianceDesc"),
-            "floorsNo"=>$request->input("floorsNo"),
-            "floorType"=>$request->input("floorType"),
-            "coolingDesc"=>$request->input("coolingDesc"),
-            "otherDesc"=>$request->input("otherDesc")
+    
+        $location = array(
+            "country" => $request->input("country"),
+            "state" => $request->input("state"),
+            "county" => $request->input("county"),
+            "city" => $request->input("city"),
+            "zip" => $request->input("zip"),
+            "region" => $request->input("region"),
+            "street" => $request->input("street"),
+            "apptNo" => $request->input("apptNo")
         );
-
-        House::create($house);
-        Property::create($property);
-        Construction::create($construction);
-        HouseLocation::create($location);
-        Interior::create($interior);
+    
+        $interior = array(
+            "bedroomNo" => $request->input("bedroomNo"),
+            "bathNo" => $request->input("bathNo"),
+            "kitchenNo" => $request->input("kitchenNo"),
+            "heatingDesc" => $request->input("heatingDesc"),
+            "basementDesc" => $request->input("basementDesc"),
+            "applianceDesc" => $request->input("applianceDesc"),
+            "floorsNo" => $request->input("floorsNo"),
+            "floorType" => $request->input("floorType"),
+            "coolingDesc" => $request->input("coolingDesc"),
+            "otherDesc" => $request->input("otherDesc")
+        );
+    
+        // Create records using Eloquent's create method
+        $newHouse = House::create($house);
+        $newHouseId = $newHouse->id;
+    
+        Property::create(array_merge($property, ["houseID" => $newHouseId]));
+        Construction::create(array_merge($construction, ["houseID" => $newHouseId]));
+        HouseLocation::create(array_merge($location, ["houseID" => $newHouseId]));
+        Interior::create(array_merge($interior, ["houseID" => $newHouseId]));
+    
         return redirect()->back();
     }
 }
