@@ -12,9 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('interiors', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("houseID");
+            $table->unsignedBigInteger("houseID");
             $table->integer("bedroomNo");
             $table->integer("bathNo");
             $table->integer("kitchenNo");
@@ -25,6 +23,7 @@ return new class extends Migration
             $table->string("floorType");
             $table->string("coolingDesc");
             $table->string("otherDesc");
+            $table->timestamps();
             $table->foreign("houseID")->references('houseID')->on("houses");
         });
     }

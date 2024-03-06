@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('constructions', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("houseID");
+            $table->unsignedBigInteger("houseID");
             $table->string("homeType");
             $table->string("archType");
             $table->string("constMaterials");
             $table->string("roof");
             $table->integer("builtYear");
             $table->string("otherDesc");
+            $table->timestamps();
             $table->foreign("houseID")->references("houseID")->on("houses");
         });
     }

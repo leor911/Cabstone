@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('house_locations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('houseID');
+            $table->string('country');
+            $table->string('state');
+            $table->string('county');
+            $table->string('city');
+            $table->string('zip');
+            $table->string('region');
+            $table->string('street');
+            $table->string('apptNo');
             $table->timestamps();
-            $table->integer("houseID");
-            $table->string("country");
-            $table->string("state");
-            $table->string("county");
-            $table->string("city");
-            $table->integer("zip");
-            $table->string("region");
-            $table->string("street");
-            $table->integer("apptNo");
-            $table->foreign("houseID")->references('houseID')->on('houses');
+            $table->foreign('houseID')->references('houseID')->on('houses');
         });
     }
 

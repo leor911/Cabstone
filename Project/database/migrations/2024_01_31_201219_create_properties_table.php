@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("houseID");
+            $table->unsignedBigInteger("houseID");
             $table->integer("prknSpacesNo");
             $table->integer("garageSpacesNo");
             $table->string("prknSize");
             $table->integer("acreSize");
             $table->integer("squareFeet");
             $table->string("otherDesc");
+            $table->timestamps();
             $table->foreign("houseID")->references("houseID")->on("houses");
         });
     }

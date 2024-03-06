@@ -29,6 +29,20 @@
             <x-text-input id="phoneNo" class="block mt-1 w-full" type="int" name="phoneNo" :value="old('phoneNo')" />
             <x-input-error :messages="$errors->get('phoneNo')" class="mt-2" />
         </div>
+
+        <!-- Pick a Role -->
+        <div class="mt-4">
+            <x-input-label for="role_name" :value="__('Role')" />
+
+            <select id="role_name" name="role_name" class="block mt-1 w-full" required autocomplete="role">
+                <option value="pickSomething">Select a Role:</option>
+                <option value="customer">Customer</option>
+                <option value="realtor">Realtor</option>
+                <option value="admin">Admin</option>
+           </select>
+
+            <x-input-error :messages="$errors->get('role')" class="mt-2" />
+        </div>
         
         <!-- Password -->
         <div class="mt-4">
@@ -41,6 +55,8 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
+
+
 
         <!-- Confirm Password -->
         <div class="mt-4">

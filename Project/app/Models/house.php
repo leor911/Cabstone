@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class house extends Model
+class House extends Model
 {
     use HasFactory;
     protected $fillable = [
         'houseID',
-        'realtorID',
+        'realtor_id',
         'price',
         'listingType',
         'description',

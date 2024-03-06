@@ -12,18 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('houses', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->integer("houseID");
-            $table->integer("realtorID");
+            $table->bigIncrements("houseID");
+            $table->bigInteger('realtor_id');
             $table->integer("price");
             $table->string("listingType");
             $table->string("description");
             $table->integer("coordinateLatitude");
             $table->integer("coordinateLongitude");
             $table->string("otherDesc");
-            $table->primary("houseID");
-            $table->foreign("realtorID")->references('realtorID')->on('realtors');
+            $table->timestamps();
+            $table->foreign('realtor_id')
+                ->references('id')
+                ->on('users')
+                ->whereExists(function($query){
+                    $query->select('id')
+                    ->from('users')
+                    ->whereColumn('users.id', 'houses.realtor_id')
+                    ->join('roles', 'users.role_name', '=', 'roles.role_name')
+                    ->where('roles.role_name', '=', 'realtor');
+            });
         });
     }
 

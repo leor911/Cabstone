@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
+        Schema::create('house_images', function (Blueprint $table) {
+            $table->increments("image_id");
+            $table->unsignedBigInteger("house_id");
+            $table->foreign('house_id')->references('houseID')->on('houses');
+            $table->binary('image');
             $table->timestamps();
-            $table->integer("userID");
-            $table->integer("houseID");
-            $table->foreign("userID")->references("userID")->on("users");
-            $table->foreign("houseID")->references("houseID")->on("houses");
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favorites');
+        Schema::dropIfExists('house_images');
     }
 };

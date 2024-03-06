@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class admins extends Model
+class house_images extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'adminID',
-        'email',
-        'password',
+        'image_id',
+        'house_id',
+        'image',
     ];
 }
