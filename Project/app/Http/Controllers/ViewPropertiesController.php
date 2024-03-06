@@ -20,7 +20,7 @@ class ViewPropertiesController extends Controller
         $constructions = DB::table("constructions")->get();
         $houseLocations = DB::table("house_locations")->get();
         $interiors = DB::table("interiors")->get();
-        $listings=DB::select("SELECT h.houseID,h.realtorID,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
+        $listings=DB::select("SELECT h.houseID,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
         p.prknSpacesNo,p.garageSpacesNo,p.prknSize,p.acreSize,p.squareFeet,p.otherDesc,
         c.homeType,c.archType,c.constMaterials,c.roof,c.builtYear, c.otherDesc,
         l.country,l.state,l.county,l.city,l.zip,l.region,l.street,l.apptNo,

@@ -69,8 +69,6 @@ Route::get('/test2', [test::class, 'show'])->name('test.show');
 
 
 
-
-
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
 //Create Property page routes
