@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\Admin\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
@@ -28,26 +28,30 @@ use App\Http\Controllers\ViewPropertiesController;
 Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('properties.index');
 
 
-Route::post('/login', [LoginController::class, 'login']);
+Route::get('/login', function(){
+    return view('login');
+});
+
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 //Map routes
 Route::get('/map', function () {
-    return view('/map');
+    return view('map');
 });
 
 //About page routes
 Route::get('/about',function(){
-    return view('/about');
+    return view('about');
 });
 
 //Contact page routes
 Route::get('/contact',function(){
-    return view('/contact');
+    return view('contact');
 });
 
 //Property List page routes
 Route::get('/propertyList',function(){
-    return view('/propertyList');
+    return view('propertyList');
 });
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 

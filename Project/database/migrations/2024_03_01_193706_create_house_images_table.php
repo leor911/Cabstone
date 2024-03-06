@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admins', function (Blueprint $table) {
-            $table->bigIncrements("adminID");
-            $table->string("email");
-            $table->string("password");
+        Schema::create('house_images', function (Blueprint $table) {
+            $table->increments("image_id");
+            $table->unsignedBigInteger("house_id");
+            $table->foreign('house_id')->references('houseID')->on('houses');
+            $table->binary('image');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admins');
+        Schema::dropIfExists('house_images');
     }
 };

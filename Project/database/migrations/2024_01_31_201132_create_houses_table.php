@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements("houseID");
-            $table->unsignedBigInteger("realtorID");
+            $table->bigInteger('realtor_id');
             $table->integer("price");
             $table->string("listingType");
             $table->string("description");
@@ -21,7 +21,16 @@ return new class extends Migration
             $table->integer("coordinateLongitude");
             $table->string("otherDesc");
             $table->timestamps();
-            $table->foreign('realtorID')->references('realtorID')->on('realtors');
+            $table->foreign('realtor_id')
+                ->references('id')
+                ->on('users')
+                ->whereExists(function($query){
+                    $query->select('id')
+                    ->from('users')
+                    ->whereColumn('users.id', 'houses.realtor_id')
+                    ->join('roles', 'users.role_name', '=', 'roles.role_name')
+                    ->where('roles.role_name', '=', 'realtor');
+            });
         });
     }
 
