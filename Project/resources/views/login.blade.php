@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Phillow - Registration</title>
+    <title>Phillow - Log In</title>
 </head>
 <body>
-    
+    <form action="" method="post">
+        
+    </form>
 </body>
 </html>

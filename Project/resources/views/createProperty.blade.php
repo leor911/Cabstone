@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Makaan - Real Estate HTML Template</title>
+    <title>Phillow - Create Property</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -29,6 +29,75 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!--Our Javascript Functions Link-->
+    <script src="app.js"></script>
+    <script>
+        // // Function to validate price
+        // function validatePrice(priceInput, errorSpan) {
+        //     // Reset error message
+        //     errorSpan.textContent = '';
+
+        //      // Validate price without decimals
+        //      var enteredPrice = priceInput.value;
+        //     if (!/^\d+$/.test(enteredPrice)) {
+        //         errorSpan.textContent = 'Price must be a whole number';
+        //     }
+        // }
+        // Function to validate listing type
+        function validateListingType(listingTypeSelect, errorSpan) {
+            // Reset error message
+            errorSpan.textContent = '';
+
+            // Validate listing type
+            if (listingTypeSelect.value === '') {
+                errorSpan.textContent = 'Please select a listing type';
+            }
+        }
+
+        // Validate price and listing type, and prevent form submission on errors
+        var priceInput = document.getElementById('price');
+        var priceErrorSpan = document.getElementById('priceError');
+        var listingTypeSelect = document.getElementById('listingType');
+        var listingTypeErrorSpan = document.getElementById('listingTypeError');
+
+        priceInput.addEventListener('blur', function() {
+            validatePrice(priceInput, priceErrorSpan);
+        });
+
+        listingTypeSelect.addEventListener('change', function() {
+            validateListingType(listingTypeSelect, listingTypeErrorSpan);
+        });
+
+        document.getElementById('priceForm').addEventListener('submit', function(event) {
+            validatePrice(priceInput, priceErrorSpan);
+            validateListingType(listingTypeSelect, listingTypeErrorSpan);
+
+            // Check if there are any errors
+            if (priceErrorSpan.textContent !== '' || listingTypeErrorSpan.textContent !== '') {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+      <style>
+        p,ul,li {
+            font-family: Forum,cursive;
+        }
+        h1,a{
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+        }
+        body textarea{
+            resize: none
+        }
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -42,180 +111,456 @@
         <!-- Spinner End -->
 
 
-        <!-- Navbar Start -->
-        <div class="container-fluid nav-bar bg-transparent">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-                <a href="index.html" class="navbar-brand d-flex align-items-center text-center">
-                    <div class="icon p-2 me-2">
-                        <img class="img-fluid" src="img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
-                    </div>
-                    <h1 class="m-0 text-primary">Makaan</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="property-list.html" class="dropdown-item">Property List</a>
-                                <a href="property-type.html" class="dropdown-item">Property Type</a>
-                                <a href="property-agent.html" class="dropdown-item">Property Agent</a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="404.html" class="dropdown-item">404 Error</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
-                    </div>
-                    <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-                </div>
-            </nav>
-        </div>
-        <!-- Navbar End -->
+<!-- header start -->
+@include('header')
+<!-- header end -->
 
 
-        <!-- Header Start -->
-        <div class="container-fluid header bg-white p-0">
-            <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-                <div class="col-md-6 p-5 mt-lg-5">
-                    <h1 class="display-5 animated fadeIn mb-4">Contact Us</h1> 
-                        <nav aria-label="breadcrumb animated fadeIn">
-                        <ol class="breadcrumb text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-body active" aria-current="page">Contact</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="col-md-6 animated fadeIn">
-                    <img class="img-fluid" src="img/header.jpg" alt="">
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-
+    
         <!-- Contact Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+
+        <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="mb-3">Create Property</h1>
-                    <p>Enter in all the required information below</p>
+                    <p>Enter all the required information below</p>
                 </div>
-                    <div class="col-md-6">
-                        <div class="wow fadeInUp" data-wow-delay="0.5s">
-                            <form action="testAction" method="POST">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                <form id="" class="needs-validation" action="createProperty" method="POST" novalidate>
                                 @csrf
-                                basic property information
-                                <div class="row g-3">
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Basic Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="description" placeholder="Descroo">
+                                            <label for="desc">houseID</label>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                            <label for="name">name</label>
+                                            <input type="number" class="form-control" name="realtorID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">realtorID*</label>
                                         </div>
-                                        <button type="submit">submit</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="price" id="price" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for=""><span style="color: red">*</span>Price</label>
+                                            <span id="priceError" class="error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="listingType" id="" placeholder=""required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Listing Type</option>
+                                                <option value="Sale">For Sale</option>
+                                                <option value="Rent">For Rent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="" name="description" id="message"></textarea>
+                                            <label for="message">Brief Description of the Lising</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="coordinateLatitude" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <label for="">Latitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="coordinateLongitude" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <label for="">Longitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">Other Listing Information</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Property Information</h3>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">*HouseID</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="prknSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <label for="">Number of Parking Spaces</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="garageSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <label for="">Number of Garage Spaces</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="prknSize" id="" placeholder="">
+                                            <label for="">Parking Area Size</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="acreSize" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <label for="">Acre Size</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="squareFeet" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">*Total Square Feet*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">Other Property Information</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Construction Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="homeType" id="" placeholder=""required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Home Type</option>
+                                                <option value="Single Family Residence">Single Family Residence</option>
+                                                <option value="Townhouse">Townhouse</option>
+                                                <option value="Multi Family Residence">Multi Family Residence</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="archType" id="" placeholder="">
+                                                <option selected disabled value="">Architecture Type</option>
+                                                <option value="Ranch">Ranch</option>
+                                                <option value="Colonial">Colonial</option>
+                                                <option value="Cape Cod">Cape Cod</option>
+                                                <option value="Contemporary">Contemporary</option>
+                                                <option value="Craftsman">Craftsman</option>
+                                                <option value="Victorian">Victorian</option>
+                                                <option value="Mediterranean">Mediterranean</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="constMaterials" id="" placeholder=""required>
+                                                <option selected disabled value=""><span style="color: red">*</span>House Construction Materials</option>
+                                                <option value="Concrete">Concrete</option>
+                                                <option value="Brick">Brick</option>
+                                                <option value="Stone">Stone</option>
+                                                <option value="Wood">Wood</option>
+                                                <option value="Cinder Block">Cinder Block</option>
+                                                <option value="Stucco">Stucco</option>
+                                                <option value="Stone Veneer">Stone Veneer</option>
+                                                <option value="Fiber Cement">Fiber Cement</option>
+                                                <option value="Metal">Metal</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="roof" id="" placeholder=""required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Roof Materials</option>
+                                                <option value="Asphalt Shingles">Asphalt Shingles</option>
+                                                <option value="Metal">Metal</option>
+                                                <option value="Wood Shingles">Wood Shingles</option>
+                                                <option value="Tile">Tile</option>
+                                                <option value="Slate">Slate</option>
+                                                <option value="Concrete Tiles">Concrete Tiles</option>
+                                                <option value="Flat Roof">Flat Roof</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{-- <div class="form-floating">
+                                            <input type="number" class="form-control" name="builtYear" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">*Year Built</label>
+                                        </div> --}}
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="year" id="year" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Year Built</option>
+                                                <script>
+                                                for (let year = 2024; year >= 1600; year--) {
+                                                    document.write(`<option value="${year}">${year}</option>\n`);
+                                                }
+                                                </script>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">Other Construction Information</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Location Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="country" id="" placeholder=""required>
+                                            <label for="">Country*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="state" id="state" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>State</option>
+                                                <option value="AL">AL</option>
+                                                <option value="AK">AK</option>
+                                                <option value="AZ">AZ</option>
+                                                <option value="AR">AR</option>
+                                                <option value="CA">CA</option>
+                                                <option value="CO">CO</option>
+                                                <option value="CT">CT</option>
+                                                <option value="DE">DE</option>
+                                                <option value="FL">FL</option>
+                                                <option value="GA">GA</option>
+                                                <option value="HI">HI</option>
+                                                <option value="ID">ID</option>
+                                                <option value="IL">IL</option>
+                                                <option value="IN">IN</option>
+                                                <option value="IA">IA</option>
+                                                <option value="KS">KS</option>
+                                                <option value="KY">KY</option>
+                                                <option value="LA">LA</option>
+                                                <option value="ME">ME</option>
+                                                <option value="MD">MD</option>
+                                                <option value="MA">MA</option>
+                                                <option value="MI">MI</option>
+                                                <option value="MN">MN</option>
+                                                <option value="MS">MS</option>
+                                                <option value="MO">MO</option>
+                                                <option value="MT">MT</option>
+                                                <option value="NE">NE</option>
+                                                <option value="NV">NV</option>
+                                                <option value="NH">NH</option>
+                                                <option value="NJ">NJ</option>
+                                                <option value="NM">NM</option>
+                                                <option value="NY">NY</option>
+                                                <option value="NC">NC</option>
+                                                <option value="ND">ND</option>
+                                                <option value="OH">OH</option>
+                                                <option value="OK">OK</option>
+                                                <option value="OR">OR</option>
+                                                <option value="PA">PA</option>
+                                                <option value="RI">RI</option>
+                                                <option value="SC">SC</option>
+                                                <option value="SD">SD</option>
+                                                <option value="TN">TN</option>
+                                                <option value="TX">TX</option>
+                                                <option value="UT">UT</option>
+                                                <option value="VT">VT</option>
+                                                <option value="VA">VA</option>
+                                                <option value="WA">WA</option>
+                                                <option value="WV">WV</option>
+                                                <option value="WI">WI</option>
+                                                <option value="WY">WY</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="county" id="" placeholder=""required>
+                                            <label for="">County*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="city" id="" placeholder=""required>
+                                            <label for="">City*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="zip" id="" placeholder=""required>
+                                            <label for="">Zip Code*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="region" id="" placeholder="">
+                                            <label for="">Region</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="street" id="" placeholder=""required>
+                                            <label for="">Street*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="apptNo" id="" placeholder="">
+                                            <label for="">Appartment Number</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Interior Information</h3>
+                                    {{-- <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
+                                            <label for="">HoseId</label>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="bedroomNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">Number of Bedrooms*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="bathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">Number of Bathrooms*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="kitchenNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">Number of Kitchens*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="heatingDesc" id="heatingDesc" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Heating Type</option>
+                                                <option value="Furnace">Furnace</option>
+                                                <option value="Heat Pump">Heat Pump</option>
+                                                <option value="Radiators">Radiators</option>
+                                                <option value="Underfloor Heating">Underfloor Heating</option>
+                                                <option value="Electric Heater">Electric Heater</option>
+                                                <option value="Gas Space Heater">Gas Space Heater</option>
+                                                <option value="Boiler System">Boiler System</option>
+                                                <option value="Geothermal Heat Pump">Geothermal Heat Pump</option>
+                                                <option value="Solar Heating System">Solar Heating System</option>
+                                                <option value="Wood Stove">Wood Stove</option>
+                                                <option value="Pellet Stove">Pellet Stove</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="basementDesc" id="basementDesc" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Basement Type</option>
+                                                <option value="Full Basement">Full Basement</option>
+                                                <option value="Partial Basement">Partial Basement</option>
+                                                <option value="Walkout Basement">Walkout Basement</option>
+                                                <option value="Daylight Basement">Daylight Basement</option>
+                                                <option value="Finished Basement">Finished Basement</option>
+                                                <option value="Unfinished Basement">Unfinished Basement</option>
+                                                <option value="Basement Apartment">Basement Apartment</option>
+                                                <option value="Basement Workshop">Basement Workshop</option>
+                                                <option value="Basement Storage">Basement Storage</option>
+                                                <option value="Crawlspace">Crawlspace</option>
+                                                <option value="Cellar">Cellar</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="applianceDesc" id="" placeholder=""required>
+                                            <label for="">*Appliance Type</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="floorsNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">Number of Floors*</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="floorType" id="floorType" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Floor Material</option>
+                                                <option value="Hardwood">Hardwood</option>
+                                                <option value="Tile">Tile</option>
+                                                <option value="Carpet">Carpet</option>
+                                                <option value="Laminate">Laminate</option>
+                                                <option value="Vinyl Flooring">Vinyl Flooring</option>
+                                                <option value="Stone">Stone</option>
+                                                <option value="Ceramic">Ceramic</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="coolingDesc" id="coolingDesc" placeholder="" required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Cooling Type</option>
+                                                <option value="Central Air Conditioning">Central Air Conditioning</option>
+                                                <option value="Split System Air Conditioner">Split System Air Conditioner</option>
+                                                <option value="Window Air Conditioner">Window Air Conditioner</option>
+                                                <option value="Ductless Mini-Split">Ductless Mini-Split</option>
+                                                <option value="Portable Air Conditioner">Portable Air Conditioner</option>
+                                                <option value="Geothermal Cooling">Geothermal Cooling</option>
+                                                <option value="Evaporative Cooler">Evaporative Cooler</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="otherDesc" id="" placeholder="">
+                                            <label for="">Other Interior Information</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                                </div>
+                            </form>                
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
+    </div>
         <!-- Contact End -->
 
 
-        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Quick Links</h5>
-                        <a class="btn btn-link text-white-50" href="">About Us</a>
-                        <a class="btn btn-link text-white-50" href="">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="">Our Services</a>
-                        <a class="btn btn-link text-white-50" href="">Privacy Policy</a>
-                        <a class="btn btn-link text-white-50" href="">Terms & Condition</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Photo Gallery</h5>
-                        <div class="row g-2 pt-2">
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-2.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h5 class="text-white mb-4">Newsletter</h5>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
+     <!-- footer start -->
+@include('footer')
+<!-- footer end -->
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -224,6 +569,9 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    
+    <!--Required form-->
+    <script src="js/base.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
