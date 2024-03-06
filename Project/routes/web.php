@@ -5,6 +5,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
 
+use App\Http\Controllers\Zillow;
+use App\Http\Controllers\MortgageCalculator;
+use App\Http\Controllers\CreatePropertyController;
+use App\Http\Controllers\ViewPropertiesController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +24,9 @@ use App\Http\Controllers\test;
 */
 
 //Index routes
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('properties.index');
+
 
 Route::get('/login', function(){
     return view('login');
@@ -47,14 +53,44 @@ Route::get('/contact',function(){
 Route::get('/propertyList',function(){
     return view('propertyList');
 });
+Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
-//Can only be seen when verified by login
-Route::get('/dashboard', function (){
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/termsOfService',function(){
+    return view('/termsOfService');
+});
 
-Route::get('/admin/dashboard');
+Route::get('/test',function(){
+    return view('/test5');
+});
 
-Route::get('/test', [test::class, 'show'])->name('test.show');
+//Test
+Route::get('/test2', [test::class, 'show'])->name('test.show');
+
+
+
+
+
+
+Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
+
+//Create Property page routes
+Route::get('/createProperty',function(){
+    return view('/createProperty');
+});
+Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/mortgage-calc', [MortgageCalculator::class, 'showCalculator'])->name('mortgage.calculator');
+
+Route::post('/mortgage-calc', [MortgageCalculator::class, 'calculate'])->name('mortgage.calculate');
+
+Route::get('/mortgage-result', function () {
+    return view('mortgageCalc');
+})->name('mortgage.result');
+
+
+Route::get('/header',function(){
+    return view('/header');
+});
