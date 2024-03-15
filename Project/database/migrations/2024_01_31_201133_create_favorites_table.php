@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id')->unsigned();
+            $table->integer('houseID')->unsigned();
             $table->timestamps();
-            $table->unsignedBigInteger('houseID');
             $table->foreign('id')->references('id')->on('users');
             $table->foreign('houseID')->references('houseID')->on('houses');
         });

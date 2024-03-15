@@ -12,16 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('interiors', function (Blueprint $table) {
-            $table->unsignedBigInteger("houseID");
-            $table->integer("bedroomNo");
-            $table->integer("bathNo");
-            $table->integer("kitchenNo");
-            $table->string("heatingDesc");
-            $table->string("basementDesc");
-            $table->string("applianceDesc");
-            $table->integer("floorsNo");
+            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->integer("bedroomNo")->nullable(false);
+            $table->integer("mainBedNo");
+            $table->integer("fullBathNo")->nullable(false);
+            $table->integer("halfBedNo");
+            $table->integer("bathNo")->nullable(false);
+            $table->integer("mainBathNo")->nullable(false);
+            $table->integer("kitchenNo")->nullable(false);
+            $table->string("kitchenType")->nullable(false);
+            $table->string("stoveType")->nullable(false);
+            $table->string("laundryType")->nullable(false);
+            $table->string("electricType")->nullable(false);
+            $table->string("sewerType")->nullable(false);
+            $table->string("waterType")->nullable(false);
+            $table->string("utilitiesType")->nullable(false);
+            $table->string("heatingDesc")->nullable(false);
+            $table->string("basementDesc")->nullable(false);
+            $table->string("applianceDesc")->nullable(false);
+            $table->integer("floorsNo")->nullable(false);
             $table->string("floorType");
-            $table->string("coolingDesc");
+            $table->string("coolingDesc")->nullable(false);
             $table->string("otherDesc");
             $table->timestamps();
             $table->foreign("houseID")->references('houseID')->on("houses");
