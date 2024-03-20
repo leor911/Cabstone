@@ -31,13 +31,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         
-        VerifyEmail::toMailUsing(function (object $notifiable, string $url){
-            $userData = Auth::user()->firstName;
-            return(new MailMessage)
-            ->subject('Verify User\'s Email')
-            ->line('The user ' . $userData . 'is trying to verify as an role.')
-            ->action('Accept', $url)
-            ->action('Decline', $url);
-        });
     }
 }

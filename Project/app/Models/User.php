@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Illuminate\Database \Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function check2()
     {
         return Auth::check();
+    }
     // Get user data
     public function retrieveData(){
         return [Auth::user()->firstName, Auth::user()->role_name];

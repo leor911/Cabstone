@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('house_images', function (Blueprint $table) {
             $table->increments("image_id")->nullable(false);
-            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->bigInteger("houseID")->unsigned()->nullable(false);
             $table->binary('image')->nullable(false);
             $table->timestamps();
             $table->foreign('houseID')->references('houseID')->on('houses');

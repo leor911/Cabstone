@@ -12,17 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->bigInteger("houseID")->unsigned()->nullable(false);
             $table->integer("prknSpacesNo")->nullable(false);
             $table->integer("garageSpacesNo")->nullable(false);
-            $table->string("garageType");
-            $table->string("lotType");
-            $table->string("lotMaterials");
+            $table->string("garageType")->nullable();
+            $table->string("lotType")->nullable();
+            $table->string("lotMaterials")->nullable();
             $table->string("extensionType")->nullable(false);
             $table->string("prknSize")->nullable(false);
             $table->integer("acreSize")->nullable(false);
             $table->integer("squareFeet")->nullable(false);
-            $table->string("otherDesc");
+            $table->string("otherDesc")->nullable();
             $table->timestamps();
             $table->foreign("houseID")->references("houseID")->on("houses");
         });
