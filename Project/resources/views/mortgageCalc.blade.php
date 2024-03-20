@@ -109,7 +109,7 @@
                         <div class="mb-3">
                             <label for="principal">Principal Amount:</label>
                             <input type="number" id="principal" name="principal" class="form-control" required>                            </div>
-                            <div class="mb-3"
+                            <div class="mb-3">
                               <label for="interest_rate">Interest Rate (%):</label>
                             <input type="number" step=".01" id="interest_rate" name="interest_rate" class="form-control" required>
                         </div>
@@ -127,8 +127,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center">
-                                <h1>Mortgage Calculation Result</h1>
+                                <br>
+                                <br>
                                         @isset($data['monthly_payment'])
+                                        <h1>Mortgage Calculation Result</h1>
                                             <h2>Monthly Payment</h2>
                                             <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
                                             <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
@@ -150,6 +152,8 @@
                                             <h2>Total Interest Paid</h2>
                                             <p>${{ $data['total_interest_paid'] }}</p>
                                      @endisset
+                                     <br>
+                                    <br>
                                  </div>
                              </div>
                          </div>
