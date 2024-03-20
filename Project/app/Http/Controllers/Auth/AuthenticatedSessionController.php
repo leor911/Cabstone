@@ -21,6 +21,33 @@ class AuthenticatedSessionController extends Controller
         return view('auth.login');
     }
 
+
+    public function auth()
+    {
+        $user = Auth::user();
+        if ($user) {
+            // Get the roles associated with the user
+            $roles = $user->roles;
+    
+            // Check if the user has a specific role by role name
+            $roleNameToCheck = "customer"; // Role name to check
+            $hasRole = $roles->contains('name', $roleNameToCheck);
+    
+            if ($hasRole) {
+                // User has the role with the specified name
+                // Perform actions accordingly
+                return response()->json(['message' => 'Action successful'], 200);
+            } else {
+                // User does not have the role with the specified name
+                return response()->json(['error' => 'Unauthorized'], 403);
+            }
+        } else {
+            // User is not authenticated
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+    }
+
+
     /**
      * Handle an incoming authentication request.
      */

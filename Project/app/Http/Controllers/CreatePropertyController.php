@@ -69,7 +69,6 @@ class CreatePropertyController extends Controller
             "otherDesc" => $request->input("otherDesc")
         );
     
-        // Create records using Eloquent's create method
         $newHouse = House::create($house);
         $newHouseId = $newHouse->id;
     
