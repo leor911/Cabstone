@@ -12,12 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->unsignedBigInteger("houseID");
-            $table->integer("prknSpacesNo");
-            $table->integer("garageSpacesNo");
-            $table->string("prknSize");
-            $table->integer("acreSize");
-            $table->integer("squareFeet");
+            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->integer("prknSpacesNo")->nullable(false);
+            $table->integer("garageSpacesNo")->nullable(false);
+            $table->string("garageType");
+            $table->string("lotType");
+            $table->string("lotMaterials");
+            $table->string("extensionType")->nullable(false);
+            $table->string("prknSize")->nullable(false);
+            $table->integer("acreSize")->nullable(false);
+            $table->integer("squareFeet")->nullable(false);
             $table->string("otherDesc");
             $table->timestamps();
             $table->foreign("houseID")->references("houseID")->on("houses");

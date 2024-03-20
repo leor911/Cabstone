@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Zillow;
 use App\Http\Controllers\MortgageCalculator;
 use App\Http\Controllers\CreatePropertyController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ViewPropertiesController;
 use App\Http\Controllers\RoleCheck;
 
@@ -37,9 +38,7 @@ Route::get('/login', function(){
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 //Map routes
-Route::get('/map', function () {
-    return view('map');
-});
+Route::get('/map', [MapController::class, 'mapView']);
 
 //About page routes
 Route::get('/about',function(){

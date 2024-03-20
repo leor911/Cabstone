@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('house_images', function (Blueprint $table) {
-            $table->increments("image_id");
-            $table->unsignedBigInteger("house_id");
-            $table->foreign('house_id')->references('houseID')->on('houses');
-            $table->binary('image');
+            $table->increments("image_id")->nullable(false);
+            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->binary('image')->nullable(false);
             $table->timestamps();
+            $table->foreign('houseID')->references('houseID')->on('houses');
         });
     }
 

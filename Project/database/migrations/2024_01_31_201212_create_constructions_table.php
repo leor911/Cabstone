@@ -12,13 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('constructions', function (Blueprint $table) {
-            $table->unsignedBigInteger("houseID");
-            $table->string("homeType");
-            $table->string("archType");
-            $table->string("constMaterials");
-            $table->string("roof");
-            $table->integer("builtYear");
-            $table->string("otherDesc");
+            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->string("homeType")->nullable(false);
+            $table->string("archType")->nullable(false);
+            $table->string("foundationType")->nullable(false);
+            $table->string("constMaterials")->nullable(false);
+            $table->string("roof")->nullable(false);
+            $table->integer("builtYear")->nullable(false);
+            $table->integer("remodelYear");
+            $table->string("otherDesc")->nullable(false);
+            $table->string("newConstruction");
             $table->timestamps();
             $table->foreign("houseID")->references("houseID")->on("houses");
         });

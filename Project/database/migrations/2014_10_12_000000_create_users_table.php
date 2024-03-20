@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('firstName');
             $table->string('lastName');
             $table->enum('role_name', ['customer', 'realtor', 'admin']);
