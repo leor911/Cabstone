@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('houses', function (Blueprint $table) {
-            $table->bigIncrements("houseID");
-            $table->bigInteger('realtor_id');
-            $table->integer("price");
-            $table->string("listingType");
-            $table->string("description");
+            $table->increments("houseID")->nullable(false);
+            $table->integer('realtor_id')->unsigned();
+            $table->integer("price")->nullable(false);
+            $table->string("listingType")->nullable(false);
+            $table->string("description")->nullable(false);
             $table->integer("coordinateLatitude");
             $table->integer("coordinateLongitude");
             $table->string("otherDesc");
@@ -29,7 +29,7 @@ return new class extends Migration
                     ->from('users')
                     ->whereColumn('users.id', 'houses.realtor_id')
                     ->join('roles', 'users.role_name', '=', 'roles.role_name')
-                    ->where('roles.role_name', '=', 'realtor');
+                    ->where('users.role_name', '=', 'realtor');
             });
         });
     }

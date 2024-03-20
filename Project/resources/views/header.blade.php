@@ -33,6 +33,7 @@
                             </div>
                         </div>
                         <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a>
+                        <a href="{{ url('/mortgage-calc') }}" class="nav-item nav-link">Caluclator</a>
                     </div>
                     <a href="{{url('/createProperty')}}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>                </div>
             </nav>
