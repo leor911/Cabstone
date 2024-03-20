@@ -4,12 +4,15 @@ use App\Http\Controllers\Auth\Admin\LoginController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\test;
+use App\Http\Controllers\Controller;
 
 use App\Http\Controllers\Zillow;
 use App\Http\Controllers\MortgageCalculator;
 use App\Http\Controllers\CreatePropertyController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ViewPropertiesController;
+use App\Http\Controllers\RoleCheck;
+
 
 
 
@@ -26,8 +29,7 @@ use App\Http\Controllers\ViewPropertiesController;
 
 //Index routes
 
-Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('properties.index');
-
+Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('index')->middleware('rolecheck:realtor');
 
 Route::get('/login', function(){
     return view('login');
@@ -49,7 +51,7 @@ Route::get('/contact',function(){
 });
 
 //Property List page routes
-Route::get('/propertyList',function(){
+Route::get('/propertyLists',function(){
     return view('propertyList');
 });
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
@@ -68,14 +70,14 @@ Route::get('/test2', [test::class, 'show'])->name('test.show');
 
 
 
-
-
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
 //Create Property page routes
-Route::get('/createProperty',function(){
-    return view('/createProperty');
-});
+Route::get('/createProperty', function () {
+    return view('createProperty');
+})->middleware('rolecheck:realtor');
+
+
 Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
 
 require __DIR__.'/auth.php';
@@ -93,3 +95,6 @@ Route::get('/mortgage-result', function () {
 Route::get('/header',function(){
     return view('/header');
 });
+
+
+

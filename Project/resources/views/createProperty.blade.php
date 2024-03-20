@@ -1,3 +1,5 @@
+@auth
+@if(Auth::user()->isRealtor())
 <!DOCTYPE html>
 <html lang="en">
 
@@ -578,3 +580,5 @@
 </body>
 
 </html>
+@endif
+                @endauth 

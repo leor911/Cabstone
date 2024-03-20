@@ -63,7 +63,7 @@
                 <div class="col-md-6 p-5 mt-lg-5">
                     <h1 class="display-5 animated fadeIn mb-4">Elevate <span class="text-primary">Your Living</span> With The Perfect Home</h1>
                     <p class="animated fadeIn mb-4 pb-2">Experience luxury like never before. From exquisite designs to unparalleled comfort, we offer a home tailored to your desires.</p>
-                    <a href="{{ url('/propertyList') }}" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Started</a>
+                    <a href="{{ url('/register') }}" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Get Started</a>
                 </div>
                 <div class="col-md-6 animated fadeIn">
                     <div class="owl-carousel header-carousel">
@@ -193,13 +193,13 @@
                     </div>
                     <div class="p-4 pb-0">
                         <h5 class="text-primary mb-3">${{ $listing->price }}</h5>
-                        <a class="d-block h5 mb-2" href="">{{ $listing->description }}</a>
+                        <h5 class=" mb-3">{{ $listing->description }}</h5>
                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $listing->street }}, {{ $listing->city }}, {{ $listing->state }}</p>
                     </div>
                     <div class="d-flex border-top">
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>{{ $listing->squareFeet }} Sqft</small>
-                        <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>{{ $listing->bedroomNo }} Bed</small>
-                        <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>{{ $listing->bathNo }} Bath</small>
+                        <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2" ></i> {{ $listing->squareFeet }} Sqft&nbsp; </small>
+                        <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2" ></i> {{ $listing->bedroomNo }} Bed &nbsp;</small>
+                        <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2" ></i> {{ $listing->bathNo }} Bath &nbsp;</small>
                     </div>
                 </div>
             </div>
@@ -208,20 +208,30 @@
     </div>
 </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Modal -->
+<div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Property image -->
+                        <div id="propertyImage"></div>
                     </div>
-                    <div class="modal-body">
-                        <!-- Property details will be populated here -->
+                    <div class="col-md-6">
+                        <!-- Property description -->
+                        <div id="propertyDescription"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
 
         <!-- footer start -->
         @include('footer')
@@ -237,7 +247,6 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
     <script>
 $(document).ready(function() {
     $('.property-link').click(function(event) {
@@ -246,21 +255,37 @@ $(document).ready(function() {
 
         // Retrieve property details from the clicked property element
         var propertyContainer = $(this).closest('.property-item');
-        var propertyDetails = propertyContainer.find('.property-details').html();
+        var propertyDetails = propertyContainer.find('.p-4').html(); // Get property description
+        var squareFeet = propertyContainer.find('.sf').text().trim(); // Get square feet
+        var beds = propertyContainer.find('.bed').text().trim(); // Get number of beds
+        var baths = propertyContainer.find('.bath').text().trim(); // Get number of baths
         var imageUrl = propertyContainer.find('img').attr('src');
 
-        // Construct the HTML for the modal content
-        var imageHtml = '<img class="img-fluid" src="' + imageUrl + '" alt="Property Image">';
-        var modalContent = imageHtml + (propertyDetails || '');
+        // Debugging: Print retrieved data to console
+        console.log("Square Feet: ", squareFeet);
+        console.log("Beds: ", beds);
+        console.log("Baths: ", baths);
+
+        // Construct the HTML for the property details
+        var detailsHtml = '<p><strong>Beds:</strong> ' + beds + '</p>' +
+                          '<p><strong>Baths:</strong> ' + baths + '</p>' +
+                          '<p><strong>Square Feet:</strong> ' + squareFeet + '</p>';
 
         // Populate modal body with property details
-        $('#propertyModal .modal-body').html(modalContent);
+        $('#propertyImage').html('<img class="img-fluid" src="' + imageUrl + '" alt="Property Image">');
+        $('#propertyDescription').html(propertyDetails + detailsHtml);
 
         // Show the modal
         $('#propertyModal').modal('show');
     });
 });
 </script>
+
+
+
+
+
+
 </body>
 
 </html>
