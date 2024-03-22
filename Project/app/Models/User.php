@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\roles;
+
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
@@ -61,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return Auth::check();
     }
     // Get user data
+    }
     public function retrieveData(){
         return [Auth::user()->firstName, Auth::user()->role_name];
 
