@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->integer('id')->unsigned();
-            $table->integer('houseID')->unsigned();
+            $table->bigInteger('houseID')->unsigned();
             $table->timestamps();
             $table->foreign('id')->references('id')->on('users');
             $table->foreign('houseID')->references('houseID')->on('houses');

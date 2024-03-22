@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('interiors', function (Blueprint $table) {
-            $table->integer("houseID")->unsigned()->nullable(false);
+            $table->bigInteger("houseID")->unsigned()->nullable(false);
             $table->integer("bedroomNo")->nullable(false);
-            $table->integer("mainBedNo");
+            $table->integer("mainBedNo")->nullable();
             $table->integer("fullBathNo")->nullable(false);
-            $table->integer("halfBedNo");
+            $table->integer("halfBedNo")->nullable();
             $table->integer("bathNo")->nullable(false);
             $table->integer("mainBathNo")->nullable(false);
             $table->integer("kitchenNo")->nullable(false);
@@ -31,9 +31,9 @@ return new class extends Migration
             $table->string("basementDesc")->nullable(false);
             $table->string("applianceDesc")->nullable(false);
             $table->integer("floorsNo")->nullable(false);
-            $table->string("floorType");
+            $table->string("floorType")->nullable();
             $table->string("coolingDesc")->nullable(false);
-            $table->string("otherDesc");
+            $table->string("otherDesc")->nullable();
             $table->timestamps();
             $table->foreign("houseID")->references('houseID')->on("houses");
         });

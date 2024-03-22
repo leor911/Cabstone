@@ -139,12 +139,12 @@
                                             <label for="desc">houseID</label>
                                         </div>
                                     </div> --}}
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="realtorID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
                                             <label for="">realtorID*</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="price" id="price" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
@@ -188,12 +188,12 @@
                                 </div>
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Property Information</h3>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="houseID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
                                             <label for="">*HouseID</label>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="prknSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
@@ -204,6 +204,86 @@
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="garageSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                             <label for="">Number of Garage Spaces</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="garageType" id="" placeholder="">
+                                                <option selected disabled value="">Garage Type</option>
+                                                <option value="Attached Garage">Attached Garage</option>
+                                                <option value="Detached Garage">Detached Garage</option>
+                                                <option value="Integrated Garage">Integrated Garage</option>
+                                                <option value="Basement Garage">Basement Garage</option>
+                                                <option value="Carport">Carport</option>
+                                                <option value="Covered Parking">Covered Parking</option>
+                                                <option value="Uncovered Parking">Uncovered Parking</option>
+                                                <option value="Tandem Garage">Tandem Garage</option>
+                                                <option value="Drive-Through Garage">Drive-Through Garage</option>
+                                                <option value="Workshop">Workshop</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="lotType" id="" placeholder="">
+                                                <option selected disabled value="">Lot Type</option>
+                                                <option value="Cul-de-sac">Cul-de-sac</option>
+                                                <option value="Downtown">Downtown</option>
+                                                <option value="Parking Spaces">Parking Spaces</option>
+                                                <option value="Driveway">Driveway</option>
+                                                <option value="Off Street">Off Street</option>
+                                                <option value="Assigned Parking">Assigned Parking</option>
+                                                <option value="Alley Access">Alley Access</option>
+                                                <option value="Corner Lot">Corner Lot</option>
+                                                <option value="Subdivision Lot">Subdivision Lot</option>
+                                                <option value="Waterfront">Waterfront</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="lotMaterials" id="" placeholder="">
+                                                <option selected disabled value="">Lot Materials</option>
+                                                <option value="Gravel">Gravel</option>
+                                                <option value="Concrete">Concrete</option>
+                                                <option value="Dirt">Dirt</option>
+                                                <option value="Asphalt">Asphalt</option>
+                                                <option value="Pavers">Pavers</option>
+                                                <option value="Brick">Brick</option>
+                                                <option value="Stone">Stone</option>
+                                                <option value="Sand">Sand</option>
+                                                <option value="Composite">Composite</option>
+                                                <option value="Grass">Grass</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="extensionType" id="" placeholder=""required>
+                                                <option selected disabled value=""><span style="color: red">*</span>Extension Type</option>
+                                                <option value="Pool">Pool</option>
+                                                <option value="Patio">Patio</option>
+                                                <option value="Deck">Deck</option>
+                                                <option value="Fence">Fence</option>
+                                                <option value="Garden">Garden</option>
+                                                <option value="Balcony">Balcony</option>
+                                                <option value="Veranda">Veranda</option>
+                                                <option value="Gazebo">Gazebo</option>
+                                                <option value="Sunroom">Sunroom</option>
+                                                <option value="Greenhouse">Greenhouse</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -221,7 +301,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="squareFeet" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Total Square Feet*</label>
+                                            <label for="">Total Square Feet*</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -233,28 +313,23 @@
                                 </div>
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Construction Information</h3>
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
-                                            <label for="">HoseId</label>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="homeType" id="" placeholder=""required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Home Type</option>
+                                                <option selected disabled value="">*Home Type</option>
                                                 <option value="Single Family Residence">Single Family Residence</option>
                                                 <option value="Townhouse">Townhouse</option>
                                                 <option value="Multi Family Residence">Multi Family Residence</option>
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
+                                                <option value="None">None</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="archType" id="" placeholder="">
-                                                <option selected disabled value="">Architecture Type</option>
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="archType" id="" placeholder=""required>
+                                                <option selected disabled value="">Architecture Type*</option>
                                                 <option value="Ranch">Ranch</option>
                                                 <option value="Colonial">Colonial</option>
                                                 <option value="Cape Cod">Cape Cod</option>
@@ -264,6 +339,27 @@
                                                 <option value="Mediterranean">Mediterranean</option>
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="foundationType" id="" placeholder=""required>
+                                                <option selected disabled value="">Foundation Type*</option>
+                                                <option value="Stone">Stone</option>
+                                                <option value="Basement">Basement</option>
+                                                <option value="Concrete Slab">Concrete Slab</option>
+                                                <option value="Crawlspace">Crawlspace</option>
+                                                <option value="Pier and Beam">Pier and Beam</option>
+                                                <option value="Pile">Pile</option>
+                                                <option value="Raft">Raft</option>
+                                                <option value="Tilt-Up">Tilt-Up</option>
+                                                <option value="Earthbag">Earthbag</option>
+                                                <option value="Raised">Raised</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
                                             </select>
                                         </div>
                                     </div>
@@ -282,6 +378,7 @@
                                                 <option value="Metal">Metal</option>
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
+                                                <option value="None">None</option>
                                             </select>
                                         </div>
                                     </div>
@@ -298,22 +395,40 @@
                                                 <option value="Flat Roof">Flat Roof</option>
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
+                                                <option value="None">None</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        {{-- <div class="form-floating">
-                                            <input type="number" class="form-control" name="builtYear" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Year Built</label>
-                                        </div> --}}
                                         <div class="form-floating">
-                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="year" id="year" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Year Built</option>
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="builtYear" id="year" placeholder="" required>
+                                                <option selected disabled value="">Year Built*</option>
                                                 <script>
                                                 for (let year = 2024; year >= 1600; year--) {
                                                     document.write(`<option value="${year}">${year}</option>\n`);
                                                 }
                                                 </script>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="remodelYear" id="year" placeholder="">
+                                                <option selected disabled value="">Most Recent Year Remodeled</option>
+                                                <script>
+                                                for (let year = 2024; year >= 1600; year--) {
+                                                    document.write(`<option value="${year}">${year}</option>\n`);
+                                                }
+                                                </script>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="newConstruction" id="" placeholder="">
+                                                <option selected disabled value="">New Construction</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
                                             </select>
                                         </div>
                                     </div>
@@ -326,12 +441,6 @@
                                 </div>
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Location Information</h3>
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
-                                            <label for="">HoseId</label>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="country" id="" placeholder=""required>
@@ -431,37 +540,174 @@
                                             <label for="">Appartment Number</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="zoning" id="" placeholder="">
+                                                <option value="Commercial">Commercial</option>
+                                                <option value="Low Density Residential">Low Density Residential</option>
+                                                <option value="Residential">Residential</option>
+                                                <option value="Mixed Use">Mixed Use</option>
+                                                <option value="Industrial">Industrial</option>
+                                                <option value="Agricultural">Agricultural</option>
+                                                <option value="Open Space">Open Space</option>
+                                                <option value="Recreational">Recreational</option>
+                                                <option value="Historic">Historic</option>
+                                                <option value="Special Purpose">Special Purpose</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="subdivision" id="" placeholder=""required>
+                                            <label for="">*Subdivision</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Interior Information</h3>
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="houseID" id="" placeholder=""required>
-                                            <label for="">HoseId</label>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="bedroomNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">Number of Bedrooms*</label>
+                                            <label for="">*Number of Bedrooms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="mainBedNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" >
+                                            <label for="">Number of Main Bedrooms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="fullBathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">*Number of Full Bathrooms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="halfBedNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" >
+                                            <label for="">Number of Half Bedrooms</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="bathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">Number of Bathrooms*</label>
+                                            <label for="">*Number of Bathrooms</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="mainBathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <label for="">*Number of Main Bathrooms</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="kitchenNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">Number of Kitchens*</label>
+                                            <label for="">*Number of Kitchens</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="kitchenType" id="" placeholder=""required>
+                                                <option selected disabled value="">*Kitchen Type</option>
+                                                <option value="Contemporary">Contemporary</option>
+                                                <option value="Traditional">Traditional</option>
+                                                <option value="Modern">Modern</option>
+                                                <option value="Rustic">Rustic</option>
+                                                <option value="Transitional">Transitional</option>
+                                                <option value="Farmhouse">Farmhouse</option>
+                                                <option value="Industrial">Industrial</option>
+                                                <option value="Scandinavian">Scandinavian</option>
+                                                <option value="Eclectic">Eclectic</option>
+                                                <option value="Mediterranean">Mediterranean</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="stoveType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Stove Type</option>
+                                                <option value="Gas">Gas</option>
+                                                <option value="Electric">Electric</option>
+                                                <option value="Induction">Induction</option>
+                                                <option value="Dual Fuel">Dual Fuel</option>
+                                                <option value="Wood Burning">Wood Burning</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="laundryType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Laundry Type</option>
+                                                <option value="In-Unit">In-Unit</option>
+                                                <option value="On-Site">On-Site</option>
+                                                <option value="Hookups">Hookups</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="electricType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Electric Type</option>
+                                                <option value="Public">Public</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Off-Grid">Off-Grid</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="sewerType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Sewer Type</option>
+                                                <option value="Public">Public</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Septic">Septic</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="waterType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Water Type</option>
+                                                <option value="Public">Public</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Well">Well</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="utilitiesType" id="" placeholder="" required>
+                                                <option selected disabled value="">*Utilities Type</option>
+                                                <option value="Public">Public</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Off-Grid">Off-Grid</option>
+                                                <option value="Other">Other</option>
+                                                <option value="None">None</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="heatingDesc" id="heatingDesc" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Heating Type</option>
+                                                <option selected disabled value="">*Heating Type</option>
                                                 <option value="Furnace">Furnace</option>
                                                 <option value="Heat Pump">Heat Pump</option>
                                                 <option value="Radiators">Radiators</option>
@@ -481,7 +727,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="basementDesc" id="basementDesc" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Basement Type</option>
+                                                <option selected disabled value="">*Basement Type</option>
                                                 <option value="Full Basement">Full Basement</option>
                                                 <option value="Partial Basement">Partial Basement</option>
                                                 <option value="Walkout Basement">Walkout Basement</option>
@@ -500,20 +746,23 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" name="applianceDesc" id="" placeholder=""required>
-                                            <label for="">*Appliance Type</label>
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="applianceDesc" id="floorType" placeholder="" required>
+                                                <option selected disabled value="">*Appliance Type</option>
+                                                <option value="Mixed">Mixed</option>
+                                                <option value="Other">Other</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="floorsNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">Number of Floors*</label>
+                                            <label for="">*Number of Floors</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="floorType" id="floorType" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Floor Material</option>
+                                                <option selected disabled value="">*Floor Material</option>
                                                 <option value="Hardwood">Hardwood</option>
                                                 <option value="Tile">Tile</option>
                                                 <option value="Carpet">Carpet</option>
@@ -529,7 +778,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="coolingDesc" id="coolingDesc" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Cooling Type</option>
+                                                <option selected disabled value="">*Cooling Type</option>
                                                 <option value="Central Air Conditioning">Central Air Conditioning</option>
                                                 <option value="Split System Air Conditioner">Split System Air Conditioner</option>
                                                 <option value="Window Air Conditioner">Window Air Conditioner</option>
@@ -549,6 +798,73 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- <div class="row g-3 mb-5">
+                                    <h3 class="mb-3">Property Images</h3>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <div id="imageContainer">
+                                                <!-- Image Input Fields will be dynamically added here -->
+                                            </div>
+                                            <button type="button" onclick="addImageField()">Add Another Image</button>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        let imageCount = 0;
+                                    
+                                        function addImageField() {
+                                            if (imageCount < 10) {
+                                                imageCount++;
+                                    
+                                                const container = document.getElementById('imageContainer');
+                                                const div = document.createElement('div');
+                                                div.innerHTML = `
+                                                    <label for="imageInput${imageCount}">Choose Image ${imageCount}:</label>
+                                                    <input type="file" name="image" id="imageInput${imageCount}" accept="image/*" onchange="previewImage(${imageCount})">
+                                                    <button type="button" onclick="removeImage(${imageCount})">Remove Image ${imageCount}</button>
+                                                    <img id="imagePreview${imageCount}" class="image-preview" alt="Image Preview ${imageCount}">
+                                                `;
+                                                container.appendChild(div);
+                                            } else {
+                                                alert("You can add a maximum of 10 images.");
+                                            }
+                                        }
+                                    
+                                        function previewImage(inputNumber) {
+                                            const inputId = `imageInput${inputNumber}`;
+                                            const previewId = `imagePreview${inputNumber}`;
+                                    
+                                            const fileInput = document.getElementById(inputId);
+                                            const previewImage = document.getElementById(previewId);
+                                    
+                                            const file = fileInput.files[0];
+                                    
+                                            if (file) {
+                                                const reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    previewImage.src = e.target.result;
+                                                };
+                                                reader.readAsDataURL(file);
+                                            } else {
+                                                previewImage.src = '';
+                                            }
+                                        }
+                                    
+                                        function removeImage(inputNumber) {
+                                            const container = document.getElementById('imageContainer');
+                                            const imageDiv = document.getElementById(`imageInput${inputNumber}`).parentNode;
+                                            container.removeChild(imageDiv);
+                                            imageCount--;
+                                        }
+                                    
+                                        document.getElementById('imageForm').addEventListener('submit', function (e) {
+                                            e.preventDefault();
+                                    
+                                            // Handle form submission logic here
+                                            // You can access the selected files using document.getElementById('imageInput1').files, document.getElementById('imageInput2').files, etc.
+                                            // Implement your submission logic or send the files to a server using AJAX
+                                        });
+                                    </script>
+                                </div> --}}
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
                                 </div>
