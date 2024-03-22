@@ -41,17 +41,21 @@
         }).addTo(map);
     }
     initMap();
-    var marker = L.marker([40.041, -76.27]).addTo(map);
-    marker.bindPopup("<b>Thaddeus Stevens!</b><br>Here's a popup.").openPopup();
     
-    var popup = L.popup();
-    function onMapClick(e){
-        popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);
-    }
-    map.on('click', onMapClick);
+    @foreach ($houses as $house)
+    var marker = L.marker([{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}]).addTo(map);
+    marker.bindPopup("{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}");
+    @endforeach
+
+
+    // var popup = L.popup();
+    // function onMapClick(e){
+    //     popup
+    //         .setLatLng(e.latlng)
+    //         .setContent("You clicked the map at " + e.latlng.toString())
+    //         .openOn(map);
+    // }
+    // map.on('click', onMapClick);
 
 </script>
 
