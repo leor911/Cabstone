@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\roles;
+
 use Illuminate\Support\Facades\Auth; // Import the Auth facade
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
