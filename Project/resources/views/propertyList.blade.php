@@ -204,12 +204,27 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    let map;
+    function initMap(){
+        map = L.map('map', {
+            center: [40.037, -76.28],
+            zoom: 15
         });
-        osm.addTo(map);
+        
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    }
+    initMap();
+    @foreach ($houses as $house)
+    var marker = L.marker([{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}]).addTo(map);
+    marker.bindPopup("{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}");
+    @endforeach
+
     </script>
+
+
     <script>
         $(document).ready(function() {
             $('.property-link').click(function(event) {

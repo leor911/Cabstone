@@ -50,7 +50,6 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
-//Property List page routes
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
@@ -91,10 +90,6 @@ Route::get('/mortgage-result', function () {
     return view('mortgageCalc');
 })->name('mortgage.result');
 
-
 Route::get('/header',function(){
     return view('/header');
 });
-
-
-

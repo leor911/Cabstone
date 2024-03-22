@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use App\Models\house;
 use App\Models\property;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\DB;
 
 class ViewPropertiesController extends Controller
 {
+    public function getHouses(){
+        return DB::table('houses')->get();
+    }
     function viewProperties(){
         $listings = DB::select("
         SELECT h.houseID,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
@@ -27,8 +31,9 @@ class ViewPropertiesController extends Controller
         JOIN house_Locations l ON l.houseID=h.houseID 
         JOIN interiors i ON i.houseID=h.houseID
     ");
+        $houses = $this->getHouses();
     
-        return view('/propertyList', ["listings"=>$listings]);
+        return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
         }
 
         function viewPropertiesIndex(){
