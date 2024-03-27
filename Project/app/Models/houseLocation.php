@@ -18,5 +18,7 @@ class houseLocation extends Model
         'region',
         'street',
         'apptNo',
+        'zoning',
+        'subdivision',
     ];
 }

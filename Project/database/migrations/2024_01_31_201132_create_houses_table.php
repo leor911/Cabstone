@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -17,8 +18,8 @@ return new class extends Migration
             $table->integer("price")->nullable(false);
             $table->string("listingType")->nullable(false);
             $table->string("description")->nullable(false);
-            $table->integer("coordinateLatitude")->nullable();
-            $table->integer("coordinateLongitude")->nullable();
+            $table->decimal("coordinateLongitude", 8, 6)->nullable();
+            $table->decimal("coordinateLatitude", 8, 6)->nullable();
             $table->string("otherDesc")->nullable();
             $table->timestamps();
             $table->foreign('realtor_id')
