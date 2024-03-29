@@ -153,7 +153,7 @@
                     </div>
                     <div>
                         <div class="row g-4">
-                            <!--I couldn't come up with any names. I'll probaly add those later if anything comes to mind.-->
+                            <!--I couldn't come up with any names. I'll probably add those later if anything comes to mind.-->
                             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="team-item rounded overflow-hidden">
                                     <div class="position-relative">
@@ -214,6 +214,24 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @foreach ($realtors as $realtor)
+                            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                                <div class="team-item rounded overflow-hidden">
+                                    <div class="position-relative">
+                                        <img class="img-fluid" src="img/team-4.jpg" alt="">
+                                    </div>
+                                    <div class="text-center p-4 mt-3">
+                                        <h5 class="fw-bold mb-0">{{ $realtor->firstName }} {{ $realtor->lastName }}</h5>
+                                        <p><h5>Email:</h5>{{ $realtor->email }}</p>
+                                        <p><h5>Phone Number:</h5>{{ $realtor->phoneNo }}</p>
+                                        <p><h5>Availabile Days:</h5>Tuesday-Sunday</p>
+                                        <p><h5>Availabile Hours:</h5>7:00AM-5:30PM</p>
+                                        <p><h5>Contact Agent:</h5>Connor Hamilton</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!--These are just in case we want more people listed. You will have to add your own images and names.-->

@@ -10,6 +10,7 @@ use App\Http\Controllers\Zillow;
 use App\Http\Controllers\MortgageCalculator;
 use App\Http\Controllers\CreatePropertyController;
 use App\Http\Controllers\MapController;
+use App\Http\Controllers\RealtorController;
 use App\Http\Controllers\ViewPropertiesController;
 use App\Http\Controllers\RoleCheck;
 
@@ -55,9 +56,7 @@ Route::get('/propertyLists',function(){
 });
 
 //Realtor routes
-Route::get('/realtor', function () {
-    return view('realtor');
-});
+Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
 
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
