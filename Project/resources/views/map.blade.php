@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Phillow - Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-    crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" crossorigin=""/>
+    
     <style>
-        .text-center{
+        .text-center {
             text-align: center;
         }
-        #map{
+        #map {
             width: 100%;
             height: 100vh;
         }
@@ -23,40 +22,31 @@
     <h1 class="text-center">Laravel Leaflet Maps</h1>
     <div id="map"></div>
 </body>
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
- integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
- crossorigin="">
- </script>
+
+<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-search@2.9.14/src/leaflet-search.js"></script>
+
 <script>
-    let map;
-    function initMap(){
-        map = L.map('map', {
-            center: [40.037, -76.28],
-            zoom: 15
-        });
-        
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-    }
-    initMap();
+    var map = L.map('map', {
+        center: [40.037, -76.28],
+        zoom: 9
+    });
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
     
+    var searchControl = new L.Control.Search({
+        position: 'topright',
+        layer: searchLayer,
+        propertyName: 'houseID'
+    });
+    map.addControl(searchControl);
+
     @foreach ($houses as $house)
     var marker = L.marker([{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}]).addTo(map);
     marker.bindPopup("{{ $house->coordinateLongitude }}, {{ $house->coordinateLatitude }}");
     @endforeach
-
-
-    // var popup = L.popup();
-    // function onMapClick(e){
-    //     popup
-    //         .setLatLng(e.latlng)
-    //         .setContent("You clicked the map at " + e.latlng.toString())
-    //         .openOn(map);
-    // }
-    // map.on('click', onMapClick);
-
 </script>
-
 </html>

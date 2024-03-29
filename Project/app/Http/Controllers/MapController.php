@@ -12,9 +12,11 @@ class MapController extends Controller
     }
     public function mapView(){
         $houses = $this->getHouses();
+
+        
         return view('map', ['houses' => $houses]);
     }
     public function search(){
-
+        
     }
 }
