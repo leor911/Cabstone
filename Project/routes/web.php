@@ -53,6 +53,12 @@ Route::get('/contact',function(){
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
+
+//Realtor routes
+Route::get('/realtor', function () {
+    return view('realtor');
+});
+
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
 Route::get('/termsOfService',function(){
