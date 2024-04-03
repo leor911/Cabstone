@@ -12,9 +12,12 @@ class construction extends Model
         'houseID',
         'homeType',
         'archType',
+        'foundationType',
         'constMaterials',
         'roof',
         'builtYear',
+        'remodelYear',
         'otherDesc',
+        'newConstruction',
     ];
 }

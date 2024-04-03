@@ -99,6 +99,24 @@
         .error {
             color: red;
         }
+        .form-floating {
+            position: relative;
+        }
+
+        .requiredAstrik {
+            color: red;
+            position: absolute;
+            top: 20%;
+            transform: translateY(-100%);
+            transform: translateX(-150%);
+            left: 0;
+        }
+
+        .form-control {
+            padding-left: 20px;
+            padding-right: 10px; /* Add some padding to the right to separate from the asterisk */
+            width: calc(100% - 30px); /* Adjust the width to accommodate for the asterisk */
+        }
     </style>
 </head>
 
@@ -126,57 +144,49 @@
             <div class="col-md-8">
                 <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                     <h1 class="mb-3">Create Property</h1>
-                    <p>Enter all the required information below</p>
+                    <p>Enter all the <span class="error">* required</span> information below</p>
                 </div>
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <form id="" class="needs-validation" action="createProperty" method="POST" novalidate>
+                <form id="" class="needs-validation" action="{{ url('/createProperty') }}" method="POST" novalidate>
                                 @csrf
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Basic Information</h3>
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="houseID" id="description" placeholder="Descroo">
-                                            <label for="desc">houseID</label>
-                                        </div>
-                                    </div> --}}
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" name="realtorID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">realtorID*</label>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-6">
+                                        
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="price" id="price" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for=""><span style="color: red">*</span>Price</label>
+                                            <label for="">Price</label>
+                                            <div class="requiredAstrik">*</div>
                                             <span id="priceError" class="error"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="listingType" id="" placeholder=""required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Listing Type</option>
+                                                <option selected disabled value="">Listing Type</option>
                                                 <option value="Sale">For Sale</option>
                                                 <option value="Rent">For Rent</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <textarea class="form-control" placeholder="" name="description" id="message"></textarea>
                                             <label for="message">Brief Description of the Lising</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="number" class="form-control" name="coordinateLatitude" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
-                                            <label for="">Latitude</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="number" class="form-control" name="coordinateLongitude" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                            <input type="number" class="form-control" name="coordinateLongitude" id="" placeholder="">
                                             <label for="">Longitude</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="number" class="form-control" name="coordinateLatitude" id="" placeholder="">
+                                            <label for="">Latitude</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -188,22 +198,18 @@
                                 </div>
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Property Information</h3>
-                                    {{-- <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" name="houseID" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*HouseID</label>
-                                        </div>
-                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="prknSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                             <label for="">Number of Parking Spaces</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="garageSpacesNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                             <label for="">Number of Garage Spaces</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -269,7 +275,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="extensionType" id="" placeholder=""required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Extension Type</option>
+                                                <option selected disabled value="">Extension Type</option>
                                                 <option value="Pool">Pool</option>
                                                 <option value="Patio">Patio</option>
                                                 <option value="Deck">Deck</option>
@@ -284,24 +290,28 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="prknSize" id="" placeholder="">
                                             <label for="">Parking Area Size</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="acreSize" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
                                             <label for="">Acre Size</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="squareFeet" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">Total Square Feet*</label>
+                                            <label for="">Total Square Feet</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -316,7 +326,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="homeType" id="" placeholder=""required>
-                                                <option selected disabled value="">*Home Type</option>
+                                                <option selected disabled value="">Home Type</option>
                                                 <option value="Single Family Residence">Single Family Residence</option>
                                                 <option value="Townhouse">Townhouse</option>
                                                 <option value="Multi Family Residence">Multi Family Residence</option>
@@ -324,12 +334,13 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="archType" id="" placeholder=""required>
-                                                <option selected disabled value="">Architecture Type*</option>
+                                                <option selected disabled value="">Architecture Type</option>
                                                 <option value="Ranch">Ranch</option>
                                                 <option value="Colonial">Colonial</option>
                                                 <option value="Cape Cod">Cape Cod</option>
@@ -341,12 +352,13 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="foundationType" id="" placeholder=""required>
-                                                <option selected disabled value="">Foundation Type*</option>
+                                                <option selected disabled value="">Foundation Type</option>
                                                 <option value="Stone">Stone</option>
                                                 <option value="Basement">Basement</option>
                                                 <option value="Concrete Slab">Concrete Slab</option>
@@ -361,12 +373,13 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="constMaterials" id="" placeholder=""required>
-                                                <option selected disabled value=""><span style="color: red">*</span>House Construction Materials</option>
+                                                <option selected disabled value="">House Construction Materials</option>
                                                 <option value="Concrete">Concrete</option>
                                                 <option value="Brick">Brick</option>
                                                 <option value="Stone">Stone</option>
@@ -380,12 +393,13 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="roof" id="" placeholder=""required>
-                                                <option selected disabled value=""><span style="color: red">*</span>Roof Materials</option>
+                                                <option selected disabled value="">Roof Materials</option>
                                                 <option value="Asphalt Shingles">Asphalt Shingles</option>
                                                 <option value="Metal">Metal</option>
                                                 <option value="Wood Shingles">Wood Shingles</option>
@@ -397,18 +411,20 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="builtYear" id="year" placeholder="" required>
-                                                <option selected disabled value="">Year Built*</option>
+                                                <option selected disabled value="">Year Built</option>
                                                 <script>
                                                 for (let year = 2024; year >= 1600; year--) {
                                                     document.write(`<option value="${year}">${year}</option>\n`);
                                                 }
                                                 </script>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -444,13 +460,14 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="country" id="" placeholder=""required>
-                                            <label for="">Country*</label>
+                                            <label for="">Country</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="state" id="state" placeholder="" required>
-                                                <option selected disabled value=""><span style="color: red">*</span>State</option>
+                                                <option selected disabled value="">State</option>
                                                 <option value="AL">AL</option>
                                                 <option value="AK">AK</option>
                                                 <option value="AZ">AZ</option>
@@ -502,24 +519,28 @@
                                                 <option value="WI">WI</option>
                                                 <option value="WY">WY</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="county" id="" placeholder=""required>
-                                            <label for="">County*</label>
+                                            <label for="">County</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="city" id="" placeholder=""required>
-                                            <label for="">City*</label>
+                                            <label for="">City</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="zip" id="" placeholder=""required>
-                                            <label for="">Zip Code*</label>
+                                            <label for="">Zip Code</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -531,7 +552,8 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="street" id="" placeholder=""required>
-                                            <label for="">Street*</label>
+                                            <label for="">Street</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -543,6 +565,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="zoning" id="" placeholder="">
+                                                <option selected disabled value="">Zoning</option>
                                                 <option value="Commercial">Commercial</option>
                                                 <option value="Low Density Residential">Low Density Residential</option>
                                                 <option value="Residential">Residential</option>
@@ -562,7 +585,8 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" name="subdivision" id="" placeholder=""required>
-                                            <label for="">*Subdivision</label>
+                                            <label for="">Subdivision</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                 </div>
@@ -571,7 +595,8 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="bedroomNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Bedrooms</label>
+                                            <label for="">Number of Bedrooms</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -583,7 +608,8 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="fullBathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Full Bathrooms</label>
+                                            <label for="">Number of Full Bathrooms</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -595,25 +621,28 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="bathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Bathrooms</label>
+                                            <label for="">Number of Bathrooms</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="mainBathNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Main Bathrooms</label>
+                                            <label for="">Number of Main Bathrooms</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="kitchenNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Kitchens</label>
+                                            <label for="">Number of Kitchens</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="kitchenType" id="" placeholder=""required>
-                                                <option selected disabled value="">*Kitchen Type</option>
+                                                <option selected disabled value="">Kitchen Type</option>
                                                 <option value="Contemporary">Contemporary</option>
                                                 <option value="Traditional">Traditional</option>
                                                 <option value="Modern">Modern</option>
@@ -628,12 +657,13 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="stoveType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Stove Type</option>
+                                                <option selected disabled value="">Stove Type</option>
                                                 <option value="Gas">Gas</option>
                                                 <option value="Electric">Electric</option>
                                                 <option value="Induction">Induction</option>
@@ -642,72 +672,78 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="laundryType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Laundry Type</option>
+                                                <option selected disabled value="">Laundry Type</option>
                                                 <option value="In-Unit">In-Unit</option>
                                                 <option value="On-Site">On-Site</option>
                                                 <option value="Hookups">Hookups</option>
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="electricType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Electric Type</option>
+                                                <option selected disabled value="">Electric Type</option>
                                                 <option value="Public">Public</option>
                                                 <option value="Private">Private</option>
                                                 <option value="Off-Grid">Off-Grid</option>
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="sewerType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Sewer Type</option>
+                                                <option selected disabled value="">Sewer Type</option>
                                                 <option value="Public">Public</option>
                                                 <option value="Private">Private</option>
                                                 <option value="Septic">Septic</option>
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="waterType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Water Type</option>
+                                                <option selected disabled value="">Water Type</option>
                                                 <option value="Public">Public</option>
                                                 <option value="Private">Private</option>
                                                 <option value="Well">Well</option>
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="utilitiesType" id="" placeholder="" required>
-                                                <option selected disabled value="">*Utilities Type</option>
+                                                <option selected disabled value="">Utilities Type</option>
                                                 <option value="Public">Public</option>
                                                 <option value="Private">Private</option>
                                                 <option value="Off-Grid">Off-Grid</option>
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="heatingDesc" id="heatingDesc" placeholder="" required>
-                                                <option selected disabled value="">*Heating Type</option>
+                                                <option selected disabled value="">Heating Type</option>
                                                 <option value="Furnace">Furnace</option>
                                                 <option value="Heat Pump">Heat Pump</option>
                                                 <option value="Radiators">Radiators</option>
@@ -722,12 +758,13 @@
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="basementDesc" id="basementDesc" placeholder="" required>
-                                                <option selected disabled value="">*Basement Type</option>
+                                                <option selected disabled value="">Basement Type</option>
                                                 <option value="Full Basement">Full Basement</option>
                                                 <option value="Partial Basement">Partial Basement</option>
                                                 <option value="Walkout Basement">Walkout Basement</option>
@@ -742,27 +779,30 @@
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="applianceDesc" id="floorType" placeholder="" required>
-                                                <option selected disabled value="">*Appliance Type</option>
+                                                <option selected disabled value="">Appliance Type</option>
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input type="number" class="form-control" name="floorsNo" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
-                                            <label for="">*Number of Floors</label>
+                                            <label for="">Number of Floors</label>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="floorType" id="floorType" placeholder="" required>
-                                                <option selected disabled value="">*Floor Material</option>
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="floorType" id="floorType" placeholder="">
+                                                <option selected disabled value="">Floor Material</option>
                                                 <option value="Hardwood">Hardwood</option>
                                                 <option value="Tile">Tile</option>
                                                 <option value="Carpet">Carpet</option>
@@ -778,7 +818,7 @@
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <select class="form-control" style="background-color: #fff; padding-top: 10px" name="coolingDesc" id="coolingDesc" placeholder="" required>
-                                                <option selected disabled value="">*Cooling Type</option>
+                                                <option selected disabled value="">Cooling Type</option>
                                                 <option value="Central Air Conditioning">Central Air Conditioning</option>
                                                 <option value="Split System Air Conditioner">Split System Air Conditioner</option>
                                                 <option value="Window Air Conditioner">Window Air Conditioner</option>
@@ -789,6 +829,7 @@
                                                 <option value="Mixed">Mixed</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

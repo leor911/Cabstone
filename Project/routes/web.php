@@ -50,11 +50,30 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
-//Property List page routes
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
+
 Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
+
+
+//Realtor routes
+Route::get('/realtor', function () {
+    return view('realtor');
+});
+
+//Realtor routes
+Route::get('/realtorDashboard', function () {
+    return view('realtorDashboard');
+});
+
+//Admin routes
+Route::get('/admin', function () {
+    return view('adminDashboard');
+});
+
+Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
+
 
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
@@ -91,10 +110,6 @@ Route::get('/mortgage-result', function () {
     return view('mortgageCalc');
 })->name('mortgage.result');
 
-
 Route::get('/header',function(){
     return view('/header');
 });
-
-
-
