@@ -63,7 +63,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return Auth::check();
     }
     // Get user data
-    }
     public function retrieveData(){
         return [Auth::user()->firstName, Auth::user()->role_name];
 

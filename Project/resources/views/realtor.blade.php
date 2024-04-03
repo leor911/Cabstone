@@ -193,8 +193,8 @@
                                         <h5 class="fw-bold mb-0">Firstname Lastname</h5>
                                         <p><h5>City:</h5>Harrisburg</p>
                                         <p><h5>Specialty:</h5>Affordable Housing</p>
-                                        <p><h5>Availabile Days:</h5>Tuesday-Sunday</p>
-                                        <p><h5>Availabile Hours:</h5>7:00AM-5:30PM</p>
+                                        <p><h5>Available Days:</h5>Tuesday-Sunday</p>
+                                        <p><h5>Available Hours:</h5>7:00AM-5:30PM</p>
                                         <p><h5>Contact Agent:</h5>Leo Rivera</p>
                                     </div>
                                 </div>
