@@ -66,11 +66,13 @@
                 <div class="nav-item dropdown">
                     <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                        <a href="{{ url('/propertyList') }}" class="dropdown-item">Property List</a>
+                        <a href="{{ url('/properties') }}" class="dropdown-item">Property List</a>
                         <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
                         <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
                     </div>
                 </div>
+
+                <a href="{{ url('/mortgage-result') }}" class="nav-link">Mortgage Calculator</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Mortgage Calculator</a>
                 <a href="{{ url('/realtor') }}" class="nav-link">Realtors</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Contact</a>

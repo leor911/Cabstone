@@ -1,28 +1,28 @@
+<!-- resources/views/agent-details.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Display</title>
+    <title>Agent Details</title>
 </head>
 <body>
-    <h1>Data Display</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($data as $row)
-            <tr>
-                <td>{{ $row->testid }}</td>
-                <td>{{ $row->testname }}</td>
-            </tr>
+    <h1>Agent Details</h1>
+
+    @if (count($agents) > 0)
+        <ul>
+            @foreach ($agents as $agent)
+                <li>
+                    <h2>{{ $agent['data']['displayUser']['name'] }}</h2>
+                    <p>Business Name: {{ $agent['data']['displayUser']['businessName'] }}</p>
+                    <p>Email: {{ $agent['data']['profileDisplay']['contactCard']['flag']['reporterEmail'] }}</p>
+                    <!-- Add more details here as needed -->
+                </li>
             @endforeach
-        </tbody>
-    </table>
+        </ul>
+    @else
+        <p>No agent details available.</p>
+    @endif
 </body>
 </html>

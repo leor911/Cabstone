@@ -32,11 +32,19 @@
     <link href="img/favicon.ico" rel="icon">
 
     <style>
-        p,ul,li {
+        p, ul, li {
             font-family: Forum,cursive;
         }
-        h1,a{
-            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        h1, a {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        #slideShow {
+            display: flex;
+            justify-content: center;
+        }
+        .top{
+            padding-top: 50px;
         }
     </style>
 </head>
@@ -83,7 +91,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="mb-3" id="PropertyTypes">Property Types</h1>
+                    <h1 class="mb-3" id="PropertyTypes">Property Types</h1>
                     <p>Discover a diverse range of property types tailored to your preferences and lifestyle. Whether you're seeking a cozy apartment in the heart of the city, a spacious family home in a tranquil suburb, or a luxurious waterfront estate, our listings feature an array of options to suit every taste and need.</p>
                 </div>
                 <div class="row g-4">
@@ -177,61 +185,68 @@
                     </div>
                 </div>
             </div>
-        </div>      
-        <div class="tab-content">
-    <div id="tab-1" class="tab-pane fade show p-0 active">
-        <div class="row g-4">
-            @foreach ($listings as $listing)
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="property-item rounded overflow-hidden">
-                    <div class="position-relative overflow-hidden">
-                        <a href="" class="property-link" data-toggle="modal" data-target="#propertyModal" data-property-id="{{ $listing->houseID }}">
-                            <img class="img-fluid" src="img/appartment1.jpg" alt="">
-                        </a>
-                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $listing->listingType }}</div>
-                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $listing->homeType }}</div>
-                    </div>
-                    <div class="p-4 pb-0">
-                        <h5 class="text-primary mb-3">${{ $listing->price }}</h5>
-                        <h5 class=" mb-3">{{ $listing->description }}</h5>
-                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $listing->street }}, {{ $listing->city }}, {{ $listing->state }}</p>
-                    </div>
-                    <div class="d-flex border-top">
-                        <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2" ></i> {{ $listing->squareFeet }} Sqft&nbsp; </small>
-                        <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2" ></i> {{ $listing->bedroomNo }} Bed &nbsp;</small>
-                        <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2" ></i> {{ $listing->bathNo }} Bath &nbsp;</small>
-                    </div>
-                </div>
-            </div>
-            @endforeach
         </div>
-    </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <!-- Property image -->
-                        <div id="propertyImage"></div>
-                    </div>
-                    <div class="col-md-6">
-                        <!-- Property description -->
-                        <div id="propertyDescription"></div>
+        <!-- Slideshow container -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 animated fadeIn">
+                        <div class="owl-carousel header-carousel">
+                            <!-- Slides content -->
+                            @foreach ($listings as $listing)
+                            <div class="owl-carousel-item">
+                                <div class="property-item rounded overflow-hidden">
+                                    <div class="position-relative overflow-hidden">
+                                        <a href="" class="property-link" data-toggle="modal" data-target="#propertyModal" data-property-id="{{ $listing->houseID }}">
+                                            <img class="img-fluid" src="img/appartment1.jpg" alt="">
+                                        </a>
+                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $listing->listingType }}</div>
+                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $listing->homeType }}</div>
+                                    </div>
+                                    <div class="p-4 pb-0">
+                                        <h5 class="text-primary mb-3">${{ $listing->price }}</h5>
+                                        <h5 class="mb-3">{{ $listing->description }}</h5>
+                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $listing->street }}, {{ $listing->city }}, {{ $listing->state }}</p>
+                                    </div>
+                                    <div class="d-flex border-top">
+                                        <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2" ></i> {{ $listing->squareFeet }} Sqft&nbsp; </small>
+                                        <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2" ></i> {{ $listing->bedroomNo }} Bed &nbsp;</small>
+                                        <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2" ></i> {{ $listing->bathNo }} Bath &nbsp;</small>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        <!-- End of Slideshow container -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <!-- Property image -->
+                                <div id="propertyImage"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Property description -->
+                                <div id="propertyDescription"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- footer start -->
         @include('footer')
@@ -280,11 +295,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
-
-
-
-
 
 </body>
 
