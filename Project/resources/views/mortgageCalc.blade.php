@@ -72,6 +72,14 @@
         .result-container {
             margin-top: 20px;
         }
+        .requiredAstrik {
+            color: red;
+            position: absolute;
+            top: 20%;
+            transform: translateY(-100%);
+            transform: translateX(-150%);
+            left: 0;
+        }
     
     </style>
 </head>
@@ -93,78 +101,91 @@
 
 
     
-        <!-- Mortgage Start -->
+       <!-- Mortgage Start -->
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
                 <h1>Mortgage Calculator</h1>
+                <p>Enter all the required information below</p>
+                <p><span style="color: red">*</span> Identifies Required Inputs</p>
             </div>
-        <div class="wow fadeInUp" data-wow-delay="0.5s">
-            <!-- Form for mortgage input -->
-             <form method="post" action="{{ route('mortgage.calculate') }}">
-                 @csrf
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="mb-3">
-                            <label for="principal">Principal Amount:</label>
-                            <input type="number" id="principal" name="principal" class="form-control" required>                            </div>
-                            <div class="mb-3">
-                              <label for="interest_rate">Interest Rate (%):</label>
-                            <input type="number" step=".01" id="interest_rate" name="interest_rate" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="term">Term (years):</label>
-                            <input type="number" step=".01" name="term" class="form-control" required>
-                        </div>
-                        <div class="text-center"> <!-- Centering the button -->
-                            <button type="submit" class="btn btn-primary w-50 py-3 d-lg-flex">Calculate</button>                            </div>
-                        </div>
-                    </div>
-                </form>
-
-<div class="container">
+            <div class="wow fadeInUp" data-wow-delay="0.5s">
+               <!-- Form for mortgage input -->
+<form method="post" action="{{ route('mortgage.calculate') }}">
+    @csrf
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="text-center">
+            <div class="mb-3">
+                <label for="principal"><span style="color: red">*</span>Principal Amount:</label>
+                <input type="number" id="principal" name="principal" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="interest_rate"><span style="color: red">*</span>Interest Rate (%):</label>
+                <input type="number" step=".01" id="interest_rate" name="interest_rate" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="term"><span style="color: red">*</span>Term (years):</label>
+                <input type="number" step=".01" name="term" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="hoa">HOA Fee:</label>
+                <input type="number" step=".01" name="hoa" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="home_insurance">Home Owners Insurance:</label>
+                <input type="number" step=".01" name="home_insurance" class="form-control">
+            </div>
+            <div class="text-center"> <!-- Centering the button -->
+                <button type="submit" class="btn btn-primary w-50 py-3 d-lg-flex">Calculate</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="text-center">
                                 <br>
                                 <br>
-                                        @isset($data['monthly_payment'])
-                                        <h1>Mortgage Calculation Result</h1>
-                                            <h2>Monthly Payment</h2>
-                                            <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
-                                            <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
-                                            <p>Property Tax: ${{ $data['monthly_payment']['property_tax'] }}</p>
-                                            <p>HOA: ${{ $data['monthly_payment']['hoa'] }}</p>
-                                            <p>Home Insurance: ${{ $data['monthly_payment']['annual_home_ins'] }}</p>
-                                        @endisset
+                                <!-- Display calculation results -->
+                                @isset($data['monthly_payment'])
+                                <h1>Mortgage Calculation Result</h1>
+                                <h2>Monthly Payment</h2>
+                                <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
+                                <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
+                                <p>Property Tax: ${{ $data['monthly_payment']['property_tax'] }}</p>
+                                <p>HOA Fee: ${{ $data['monthly_payment']['hoa'] }}</p>
+                                @if(isset($data['monthly_payment']['home_insurance']))
+    <p>Home Owners Insurance: ${{ $data['monthly_payment']['home_insurance'] }}</p>
+@endif
+                                @endisset
 
-                                        @isset($data['annual_payment'])
-                                            <h2>Annual Payment</h2>
-                                            <p>Total: ${{ $data['annual_payment']['total'] }}</p>
-                                            <p>Mortgage: ${{ $data['annual_payment']['mortgage'] }}</p>
-                                            <p>Property Tax: ${{ $data['annual_payment']['property_tax'] }}</p>
-                                            <p>HOA: ${{ $data['annual_payment']['hoa'] }}</p>
-                                            <p>Home Insurance: ${{ $data['annual_payment']['home_insurance'] }}</p>
-                                        @endisset
+                                @isset($data['annual_payment'])
+                                <h2>Annual Payment</h2>
+                                <p>Total: ${{ $data['annual_payment']['total'] }}</p>
+                                <p>Mortgage: ${{ $data['annual_payment']['mortgage'] }}</p>
+                                <p>Property Tax: ${{ $data['annual_payment']['property_tax'] }}</p>
+                                <p>HOA: ${{ $data['annual_payment']['hoa'] }}</p>
+                                <p>Home Insurance: ${{ $data['annual_payment']['home_insurance'] }}</p>
+                                @endisset
 
-                                        @isset($data['total_interest_paid'])
-                                            <h2>Total Interest Paid</h2>
-                                            <p>${{ $data['total_interest_paid'] }}</p>
-                                     @endisset
-                                     <br>
-                                    <br>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                                @isset($data['total_interest_paid'])
+                                <h2>Total Interest Paid</h2>
+                                <p>${{ $data['total_interest_paid'] }}</p>
+                                @endisset
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-              
-        <!-- Mortgage End -->
 
        
 <!-- footer start -->

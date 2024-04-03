@@ -54,7 +54,7 @@ Route::get('/contact',function(){
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
-Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
+Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
 
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
@@ -65,7 +65,7 @@ Route::get('/test',function(){
 });
 
 //Test
-Route::get('/test2', [test::class, 'show'])->name('test.show');
+Route::get('/test2', [Zillow::class, 'agentDetails'])->name('test.show');
 
 
 
