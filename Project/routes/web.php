@@ -59,9 +59,7 @@ Route::get('/propertyLists',function(){
 Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
 
 //Realtor routes
-Route::get('/realtorDashboard', function () {
-    return view('realtorDashboard');
-});
+Route::get('/realtorDashboard', [RealtorController::class, 'viewRealtorDashboard']);
 
 //Admin routes
 Route::get('/admin', function () {

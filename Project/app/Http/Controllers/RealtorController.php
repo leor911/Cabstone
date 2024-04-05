@@ -15,4 +15,9 @@ class RealtorController extends Controller
         $realtors = $this->getRealtors();
         return view("realtor", ['realtors' => $realtors]);
     }
+
+    public function viewRealtorDashboard(){
+        return view("realtorDashboard");
+    }
+
 }

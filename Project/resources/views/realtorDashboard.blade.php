@@ -52,6 +52,15 @@
     .login-form-container form > div {
         margin-bottom: 15px; /* Add margin between form elements */
     }
+    .realtor-info{
+        width: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 5px;
+    }
     </style>
 </head>
 <body>
@@ -67,12 +76,14 @@
     @include('header')
     <!-- header end -->
 
-    <h1>Welcome Realtor!</h1>
+    <div class = "realtor-info">
+        <h1>Welcome, {{  ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}!</h1>
+        <h2>&#128222; - {{ Auth::user()->phoneNo }}</h2>
+        <h2>&#128231; - {{ Auth::user()->email }}</h2>
 
-    <h2>First Name:</h2>
-    <p>...</p>
-    <h2>Last Name:</h2>
-    <p>...</p>
+    </div>
+
+
 
     <!-- footer start -->
     @include('footer')
