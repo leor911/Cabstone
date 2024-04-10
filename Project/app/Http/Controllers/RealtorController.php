@@ -18,14 +18,13 @@ class RealtorController extends Controller
         return view("realtor", ['realtors' => $realtors]);
     }
 
-    public function viewRealtorByURL(string $url){
+    public function viewRealtorByURL(string $name){
         $realtor = DB::table('users')
-        ->join('realtors', 'users.id', '=', 'realtors.realtor_id')
-        ->whereRaw("concat(firstName, ' ', lastName) LIKE ?", ['%'.$url.'%'])
-        ->get();
+            ->join('realtors', 'users.id', 'realtors.realtor_id')
+            ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
+            ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
     }
-
 
     public function uploadProfileImage(Request $request){
         $image = $request->file('image');

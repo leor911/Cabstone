@@ -43,7 +43,7 @@
                 min-height: 50vh;
             }
             .login-form-container {
-                max-width: 400px; 
+                max-width: 400px;
                 width: 100%;
                 padding: 20px;
                 border-radius: 10px;
@@ -77,21 +77,26 @@
     <!-- header end -->
 
     {{-- If you're logged in, this is what you will see. --}}
-    {{-- <h1>Welcome, {{  ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}!</h1> --}}
     
     
     <div class = "realtor-info">
-        {{-- @if (Auth::user()->profile_image != null) --}}
-        {{-- <img src="{{  }}" alt="Profile_Image"> --}}
-        {{-- @endif --}}
-        {{-- <h2>&#128222; - {{ Auth::user()->phoneNo }}</h2> --}}
-        {{-- <h2>&#128231; - {{ Auth::user()->email }}</h2> --}}
+        @if($realtor)
+        <h2>{{ $realtor->firstName }}</h2>
+        <h2>{{ $realtor->lastName }}</h2>
+        <h2>City: {{ $realtor->city }}</h2>
+        <h2>Specialty: {{ $realtor->specialty }}</h2>
+        <h2>Available Days: {{ $realtor->available_days }}</h2>
+        <h2>Available Hours: {{ $realtor->available_hours }}</h2>
+        <h2>Contact Agent: {{ $realtor->contact_agent }}</h2>
         <form action="" method="POST">
             @csrf
             <label for="">Upload Profile Image:</label>
             <input type="file" name="image" accept="image/png, image/jpeg">
             <input type="submit">
         </form>
+        @else
+        <p>No realtor found.</p>
+        @endif
     </div>
     
     
