@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('variable_datas', function (Blueprint $table) {
             $table->id();
-            $table->string('property_type');
-            $table->string('text');
+            $table->string('property_type')->nullable();
+            $table->string('text')->nullable();
             $table->timestamps();
         });
     }

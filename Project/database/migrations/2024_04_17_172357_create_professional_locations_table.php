@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('professional_id')->unsigned()->nullable(false);
             $table->string('location')->nullable();
-            $table->foreign('professional_id')->references('id')->on('professionals');
             $table->timestamps();
+            $table->foreign('professional_id')->references('id')->on('professionals');
         });
     }
 

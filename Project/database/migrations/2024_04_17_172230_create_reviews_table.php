@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('review_link')->nullable();
             $table->integer('num_total_reviews')->nullable();
             $table->integer('review_stars_rating')->nullable();
-            $table->foreign('professional_id')->references('id')->on('professionals');
             $table->timestamps();
+            $table->foreign('professional_id')->references('id')->on('professionals');
         });
     }
 
