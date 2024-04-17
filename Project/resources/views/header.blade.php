@@ -73,8 +73,7 @@
                 </div>
 
                 <a href="{{ url('/mortgage-result') }}" class="nav-link">Mortgage Calculator</a>
-                <a href="{{ url('/contact') }}" class="nav-link">Mortgage Calculator</a>
-                <a href="{{ url('/realtor') }}" class="nav-link">Realtors</a>
+                <a href="{{ url('/realtor') }}" class="nav-link">Search Realtors</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Contact</a>
             </div>
 
