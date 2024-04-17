@@ -31,6 +31,10 @@ use App\Http\Controllers\Auth\Admin\LoginController;
 
 Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('index')->middleware('rolecheck:realtor');
 
+
+Route::get('/propertyListIndex', [Zillow::class, 'getPropertyDetailsIndex'])->name('propertyIndex.listings');
+
+
 Route::get('/login', function(){
     return view('login');
 });
@@ -54,8 +58,18 @@ Route::get('/propertyLists',function(){
     return view('propertyList');
 });
 
+Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
+
+
 //Realtor routes
-Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
+// Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
+
+Route::get('/realtor', function () {
+    return view('realtor');
+});
+Route::get('/realtor',[zillow::class,'findAgent']);
+
+Route::get('/display-agent-results', [Zillow::class, 'displayAgentResults']);
 
 Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
 
@@ -72,6 +86,7 @@ Route::get('/admin', function () {
 
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
+
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
 });
@@ -81,10 +96,10 @@ Route::get('/test',function(){
 });
 
 //Test
-Route::get('/test2', [test::class, 'show'])->name('test.show');
-
-
-
+Route::get('/realtor',function(){
+    return view('realtor');
+});
+Route::get('/search', [Zillow::class, 'fetchAgentDetails'])->name('search');
 
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
@@ -110,3 +125,9 @@ Route::get('/mortgage-result', function () {
 Route::get('/header',function(){
     return view('/header');
 });
+
+Route::get('/test2', [test::class, 'fetchAgentDetails2'])->name('agent.results');
+
+
+
+Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');
