@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Phillow - Contact Us</title>
+        <title>Profile Editing</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -54,6 +54,7 @@
             }
             .realtor-info{
                 width: inherit;
+                height: inherit;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -61,9 +62,12 @@
                 padding: 10px;
                 gap: 5px;
             }
+
             </style>
 </head>
+
 <body>
+    @if(Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -72,31 +76,46 @@
     </div>
     <!-- Spinner End -->
     
+    @endif
     <!-- header start -->
     @include('header')
     <!-- header end -->
 
     {{-- If you're logged in, this is what you will see. --}}
-    {{-- <h1>Welcome, {{  ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}!</h1> --}}
-    
-    <div class = "realtor-info">
-        @if($realtor)
-        <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
-        <h2>City: {{ $realtor->city }}</h2>
-        <h2>Specialty: {{ $realtor->specialty }}</h2>
-        <h2>Available Days: {{ $realtor->available_days }}</h2>
-        <h2>Available Hours: {{ $realtor->available_hours }}</h2>
-        <h2>Contact Agent: {{ $realtor->contact_agent }}</h2>
-        
 
-        @if(Auth::check())
-        <button><a href="/edit/{{ $realtor->firstName }}{{ $realtor->lastName }}">Edit Profile</a></button>
-        @endif
-        @else
-        <p>No realtor found.</p>
-        @endif
+    @if(Auth::user()->role_name == "realtor")
+    <div class = "realtor-info">
+        <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
+        <div>
+            <form action="{{ route("/editConfirm") }}" method="POST">
+                @csrf
+                <label for="updateCity">City:</label>
+                <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
+                <label for="updateSpecialty">Specialty:</label>
+                <input type="text" id="updateSpecialty" name="updateSpecialty" value="{{ $realtor->specialty }}">
+                <label for="updateDays">Available Days:</label>
+                <input type="text" id="updateDays" name="updateDays" value="{{ $realtor->available_days }}">
+                <label for="updateHours">Available Hours:</label>
+                <input type="text" id="updateHours" name="updateHours" value="{{ $realtor->available_hours }}">
+                
+                <label for="updateAgent">Contact Agent:</label>
+                <select name="updateAgent" id="updateAgent" value="{{ $realtor->contact_agent }}">
+                    <option value="Leo Rivera">Leo Rivera</option>
+                    <option value="Connor Hamilton">Connor Hamilton</option>
+                    <option value="Jack Korosec">Jack Korosec</option>
+                    <option value="Cooper Honert">Cooper Honert</option>
+                </select>
+                
+                {{-- Will worry about this later --}}
+                {{-- <label for="">Upload Profile Image:</label> --}}
+                {{-- <input type="file" name="image" accept="image/png, image/jpeg"> --}}
+                <button style="background-color: lightgray">Submit</button>
+            </form>
+        </div>
+    @else
+        <h2>Credentials invalid.</h2>
     </div>
-    
+    @endif
     
     <!-- footer start -->
     @include('footer')

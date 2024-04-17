@@ -60,6 +60,11 @@ Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
 Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
 
 Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
+
+//Edit Profile Route
+Route::get('/edit/{name}', [RealtorController::class, 'viewEditRealtor']);
+Route::post('/edit/confirm', [RealtorController::class, 'editConfirm']);
+
 //Admin routes
 Route::get('/admin', function () {
     return view('adminDashboard');

@@ -223,11 +223,11 @@
                                     </div>
                                     <div class="text-center p-4 mt-3">
                                         <h5 class="fw-bold mb-0">{{ $realtor->firstName }} {{ $realtor->lastName }}</h5>
-                                        <p><h5>Email:</h5>{{ $realtor->email }}</p>
-                                        <p><h5>Phone Number:</h5>{{ $realtor->phoneNo }}</p>
-                                        <p><h5>Availabile Days:</h5>Tuesday-Sunday</p>
-                                        <p><h5>Availabile Hours:</h5>7:00AM-5:30PM</p>
-                                        <p><h5>Contact Agent:</h5>Connor Hamilton</p>
+                                        <p><h5>Email:</h5>{{ $realtor->city }}</p>
+                                        <p><h5>Phone Number:</h5>{{ $realtor->specialty }}</p>
+                                        <p><h5>Availabile Days:</h5>{{ $realtor->available_days }}</p>
+                                        <p><h5>Availabile Hours:</h5>{{ $realtor->available_hours }}</p>
+                                        <p><h5>Contact Agent:</h5>{{ $realtor->contact_agent }}</p>
                                     </div>
                                 </div>
                             </div>
