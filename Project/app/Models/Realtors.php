@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class houseLocation extends Model
+class Realtors extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
-        'property_id',
+        'realtor_id',
         'city',
-        'state',
-        'zipcode',
+        'specialty',
+        'available_days',
+        'available_hours',
+        'contact_agent',
+        'profile_image',
     ];
 }

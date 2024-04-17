@@ -12,19 +12,35 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('properties', function (Blueprint $table) {
-            $table->bigInteger("houseID")->unsigned()->nullable(false);
-            $table->integer("prknSpacesNo")->nullable(false);
-            $table->integer("garageSpacesNo")->nullable(false);
-            $table->string("garageType")->nullable();
-            $table->string("lotType")->nullable();
-            $table->string("lotMaterials")->nullable();
-            $table->string("extensionType")->nullable(false);
-            $table->string("prknSize")->nullable(false);
-            $table->integer("acreSize")->nullable(false);
-            $table->integer("squareFeet")->nullable(false);
-            $table->string("otherDesc")->nullable();
+            $table->id();
+            $table->string("zpid")->nullable(false);
+            $table->string("raw_home_status_cd")->nullable(false);
+            $table->string("marketing_status_simplified_cd")->nullable();
+            $table->string("img_src")->nullable();
+            $table->boolean("has_image")->nullable();
+            $table->string("detail_url")->nullable();
+            $table->string("status_type")->nullable();
+            $table->string("status_text")->nullable();
+            $table->string("country_currency")->nullable();
+            $table->decimal("price", 20, 2)->nullable();
+            $table->int("unformatted_price")->nullable();
+            $table->string("address")->nullable();
+            $table->string("address_street")->nullable();
+            $table->string("address_city")->nullable();
+            $table->string("address_state")->nullable();
+            $table->string("address_zipcode")->nullable();
+            $table->boolean("is_undisclosed_address")->nullable();
+            $table->integer("beds")->nullable();
+            $table->integer("baths")->nullable();
+            $table->integer("area")->nullable();
+            $table->decimal("latitude", 10, 6)->nullable();
+            $table->decimal("longitude", 10, 6)->nullable();
+            $table->boolean("is_zillow_owned")->nullable();
+            $table->bigInteger("variable_data_id")->unsigned()->nullable();
+            $table->bigInteger("hdp_data_id")->unsigned()->nullable();
             $table->timestamps();
-            $table->foreign("houseID")->references("houseID")->on("houses");
+            $table->foreign("variable_data_id")->references("id")->on("varaible_data");
+            $table->foreign("hdp_data_id")->references("id")->on("hdp_data");
         });
     }
 

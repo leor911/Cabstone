@@ -16,6 +16,7 @@ class RoleCheck extends Controller
             $user = Auth::user();
 
             // Check if the user is a realtor
+            
             if ($this->isRealtor($user)) { // Call isRealtor() method with authenticated user
                 // User is a realtor, allow access
                 // Your logic here
