@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class variable_data extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'property_type',
+        'text',
+    ];
 }
