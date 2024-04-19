@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('house_locations', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('property_id')->unsigned()->nullable(false);
+            $table->unsignedBigInteger('property_id');
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zipcode')->nullable();

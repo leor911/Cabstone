@@ -16,7 +16,7 @@ return new class extends Migration
             $table->bigInteger("houseID")->unsigned()->nullable(false);
             $table->binary('image')->nullable(false);
             $table->timestamps();
-            $table->foreign('houseID')->references('houseID')->on('houses');
+            $table->foreign('houseID')->references('id')->on('houses');
         });
     }
 

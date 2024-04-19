@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string("otherDesc")->nullable();
             $table->string("newConstruction")->nullable();
             $table->timestamps();
-            $table->foreign("houseID")->references("houseID")->on("houses");
+            $table->foreign("houseID")->references("id")->on("houses");
         });
     }
 
