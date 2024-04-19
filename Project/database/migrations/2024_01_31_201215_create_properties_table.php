@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string("status_text")->nullable();
             $table->string("country_currency")->nullable();
             $table->decimal("price", 20, 2)->nullable();
-            $table->int("unformatted_price")->nullable();
+            $table->integer("unformatted_price")->nullable();
             $table->string("address")->nullable();
             $table->string("address_street")->nullable();
             $table->string("address_city")->nullable();
@@ -36,11 +36,11 @@ return new class extends Migration
             $table->decimal("latitude", 10, 6)->nullable();
             $table->decimal("longitude", 10, 6)->nullable();
             $table->boolean("is_zillow_owned")->nullable();
-            $table->bigInteger("variable_data_id")->unsigned()->nullable();
-            $table->bigInteger("hdp_data_id")->unsigned()->nullable();
+            $table->unsignedBigInteger("variable_data_id");
+            $table->unsignedBigInteger("hdp_data_id");
             $table->timestamps();
-            $table->foreign("variable_data_id")->references("id")->on("varaible_data");
-            $table->foreign("hdp_data_id")->references("id")->on("hdp_data");
+            $table->foreign("variable_data_id")->references("id")->on("variable_datas");
+            $table->foreign("hdp_data_id")->references("id")->on("hdp_datas");
         });
     }
 
