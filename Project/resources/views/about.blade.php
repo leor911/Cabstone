@@ -97,8 +97,8 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;" id="propertyAgents">
-                    <h1 class="mb-3" >Property Agents</h1>
-                    <p>At our core, we're more than just agents – we're a dedicated team united in achieving your property dreams. With seamless collaboration and unwavering support, we ensure your journey is not just successful, but truly exceptional.</p>
+                    <h1 class="mb-3" >Creators</h1>
+                    <p>At our core, we're more than just a reatial bussiness – we're a dedicated team united in achieving your property dreams. With seamless collaboration and unwavering support, we ensure your journey is not just successful, but truly exceptional.</p>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-0">Cooper Honert</h5>
-                                <small>Townhouses and Tiny Homes</small>
+                                <small>Janitor</small>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                             </div>
                             <div class="text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-0">Jack Korosec</h5>
-                                <small>Apparments</small>
+                                <small>?</small>
                             </div>
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                             </div>
                             <div class="text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-0">Leo Rivera</h5>
-                                <small>Affordable Housing</small>
+                                <small>C.E.O</small>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="text-center p-4 mt-3">
                                 <h5 class="fw-bold mb-0">Connor Hamilton</h5>
-                                <small>Large Family Homes</small>
+                                <small>Data analysis specialist</small>
                             </div>
                         </div>
                     </div>

@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Controllers\Auth\Admin\LoginController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use Dotenv\Util\Str;
 use App\Http\Controllers\test;
-use App\Http\Controllers\Controller;
-
 use App\Http\Controllers\Zillow;
-use App\Http\Controllers\MortgageCalculator;
-use App\Http\Controllers\CreatePropertyController;
-use App\Http\Controllers\MapController;
-use App\Http\Controllers\ViewPropertiesController;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\RoleCheck;
 
-
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MapController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RealtorController;
+use App\Http\Controllers\MortgageCalculator;
+use App\Http\Controllers\CreatePropertyController;
+use App\Http\Controllers\ViewPropertiesController;
+use App\Http\Controllers\Auth\Admin\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,10 @@ use App\Http\Controllers\RoleCheck;
 //Index routes
 
 Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('index')->middleware('rolecheck:realtor');
+
+
+Route::get('/propertyListIndex', [Zillow::class, 'getPropertyDetailsIndex'])->name('propertyIndex.listings');
+
 
 Route::get('/login', function(){
     return view('login');
@@ -58,14 +62,22 @@ Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('p
 
 
 //Realtor routes
+// Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
+
 Route::get('/realtor', function () {
     return view('realtor');
 });
+Route::get('/realtor',[zillow::class,'findAgent']);
 
-//Realtor routes
-Route::get('/realtorDashboard', function () {
-    return view('realtorDashboard');
-});
+Route::get('/display-agent-results', [Zillow::class, 'displayAgentResults']);
+
+Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
+
+Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
+
+//Edit Profile Route
+Route::get('/edit/{name}', [RealtorController::class, 'viewEditRealtor']);
+Route::post('/edit/confirm', [RealtorController::class, 'editConfirm']);
 
 //Admin routes
 Route::get('/admin', function () {
@@ -84,10 +96,10 @@ Route::get('/test',function(){
 });
 
 //Test
-Route::get('/test2', [Zillow::class, 'agentDetails'])->name('test.show');
-
-
-
+Route::get('/realtor',function(){
+    return view('realtor');
+});
+Route::get('/search', [Zillow::class, 'fetchAgentDetails'])->name('search');
 
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
@@ -113,3 +125,9 @@ Route::get('/mortgage-result', function () {
 Route::get('/header',function(){
     return view('/header');
 });
+
+Route::get('/test2', [test::class, 'fetchAgentDetails2'])->name('agent.results');
+
+
+
+Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');

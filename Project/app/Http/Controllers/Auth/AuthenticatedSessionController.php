@@ -27,7 +27,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
         if ($user) {
             // Get the roles associated with the user
-            $roles = $user->roles;
+            $roles = $user->role_name;
     
             // Check if the user has a specific role by role name
             $roleNameToCheck = "customer"; // Role name to check
@@ -46,7 +46,6 @@ class AuthenticatedSessionController extends Controller
             return response()->json(['error' => 'Unauthenticated'], 401);
         }
     }
-
 
     /**
      * Handle an incoming authentication request.

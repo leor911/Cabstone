@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->enum('role_name', ['customer', 'realtor', 'admin'])->unique();
+        Schema::create('variable_datas', function (Blueprint $table) {
+            $table->id();
+            $table->string('property_type')->nullable();
+            $table->string('text')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('variable_datas');
     }
 };
