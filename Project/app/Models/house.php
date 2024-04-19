@@ -14,8 +14,6 @@ class House extends Model
         'price',
         'listingType',
         'description',
-        'coordinateLatitude',
-        'coordinateLongitude',
         'otherDesc',
     ];
 }
