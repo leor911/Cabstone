@@ -90,11 +90,6 @@ class CreatePropertyController extends Controller
             "otherDesc" => $request->input("otherDesc")
         );
 
-        // $image = array(
-        //     // "image" => $request->file("image")
-        //     "image" => $request->input("otherDesc")
-        // );
-    
         $newHouse = House::create($house);
         $newHouseId = $newHouse->id;
     
@@ -102,9 +97,32 @@ class CreatePropertyController extends Controller
         Construction::create(array_merge($construction, ["houseID" => $newHouseId]));
         HouseLocation::create(array_merge($location, ["houseID" => $newHouseId]));
         Interior::create(array_merge($interior, ["houseID" => $newHouseId]));
-        // House_Images::create(array_merge($image, ["houseID" => $newHouseId]));
+
+        //Create image 
+
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+
+            // Read image content and convert it to binary data
+            $imageContent = file_get_contents($image->path());
+
+            // Convert image content to binary
+            $imageContentBinary = '0x' . bin2hex($imageContent);
+
+            // Insert binary image content into database using CONVERT function
+            $query = "INSERT INTO house_images (houseID, image) VALUES ($newHouseId, CONVERT(varbinary(max), :imageContentBinary));";
+
+            // Execute query with parameters
+            DB::connection()->getPdo()->prepare($query)->execute([':imageContentBinary' => $imageContentBinary]);
+
+            return redirect()->back()->with('success', 'Image uploaded successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Failed to upload image.');
         
-    
-        return redirect()->back();
     }
 }

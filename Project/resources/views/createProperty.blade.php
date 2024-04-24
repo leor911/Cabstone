@@ -34,53 +34,6 @@
 
     <!--Our Javascript Functions Link-->
     <script src="app.js"></script>
-    <script>
-        // // Function to validate price
-        // function validatePrice(priceInput, errorSpan) {
-        //     // Reset error message
-        //     errorSpan.textContent = '';
-
-        //      // Validate price without decimals
-        //      var enteredPrice = priceInput.value;
-        //     if (!/^\d+$/.test(enteredPrice)) {
-        //         errorSpan.textContent = 'Price must be a whole number';
-        //     }
-        // }
-        // Function to validate listing type
-        function validateListingType(listingTypeSelect, errorSpan) {
-            // Reset error message
-            errorSpan.textContent = '';
-
-            // Validate listing type
-            if (listingTypeSelect.value === '') {
-                errorSpan.textContent = 'Please select a listing type';
-            }
-        }
-
-        // Validate price and listing type, and prevent form submission on errors
-        var priceInput = document.getElementById('price');
-        var priceErrorSpan = document.getElementById('priceError');
-        var listingTypeSelect = document.getElementById('listingType');
-        var listingTypeErrorSpan = document.getElementById('listingTypeError');
-
-        priceInput.addEventListener('blur', function() {
-            validatePrice(priceInput, priceErrorSpan);
-        });
-
-        listingTypeSelect.addEventListener('change', function() {
-            validateListingType(listingTypeSelect, listingTypeErrorSpan);
-        });
-
-        document.getElementById('priceForm').addEventListener('submit', function(event) {
-            validatePrice(priceInput, priceErrorSpan);
-            validateListingType(listingTypeSelect, listingTypeErrorSpan);
-
-            // Check if there are any errors
-            if (priceErrorSpan.textContent !== '' || listingTypeErrorSpan.textContent !== '') {
-                event.preventDefault(); // Prevent form submission
-            }
-        });
-    </script>
       <style>
         p,ul,li {
             font-family: Forum,cursive;
@@ -135,9 +88,7 @@
 @include('header')
 <!-- header end -->
 
-
-    
-        <!-- Contact Start -->
+        <!-- Create Property Form Start -->
 
         <div class="container my-5">
         <div class="row justify-content-center">
@@ -147,17 +98,15 @@
                     <p>Enter all the <span class="error">* required</span> information below</p>
                 </div>
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
-                <form id="" class="needs-validation" action="{{ url('/createProperty') }}" method="POST" novalidate>
+                <form id="createPropertyForm" class="" action="{{ url('/createProperty') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Basic Information</h3>
                                     <div class="col-md-6">
-                                        
                                         <div class="form-floating">
-                                            <input type="number" class="form-control" name="price" id="price" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                            <input type="number" class="form-control" name="price" id="price" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
                                             <label for="">Price</label>
                                             <div class="requiredAstrik">*</div>
-                                            <span id="priceError" class="error"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -179,13 +128,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="number" class="form-control" name="coordinateLongitude" id="" placeholder="">
+                                            <input type="number" class="form-control" name="coordinateLongitude" step="any" id="" placeholder="">
                                             <label for="">Longitude</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="number" class="form-control" name="coordinateLatitude" id="" placeholder="">
+                                            <input type="number" class="form-control" name="coordinateLatitude" step="any" id="" placeholder="">
                                             <label for="">Latitude</label>
                                         </div>
                                     </div>
@@ -564,7 +513,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="zoning" id="" placeholder="">
+                                            <select class="form-control" style="background-color: #fff; padding-top: 10px" name="zoning" id="" placeholder="" required>
                                                 <option selected disabled value="">Zoning</option>
                                                 <option value="Commercial">Commercial</option>
                                                 <option value="Low Density Residential">Low Density Residential</option>
@@ -580,6 +529,7 @@
                                                 <option value="Other">Other</option>
                                                 <option value="None">None</option>
                                             </select>
+                                            <div class="requiredAstrik">*</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -839,18 +789,39 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="row g-3 mb-5">
+                                <div class="row g-3 mb-5">
                                     <h3 class="mb-3">Property Images</h3>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <div id="imageContainer">
                                                 <!-- Image Input Fields will be dynamically added here -->
                                             </div>
+                                            <h2>Upload House Image</h2>
+                                            @if ($errors->any())
+                                                <div>
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+
+                                            @if (session('success'))
+                                                <div>{{ session('success') }}</div>
+                                            @endif
+
+                                            @if (session('error'))
+                                                <div>{{ session('error') }}</div>
+                                            @endif
+                                            <input type="file" name="image">
+                                            <button type="submit">Upload Image</button>
                                             <button type="button" onclick="addImageField()">Add Another Image</button>
                                         </div>
                                     </div>
                                     <script>
                                         let imageCount = 0;
+                                        let imagesArray = [];
                                     
                                         function addImageField() {
                                             if (imageCount < 10) {
@@ -860,7 +831,7 @@
                                                 const div = document.createElement('div');
                                                 div.innerHTML = `
                                                     <label for="imageInput${imageCount}">Choose Image ${imageCount}:</label>
-                                                    <input type="file" name="image" id="imageInput${imageCount}" accept="image/*" onchange="previewImage(${imageCount})">
+                                                    <input type="file" name="images[]" id="imageInput${imageCount}" accept="image/*" onchange="previewImage(${imageCount})">
                                                     <button type="button" onclick="removeImage(${imageCount})">Remove Image ${imageCount}</button>
                                                     <img id="imagePreview${imageCount}" class="image-preview" alt="Image Preview ${imageCount}">
                                                 `;
@@ -897,27 +868,40 @@
                                             imageCount--;
                                         }
                                     
-                                        document.getElementById('imageForm').addEventListener('submit', function (e) {
+                                        document.getElementById('imageform').addEventListener('submit', function(e) {
                                             e.preventDefault();
-                                    
-                                            // Handle form submission logic here
-                                            // You can access the selected files using document.getElementById('imageInput1').files, document.getElementById('imageInput2').files, etc.
-                                            // Implement your submission logic or send the files to a server using AJAX
+                                            // Reset the images array
+                                            imagesArray = [];
+                                            // Iterate through all input file elements
+                                            for (let i = 1; i <= imageCount; i++) {
+                                                const fileInput = document.getElementById(`imageInput${i}`);
+                                                const file = fileInput.files[0];
+                                                if (file) {
+                                                    imagesArray.push(file); // Add selected file to the imagesArray
+                                                }
+                                            }
+                                            // If there are images selected, submit the form
+                                            if (imagesArray.length > 0) {
+                                                alert("This array is not empty")
+                                                // this.submit();
+                                            } else {
+                                                alert("Please select at least one image.");
+                                            }
+                                            
                                         });
                                     </script>
-                                </div> --}}
+                                </div>
                                 <div class="col-12">
                                     <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
                                 </div>
-                            </form>                
-                        </div>
+                            </form>
             </div>
         </div>
     </div>
-        <!-- Contact End -->
+    <!-- Create Property Form End -->
 
 
-     <!-- footer start -->
+<!-- footer start -->
 @include('footer')
 <!-- footer end -->
 
@@ -935,7 +919,6 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>
 @endif
-                @endauth 
+@endauth 
