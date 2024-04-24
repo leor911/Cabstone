@@ -115,7 +115,6 @@ Route::get('/createProperty', function () {
 
 Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
 
-Route::post('/createImage',[CreatePropertyController::class,'createImage']);
 
 require __DIR__.'/auth.php';
 
