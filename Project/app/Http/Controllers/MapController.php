@@ -8,12 +8,10 @@ use Illuminate\Support\Facades\DB;
 class MapController extends Controller
 {
     public function getHouses(){
-        return DB::table('houses')->get();
+        return DB::table('hdp_datas')->get();
     }
     public function mapView(){
         $houses = $this->getHouses();
         return view('map', ['houses' => $houses]);
-    }
-    public function search(){ //WIP, Stuck
     }
 }
