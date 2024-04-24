@@ -93,7 +93,7 @@
         <button><a href="/edit/{{ $realtor->firstName }}{{ $realtor->lastName }}">Edit Profile</a></button>
         @endif
         @else
-        <p>No realtor found.</p>
+        <p>Page inaccessible.</p>
         @endif
     </div>
     

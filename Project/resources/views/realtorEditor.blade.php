@@ -87,7 +87,7 @@
     <div class = "realtor-info">
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
         <div>
-            <form action="{{ route("/editConfirm") }}" method="POST">
+            <form action="{{ route("edit.confirm") }}" method="POST">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">

@@ -27,10 +27,18 @@ class RealtorController extends Controller
         return view('realtorEditor', ['realtor' => $realtor]);
     }
 
-    // WIP, will dynamically update user & realtor table based on what values are passed
+    // WIP, will update realtor data based on what values are passed while logged in
     public function editConfirm(Request $request){
-        $input = $request->all();
-        // DB::table('users')
+        DB::table('realtors')
+        ->where('realtor_id', Auth::id())
+        ->update([
+            'city' => $request->updateCity,
+            'specialty' => $request->updateSpecialty,
+            'available_days' => $request->updateDays,
+            'available_hours' => $request->updateHours,
+            'available_days' => $request->updateDays,
+            'contact_agent' => $request->updateAgent
+        ]);
     }
 
     public function viewRealtorByURL(string $name){
