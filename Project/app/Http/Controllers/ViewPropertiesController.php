@@ -11,6 +11,8 @@ use App\Models\construction;
 use App\Models\houseLocation;
 use App\Models\interior;
 
+use App\Models\hdp_data;
+
 use Illuminate\Support\Facades\DB;
 
 class ViewPropertiesController extends Controller
@@ -33,8 +35,8 @@ class ViewPropertiesController extends Controller
     ");
         $houses = $this->getHouses();
     
-        return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
-        }
+    //     return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
+    //     }
 
         function viewPropertiesIndex(){
             $listings = DB::select("
@@ -50,6 +52,8 @@ class ViewPropertiesController extends Controller
                 JOIN interiors i ON i.houseID=h.id
             ");
             
-            return view('index', ["listings" => $listings]);
-        }
+    //         return view('index', ["listings" => $listings]);
+    //     }
+}
+    }
 }

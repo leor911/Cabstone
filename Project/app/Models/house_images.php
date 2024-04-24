@@ -10,7 +10,7 @@ class house_images extends Model
     use HasFactory;
     protected $fillable = [
         'image_id',
-        'house_id',
+        'houseID',
         'image',
     ];
 }
