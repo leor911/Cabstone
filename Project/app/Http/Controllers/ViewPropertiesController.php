@@ -22,28 +22,38 @@ class ViewPropertiesController extends Controller
     }
     function viewProperties(){
         $listings = DB::select("
-        SELECT h.id, h.zpid, h.street_address, h.zipcode, h.city, h.state, h.latitude, h.longitude, h.price, h.bathrooms, h.bedrooms,
-        p.zpid, p.raw_home_status_cd, p.marketing_status_simplified_cd, p.img_src, p.has_image, p.detail_url, p.status_type, p.status_text, p.country_currency, p.price, p.unformatted_price, p.address, p.address_street, p.address_city, p.address_state, p.address_zipcode, p.is_undisclosed_address, p.beds, p.baths, p.area, p.latitude, p.longitude, p.is_zillow_owned, p.variable_data_id, p.hdp_data_id,
-        l.property_id, l.city, l.state, l.zipcode
-        FROM hdp_datas h 
-        JOIN properties p ON p.id=h.id 
-        JOIN house_Locations l ON l.id=h.id 
+        SELECT h.houseID,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
+        p.prknSpacesNo,p.garageSpacesNo,p.prknSize,p.acreSize,p.squareFeet,p.otherDesc,
+        c.homeType,c.archType,c.constMaterials,c.roof,c.builtYear, c.otherDesc,
+        l.country,l.state,l.county,l.city,l.zip,l.region,l.street,l.apptNo,
+        i.bedroomNo,i.bathNo,i.kitchenNo,i.heatingDesc,i.basementDesc,i.applianceDesc,i.floorsNo,i.floorType,i.coolingDesc,i.otherDesc 
+        FROM houses h 
+        JOIN properties p ON p.houseID=h.houseID 
+        JOIN constructions c ON c.houseID=h.houseID 
+        JOIN house_Locations l ON l.houseID=h.houseID 
+        JOIN interiors i ON i.houseID=h.houseID
     ");
         $houses = $this->getHouses();
     
-        return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
-        }
+    //     return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
+    //     }
 
         function viewPropertiesIndex(){
             $listings = DB::select("
-                SELECT h.id, h.zpid, h.street_address, h.zipcode, h.city, h.state, h.latitude, h.longitude, h.price, h.bathrooms, h.bedrooms,
-                p.zpid, p.raw_home_status_cd, p.marketing_status_simplified_cd, p.img_src, p.has_image, p.detail_url, p.status_type, p.status_text, p.country_currency, p.price, p.unformatted_price, p.address, p.address_street, p.address_city, p.address_state, p.address_zipcode, p.is_undisclosed_address, p.beds, p.baths, p.area, p.latitude, p.longitude, p.is_zillow_owned, p.variable_data_id, p.hdp_data_id,
-                l.property_id, l.city, l.state, l.zipcode
-                FROM hdp_datas h 
-                JOIN properties p ON p.id=h.id 
-                JOIN house_Locations l ON l.id=h.id 
+                SELECT h.houseID,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
+                p.prknSpacesNo,p.garageSpacesNo,p.prknSize,p.acreSize,p.squareFeet,p.otherDesc,
+                c.homeType,c.archType,c.constMaterials,c.roof,c.builtYear, c.otherDesc,
+                l.country,l.state,l.county,l.city,l.zip,l.region,l.street,l.apptNo,
+                i.bedroomNo,i.bathNo,i.kitchenNo,i.heatingDesc,i.basementDesc,i.applianceDesc,i.floorsNo,i.floorType,i.coolingDesc,i.otherDesc 
+                FROM houses h 
+                JOIN properties p ON p.houseID=h.houseID 
+                JOIN constructions c ON c.houseID=h.houseID 
+                JOIN house_Locations l ON l.houseID=h.houseID 
+                JOIN interiors i ON i.houseID=h.houseID
             ");
             
-            return view('index', ["listings" => $listings]);
-        }
+    //         return view('index', ["listings" => $listings]);
+    //     }
+}
+    }
 }
