@@ -11,118 +11,80 @@ use App\Models\houseLocation;
 use App\Models\interior;
 use App\Models\house_images;
 
+use App\Models\hdp_data;
+use App\Models\variable_data;
+
+
 use Illuminate\Support\Facades\DB;
 
 class CreatePropertyController extends Controller
 {
     function createProperty(Request $request)
     {
-
-        $house = array(
-            "price" => $request->input("price"),
-            "listingType" => $request->input("listingType"),
-            "description" => $request->input("description"),
-            "coordinateLatitude" => $request->input("coordinateLatitude"),
-            "coordinateLongitude" => $request->input("coordinateLongitude"),
-            "otherDesc" => $request->input("otherDesc")
+        $variableData = array(
+            'property_type' => $request->input("property_type"),
+            'text' => $request->input("text"),
         );
-    
+
+        $hdpData = array(
+            'zpid' => $request->input("zpid"),
+            'street_address' => $request->input("address_street"),
+            'zipcode' => $request->input("address_zipcode"),
+            'city' => $request->input("address_city"),
+            'state' => $request->input("address_state"),
+            'latitude' => $request->input("latitude"),
+            'longitude' => $request->input("longitude"),
+            'price' => $request->input("price"),
+            'bathrooms' => $request->input("baths"),
+            'bedrooms' => $request->input("beds"),
+        );
+
+        // Create a new Property entry
         $property = array(
-            "prknSpacesNo" => $request->input("prknSpacesNo"),
-            "garageSpacesNo" => $request->input("garageSpacesNo"),
-            "garageType" => $request->input("garageType"),
-            "lotType" => $request->input("lotType"),
-            "lotMaterials" => $request->input("lotMaterials"),
-            "extensionType" => $request->input("extensionType"),
-            "prknSize" => $request->input("prknSize"),
-            "acreSize" => $request->input("acreSize"),
-            "squareFeet" => $request->input("squareFeet"),
-            "otherDesc" => $request->input("otherDesc")
-        );
-    
-        $construction = array(
-            "homeType" => $request->input("homeType"),
-            "archType" => $request->input("archType"),
-            "foundationType" => $request->input("foundationType"),
-            "constMaterials" => $request->input("constMaterials"),
-            "roof" => $request->input("roof"),
-            "builtYear" => $request->input("builtYear"),
-            "remodelYear" => $request->input("remodelYear"),
-            "squareFeet" => $request->input("squareFeet"),
-            "newConstruction" => $request->input("newConstruction"),
-            "otherDesc" => $request->input("otherDesc")
-        );
-    
-        $location = array(
-            "country" => $request->input("country"),
-            "state" => $request->input("state"),
-            "county" => $request->input("county"),
-            "city" => $request->input("city"),
-            "zip" => $request->input("zip"),
-            "region" => $request->input("region"),
-            "street" => $request->input("street"),
-            "apptNo" => $request->input("apptNo"),
-            "zoning" => $request->input("zoning"),
-            "subdivision" => $request->input("subdivision")
-        );
-    
-        $interior = array(
-            "bedroomNo" => $request->input("bedroomNo"),
-            "mainBedNo" => $request->input("mainBedNo"),
-            "fullBathNo" => $request->input("fullBathNo"),
-            "halfBedNo" => $request->input("halfBedNo"),
-            "bathNo" => $request->input("bathNo"),
-            "mainBathNo" => $request->input("mainBathNo"),
-            "kitchenNo" => $request->input("kitchenNo"),
-            "kitchenType" => $request->input("kitchenType"),
-            "stoveType" => $request->input("stoveType"),
-            "laundryType" => $request->input("laundryType"),
-            "electricType" => $request->input("electricType"),
-            "sewerType" => $request->input("sewerType"),
-            "waterType" => $request->input("waterType"),
-            "utilitiesType" => $request->input("utilitiesType"),
-            "heatingDesc" => $request->input("heatingDesc"),
-            "basementDesc" => $request->input("basementDesc"),
-            "applianceDesc" => $request->input("applianceDesc"),
-            "floorsNo" => $request->input("floorsNo"),
-            "floorType" => $request->input("floorType"),
-            "coolingDesc" => $request->input("coolingDesc"),
-            "otherDesc" => $request->input("otherDesc")
+            'zpid' => $request->input("zpid"),
+            'raw_home_status_cd' => $request->input("raw_home_status_cd"),
+            'marketing_status_simplified_cd' => $request->input("marketing_status_simplified_cd"),
+            'img_src' => $request->input("img_src"),
+            'has_image' => $request->input("has_image"),
+            'detail_url' => $request->input("detail_url"),
+            'status_type' => $request->input("status_type"),
+            'status_text' => $request->input("status_text"),
+            'country_currency' => $request->input("country_currency"),
+            'price' => $request->input("price"),
+            'unformatted_price' => $request->input("unformatted_price"),
+            'address' => $request->input("address"),
+            'address_street' => $request->input("address_street"),
+            'address_city' => $request->input("address_city"),
+            'address_state' => $request->input("address_state"),
+            'address_zipcode' => $request->input("address_zipcode"),
+            'is_undisclosed_address' => $request->input("is_undisclosed_address"),
+            'beds' => $request->input("beds"),
+            'baths' => $request->input("baths"),
+            'area' => $request->input("area"),
+            'latitude' => $request->input("latitude"),
+            'longitude' => $request->input("longitude"),
+            'is_zillow_owned' => $request->input("is_zillow_owned"),
         );
 
-        $newHouse = House::create($house);
-        $newHouseId = $newHouse->id;
-    
-        Property::create(array_merge($property, ["houseID" => $newHouseId]));
-        Construction::create(array_merge($construction, ["houseID" => $newHouseId]));
-        HouseLocation::create(array_merge($location, ["houseID" => $newHouseId]));
-        Interior::create(array_merge($interior, ["houseID" => $newHouseId]));
+        // Create a new HouseLocation entry
+        $houseLocation = array(
+            'city' => $request->input("address_city"),
+            'state' => $request->input("address_state"),
+            'zipcode' => $request->input("address_zipcode"),
+        );
 
-        //Create image 
+        $newVariableData = variable_data::create($variableData);
+        $newVariableDataId = $newVariableData->id;
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust validation rules as needed
-        ]);
+        $newHdpData = hdp_data::create($hdpData);
+        $newHdpDataId = $newHdpData ->id;
 
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
+        $newProperty = property::create(array_merge($property, ["variable_data_id" => $newVariableDataId], ["hdp_data_id" => $newHdpDataId]));
+        $newPropertyId = $newProperty ->id;
 
-            // Read image content and convert it to binary data
-            $imageContent = file_get_contents($image->path());
+        houseLocation::create(array_merge(["property_id" => $newPropertyId], $houseLocation));
 
-            // Convert image content to binary
-            $imageContentBinary = '0x' . bin2hex($imageContent);
+        return redirect()->back();
 
-            // Insert binary image content into database using CONVERT function
-            $query = "INSERT INTO house_images (houseID, image) VALUES ($newHouseId, CONVERT(varbinary(max), :imageContentBinary));";
-
-            // Execute query with parameters
-            DB::connection()->getPdo()->prepare($query)->execute([':imageContentBinary' => $imageContentBinary]);
-
-            return redirect()->back()->with('success', 'Image uploaded successfully.');
-        }
-
-        return redirect()->back()->with('error', 'Failed to upload image.');
-        
     }
 }
