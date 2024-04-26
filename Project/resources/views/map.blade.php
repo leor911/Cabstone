@@ -8,17 +8,24 @@
         #map {
             height: 900px;
         }
+        #place-autocomplete-card{
+            margin: 10px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body>
     <!-- Map container -->
+    <div id="place-autocomplete-card">
+        <p>Search for a place here:</p>
+    </div>
     <div id="map"></div>
 
     <!-- Load Google Maps JavaScript API -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC92z665c3Q4ymF4mB8MmXRsSJ9uIrDOIA&language=en&loading=async&callback=initMap" defer></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&language=en&loading=async&callback=initMap" defer></script>
     <script>
         (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-          key: "AIzaSyC92z665c3Q4ymF4mB8MmXRsSJ9uIrDOIA",
+          key: "env('GOOGLE_MAPS_API_KEY')",
           v: "beta",
         });
       </script>
@@ -28,7 +35,7 @@
             const { Map } = await google.maps.importLibrary("maps");
             const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
             const {Place} = await google.maps.importLibrary("places");
-            const map = new Map(document.getElementById('map'), {
+            map = new Map(document.getElementById('map'), {
                 center: { lat: 40.4220656, lng: -100.0840897 },
                 zoom: 5,
                 mapId: 'f2f5648b7f4b4ed'
