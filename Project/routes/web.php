@@ -33,7 +33,14 @@ Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name(
 
 
 Route::get('/propertyListIndex', [Zillow::class, 'getPropertyDetailsIndex'])->name('propertyIndex.listings');
+Route::get('/fetch-property-data', [Zillow::class, 'fetchDataFromAPI'])->name('fetch.property.data');
+Route::get('/store-property-data', [Zillow::class, 'storeDataToDatabase'])->name('store.property.data');
+Route::get('/fetch-agent-details', [Zillow::class, 'fetchAgentDetails'])->name('fetch.agent.details');
 
+
+Route::get('/login', function(){
+    return view('login');
+});
 
 Route::get('/login', function(){
     return view('login');
@@ -54,6 +61,8 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
+//Property List page routes
+//Property List page routes
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
@@ -62,22 +71,14 @@ Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('p
 
 
 //Realtor routes
-// Route::get('/realtor', [RealtorController::class, 'viewRealtors']);
-
 Route::get('/realtor', function () {
     return view('realtor');
 });
-Route::get('/realtor',[zillow::class,'findAgent']);
 
-Route::get('/display-agent-results', [Zillow::class, 'displayAgentResults']);
-
-Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
-
-Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
-
-//Edit Profile Route
-Route::get('/edit/{name}', [RealtorController::class, 'viewEditRealtor']);
-Route::post('/edit/confirm', [RealtorController::class, 'editConfirm']);
+//Realtor routes
+Route::get('/realtorDashboard', function () {
+    return view('realtorDashboard');
+});
 
 //Admin routes
 Route::get('/admin', function () {
@@ -86,20 +87,19 @@ Route::get('/admin', function () {
 
 Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
 
-
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
 });
 
 Route::get('/test',function(){
     return view('/test5');
-});
+})->name('test5');
 
 //Test
-Route::get('/realtor',function(){
-    return view('realtor');
-});
-Route::get('/search', [Zillow::class, 'fetchAgentDetails'])->name('search');
+Route::get('/test2', [Zillow::class, 'agentDetails'])->name('test.show');
+
+
+
 
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
@@ -122,12 +122,7 @@ Route::get('/mortgage-result', function () {
     return view('mortgageCalc');
 })->name('mortgage.result');
 
+
 Route::get('/header',function(){
     return view('/header');
 });
-
-Route::get('/test2', [test::class, 'fetchAgentDetails2'])->name('agent.results');
-
-
-
-Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');
