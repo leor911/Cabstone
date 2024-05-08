@@ -29,6 +29,11 @@
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
         <style>
+            img{
+                border-radius: 50%;
+                max-width: 50%;
+                height: 5%;
+            }
             p, ul, li {
                 font-family: Forum, cursive;
                 margin: 10px 0; /* Add margin for spacing between paragraphs and list items */
@@ -77,10 +82,12 @@
     <!-- header end -->
 
     {{-- If you're logged in, this is what you will see. --}}
-    {{-- <h1>Welcome, {{  ucfirst(Auth::user()->firstName) }} {{ ucfirst(Auth::user()->lastName) }}!</h1> --}}
-    
     <div class = "realtor-info">
         @if($realtor)
+        @if (!is_null($realtor->profile_image))
+            <img src="/{{ $realtor->profile_image }}" alt="{{ ucfirst($realtor->firstName)}} {{ ucfirst($realtor->lastName)}}'s image">
+        @endif
+
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
         <h2>City: {{ $realtor->city }}</h2>
         <h2>Specialty: {{ $realtor->specialty }}</h2>

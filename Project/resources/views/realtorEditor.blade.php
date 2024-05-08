@@ -85,9 +85,10 @@
 
     @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
     <div class = "realtor-info">
+
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
         <div>
-            <form action="{{ route("edit.confirm") }}" method="POST">
+            <form action="{{ route("edit.confirm") }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
@@ -106,9 +107,8 @@
                     <option value="Cooper Honert">Cooper Honert</option>
                 </select>
                 
-                {{-- Will worry about this later --}}
                 <label for="">Upload Profile Image:</label>
-                <input type="file" name="image" accept="image/png, image/jpeg">
+                <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
                 <button style="background-color: lightgray">Submit</button>
             </form>
         </div>

@@ -29,6 +29,24 @@ class RealtorController extends Controller
 
     // WIP, will update realtor data based on what values are passed while logged in
     public function editConfirm(Request $request){
+        $request->validate([
+            'image' => 'nullable|mimes:png,jpg,jpeg',
+        ]);
+
+        if($request->file('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $path = public_path('img');
+            $file->move($path, $filename);
+
+            $profilePath = 'img/' . $filename;
+        }else{
+            $profilePath = null;
+        }
+
         DB::table('realtors')
         ->where('realtor_id', Auth::id())
         ->update([
@@ -37,7 +55,8 @@ class RealtorController extends Controller
             'available_days' => $request->updateDays,
             'available_hours' => $request->updateHours,
             'available_days' => $request->updateDays,
-            'contact_agent' => $request->updateAgent
+            'contact_agent' => $request->updateAgent,
+            'profile_image' => $profilePath
         ]);
         return redirect()->back();
     }
@@ -48,13 +67,5 @@ class RealtorController extends Controller
             ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
             ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
-    }
-    
-    public function uploadProfileImage(Request $request){
-        $image = $request->file('image');
-        $imageContent = file_get_contents($image->path());
-        $imageContentBinary = '0x'. bin2hex($imageContent);
-        DB::table('realtors')->where('id', Auth::user()->id)->updateOrInsert(['profile_image' => $imageContentBinary]);
-        return redirect()->back();
     }
 }
