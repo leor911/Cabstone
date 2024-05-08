@@ -36,6 +36,16 @@
         h1,a{
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        #pac-input {
+    position: absolute;
+    margin-top: 1%; /* Adjust top position as needed */
+    margin-left: 12%; /* Adjust left position as needed */
+    z-index: 1000; /* Ensure search bar is above other elements */
+}
     </style>
 </head>
 
@@ -102,10 +112,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <iframe class="position-relative rounded w-100 h-100"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                            frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
-                            tabindex="0"></iframe>
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+            <div id="map"></div>
                     </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.5s">
@@ -160,7 +168,81 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC92z665c3Q4ymF4mB8MmXRsSJ9uIrDOIA&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
 
+<!-- JavaScript code for Places Search Box -->
+<script>
+  // Initialize the Places Search Box
+  function initAutocomplete() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 35.235035747790704, lng: -80.73652296211786 },
+      zoom: 18,
+      mapTypeId: "roadmap",
+    });
+
+    // Create a marker at the initial center of the map
+    const marker = new google.maps.Marker({
+      position: { lat: 35.235035747790704, lng: -80.73652296211786 },
+      map: map,
+      title: "Starting Location"
+    });
+
+    // Create the search box and link it to the UI element.
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    let markers = [];
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      // For each place, get the icon, name, and location.
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        // Create a marker for each place with address as the title.
+        const marker = new google.maps.Marker({
+          map,
+          title: place.formatted_address,
+          position: place.geometry.location,
+        });
+
+        // Push the marker to the markers array.
+        markers.push(marker);
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+  }
+</script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
