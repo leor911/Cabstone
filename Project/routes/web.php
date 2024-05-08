@@ -70,7 +70,7 @@ Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('p
 //Realtor routes
 Route::get('/realtor', function () {
     return view('realtor');
-
+});
 
 //Realtor routes
 Route::get('/realtorDashboard', function () {
@@ -119,11 +119,10 @@ Route::get('/mortgage-result', function () {
 
 Route::get('/header',function(){
     return view('/header');
-
+});
 
 Route::get('/test2', [test::class, ''])->name('agent.results');
 
 
 
 Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');
-
