@@ -129,11 +129,11 @@
                 <input type="number" step=".01" name="term" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="hoa">HOA Fee:</label>
+                <label for="hoa">HOA Fee (Monthly):</label>
                 <input type="number" step=".01" name="hoa" class="form-control">
             </div>
             <div class="mb-3">
-                <label for="home_insurance">Home Owners Insurance:</label>
+                <label for="home_insurance">Home Owners Insurance (Monthly):</label>
                 <input type="number" step=".01" name="home_insurance" class="form-control">
             </div>
             <div class="text-center"> <!-- Centering the button -->
@@ -156,7 +156,6 @@
                                 <h2>Monthly Payment</h2>
                                 <p>Total: ${{ $data['monthly_payment']['total'] }}</p>
                                 <p>Mortgage: ${{ $data['monthly_payment']['mortgage'] }}</p>
-                                <p>Property Tax: ${{ $data['monthly_payment']['property_tax'] }}</p>
                                 <p>HOA Fee: ${{ $data['monthly_payment']['hoa'] }}</p>
                                 @if(isset($data['monthly_payment']['home_insurance']))
     <p>Home Owners Insurance: ${{ $data['monthly_payment']['home_insurance'] }}</p>
@@ -167,9 +166,6 @@
                                 <h2>Annual Payment</h2>
                                 <p>Total: ${{ $data['annual_payment']['total'] }}</p>
                                 <p>Mortgage: ${{ $data['annual_payment']['mortgage'] }}</p>
-                                <p>Property Tax: ${{ $data['annual_payment']['property_tax'] }}</p>
-                                <p>HOA: ${{ $data['annual_payment']['hoa'] }}</p>
-                                <p>Home Insurance: ${{ $data['annual_payment']['home_insurance'] }}</p>
                                 @endisset
 
                                 @isset($data['total_interest_paid'])

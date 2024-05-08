@@ -14,6 +14,4 @@ class MapController extends Controller
         $houses = $this->getHouses();
         return view('map', ['houses' => $houses]);
     }
-    public function search(){ //WIP, Stuck
-    }
 }
