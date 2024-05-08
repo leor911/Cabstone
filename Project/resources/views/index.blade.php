@@ -46,6 +46,23 @@
         .top{
             padding-top: 50px;
         }
+        .modal-dialog {
+    margin: auto;
+    top: 25%;
+    transform: translateY(-50%);
+    max-width: 50%; /* Adjust the maximum width of the modal as needed */
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.modal-body {
+    max-height: calc(100vh - 200px); /* Adjust the maximum height of the modal body as needed */
+    overflow-y: auto;
+}
+
+
     </style>
 </head>
 
@@ -187,41 +204,41 @@
             </div>
         </div>
 
-        <!-- Slideshow container -->
         <div class="container-xxl py-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6 animated fadeIn">
-                        <div class="owl-carousel header-carousel">
-                            <!-- Slides content -->
-                            @foreach ($listings as $listing)
-                            <div class="owl-carousel-item">
-                                <div class="property-item rounded overflow-hidden">
-                                    <div class="position-relative overflow-hidden">
-                                        <a href="" class="property-link" data-toggle="modal" data-target="#propertyModal" data-property-id="{{ $listing->houseID }}">
-                                            <img class="img-fluid" src="img/appartment1.jpg" alt="">
-                                        </a>
-                                        <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $listing->listingType }}</div>
-                                        <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $listing->homeType }}</div>
-                                    </div>
-                                    <div class="p-4 pb-0">
-                                        <h5 class="text-primary mb-3">${{ $listing->price }}</h5>
-                                        <h5 class="mb-3">{{ $listing->description }}</h5>
-                                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $listing->street }}, {{ $listing->city }}, {{ $listing->state }}</p>
-                                    </div>
-                                    <div class="d-flex border-top">
-                                        <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2" ></i> {{ $listing->squareFeet }} Sqft&nbsp; </small>
-                                        <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2" ></i> {{ $listing->bedroomNo }} Bed &nbsp;</small>
-                                        <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2" ></i> {{ $listing->bathNo }} Bath &nbsp;</small>
-                                    </div>
-                                </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 animated fadeIn">
+                <div class="owl-carousel header-carousel">
+                    <!-- Slides content -->
+                    @foreach ($properties as $property)
+                    <div class="owl-carousel-item">
+                        <div class="property-item rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                            <a href="/property/{{ $property->id }}" class="property-link" target="_blank">
+    <img class="img-fluid" src="{{ $property->img_src }}" alt="Property Image">
+</a>
+                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $property->marketing_status_simplified_cd }}</div>
+                                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $property->raw_home_status_cd }}</div>
                             </div>
-                            @endforeach
+                            <div class="p-4 pb-0">
+                                <h5 class="text-primary mb-3">${{ $property->price }}</h5>
+                                <h5 class="mb-3">{{ $property->address_street }}</h5>
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $property->city }}, {{ $property->state }}, {{ $property->zipcode }}</p>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2"></i> {{ $property->area }} Sqft&nbsp; </small>
+                                <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2"></i> {{ $property->beds }} Bed &nbsp;</small>
+                                <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2"></i> {{ $property->baths }} Bath &nbsp;</small>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
         <!-- End of Slideshow container -->
 
         <!-- Modal -->

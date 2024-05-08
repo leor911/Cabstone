@@ -39,6 +39,7 @@ class RealtorController extends Controller
             'available_days' => $request->updateDays,
             'contact_agent' => $request->updateAgent
         ]);
+        return redirect()->back();
     }
 
     public function viewRealtorByURL(string $name){
@@ -48,6 +49,7 @@ class RealtorController extends Controller
             ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
     }
+    
     public function uploadProfileImage(Request $request){
         $image = $request->file('image');
         $imageContent = file_get_contents($image->path());

@@ -17,43 +17,86 @@ use Illuminate\Support\Facades\DB;
 
 class ViewPropertiesController extends Controller
 {
-    public function getHouses(){
-        return DB::table('houses')->get();
-    }
-    function viewProperties(){
-        $listings = DB::select("
-        SELECT h.id,h.price,h.listingType,h.description,h.coordinateLatitude,h.coordinateLongitude,h.otherDesc,
-        p.prknSpacesNo,p.garageSpacesNo,p.prknSize,p.acreSize,p.squareFeet,p.otherDesc,
-        c.homeType,c.archType,c.constMaterials,c.roof,c.builtYear, c.otherDesc,
-        l.country,l.state,l.county,l.city,l.zip,l.region,l.street,l.apptNo,
-        i.bedroomNo,i.bathNo,i.kitchenNo,i.heatingDesc,i.basementDesc,i.applianceDesc,i.floorsNo,i.floorType,i.coolingDesc,i.otherDesc 
-        FROM houses h 
-        JOIN properties p ON p.id=h.id
-        JOIN constructions c ON c.houseID=h.id
-        JOIN house_Locations l ON l.id=h.id
-        JOIN interiors i ON i.houseID=h.id
-    ");
-        $houses = $this->getHouses();
+    function viewProperties() {
+        $properties = DB::table('properties')
+        ->join('house_locations', 'properties.id', '=', 'house_locations.property_id')
+        ->join('variable_datas', 'properties.variable_data_id', '=', 'variable_datas.id')
+        ->select(
+            'properties.id', 
+            'properties.raw_home_status_cd',
+            'properties.marketing_status_simplified_cd',
+            'properties.img_src',
+            'properties.status_type',
+            'properties.status_text',
+            'properties.price',
+            'properties.address',
+            'properties.address_street',
+            'properties.beds',
+            'properties.baths',
+            'properties.area',
+            'properties.latitude',
+            'properties.longitude',
+            'properties.is_zillow_owned',
+            'properties.variable_data_id',
+            'properties.hdp_data_id',
+            'house_locations.city',
+            'house_locations.state',
+            'house_locations.zipcode',
+            'variable_datas.property_type',
+            'properties.detail_url' 
+        )
+        ->get();
     
-    //     return view('/propertyList', ["listings"=>$listings], ['houses' => $houses]);
-    //     }
-
-        function viewPropertiesIndex(){
-            $listings = DB::select("
-                SELECT h.id,h.price,h.listingType,h.description,h.otherDesc,
-                p.prknSpacesNo,p.garageSpacesNo,p.prknSize,p.acreSize,p.squareFeet,p.otherDesc,
-                c.homeType,c.archType,c.constMaterials,c.roof,c.builtYear, c.otherDesc,
-                l.country,l.state,l.county,l.city,l.zip,l.region,l.street,l.apptNo,
-                i.bedroomNo,i.bathNo,i.kitchenNo,i.heatingDesc,i.basementDesc,i.applianceDesc,i.floorsNo,i.floorType,i.coolingDesc,i.otherDesc 
-                FROM houses h
-                JOIN properties p ON p.id=h.id
-                JOIN constructions c ON c.houseID=h.id
-                JOIN house_locations l ON l.id=h.id
-                JOIN interiors i ON i.houseID=h.id
-            ");
-            
-    //         return view('index', ["listings" => $listings]);
-    //     }
-}
+    
+        return view('propertyList', compact('properties'));
     }
+    
+        function viewPropertiesIndex() {
+            $properties = DB::table('properties')
+            ->join('house_locations', 'properties.id', '=', 'house_locations.property_id')
+            ->join('variable_datas', 'properties.variable_data_id', '=', 'variable_datas.id')
+            ->select(
+                'properties.id', 
+                'properties.raw_home_status_cd',
+                'properties.marketing_status_simplified_cd',
+                'properties.img_src',
+                'properties.status_type',
+                'properties.status_text',
+                'properties.price',
+                'properties.address',
+                'properties.address_street',
+                'properties.beds',
+                'properties.baths',
+                'properties.area',
+                'properties.latitude',
+                'properties.longitude',
+                'properties.is_zillow_owned',
+                'properties.variable_data_id',
+                'properties.hdp_data_id',
+                'house_locations.city',
+                'house_locations.state',
+                'house_locations.zipcode',
+                'variable_datas.property_type',
+                'properties.detail_url'
+            )
+            ->get();
+        
+        
+            return view('index', compact('properties'));
+        }
+
+        public function displayAgents()
+        {
+            // Retrieve agent data from the database and paginate it
+            $agents = DB::table('professionals')
+                        ->select('full_name', 'business_name', 'phone_number', 'profile_link', 'profile_photo_src', 'is_top_agent')
+                        ->paginate(10); // Show 10 agents per page
+        
+            // Pass the paginated agent data to the Blade view
+            return view('realtor', compact('agents'));
+        }
+
+
+        
 }
+    

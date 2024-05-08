@@ -136,7 +136,7 @@
                 </a>
 
                 <x-primary-button>
-                    {{ __('Register') }}
+                    {{ __('register') }}
                 </x-primary-button>
             </div>
         </form>

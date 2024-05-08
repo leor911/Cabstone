@@ -98,67 +98,205 @@
                     <p>Enter all the <span class="error">* required</span> information below</p>
                 </div>
                 <div class="wow fadeInUp" data-wow-delay="0.5s">
-                    <h1>Create Property</h1>
                     <form method="POST" action="{{ url('/createProperty') }}">
                         @csrf
-                        <h2>variabledata</h2>
-                        <h6>Text<h6>
-                        <input type="text" name="property_type" placeholder="property_type"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="text" placeholder="text"><br>
-                        <h2>HdpData</h2>
-                        <!-- HdpData Fields -->
-                        <h6>Text<h6>
-                        <input type="text" name="zpid" placeholder="ZPID"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="address_street" placeholder="Street Address"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="address_zipcode" placeholder="Zipcode"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="address_city" placeholder="City"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="address_state" placeholder="State"><br>
-                        <h6>Number<h6>
-                        <input type="number" min="0" max="200" name="latitude" placeholder="Latitude"><br>
-                        <h6>Number<h6>
-                        <input type="number" min="0" max="200" name="longitude" placeholder="Longitude"><br>
-                        <h6>Number<h6>
-                        <input type="number" min="0" max="20" name="price" placeholder="Price"><br>
-                        <h6>Number<h6>
-                        <input type="number" name="baths" placeholder="Bathrooms"><br>
-                        <h6>Number<h6>
-                        <input type="number" name="beds" placeholder="Bedrooms"><br>
-                        <h2>Property</h2>
-                        <!-- Property Fields -->
-                        <h6>Text<h6>
-                        <input type="text" name="raw_home_status_cd" placeholder="Raw Home Status CD"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="marketing_status_simplified_cd" placeholder="Marketing Status Simplified CD"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="img_src" placeholder="Image Source"><br>
-                        <h6>Number 0,1<h6>
-                        <input type="number" name="has_image" placeholder="Has Image"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="detail_url" placeholder="Detail URL"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="status_type" placeholder="Status Type"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="status_text" placeholder="Status Text"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="country_currency" placeholder="Country Currency"><br>
-                        <h6>Number<h6>
-                        <input type="number" name="unformatted_price" placeholder="Unformatted Price"><br>
-                        <h6>Text<h6>
-                        <input type="text" name="address" placeholder="Address"><br>
-                        <h6>Number 0,1<h6>
-                        <input type="number" name="is_undisclosed_address" placeholder="Is Undisclosed Address"><br>
-                        <h6>Number<h6>
-                        <input type="number" name="area" placeholder="Area"><br>
-                        <h6>Number 0,1<h6>
-                        <input type="number" name="is_zillow_owned" placeholder="Is Zillow Owned"><br>
-
+                        <div class="row g-3 mb-5">
+                            <h3 class="mb-3">Basic Information</h3>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="price" maxlength="20" step="0.01" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                    <label for="">Price</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-control" style="background-color: #fff; padding-top: 10px" name="country_currency" id="" placeholder=""required>
+                                        <option selected disabled value="">Currency</option>
+                                        <option value="$">USD ($)</option>
+                                        <option value="€">Euro (€)</option>
+                                        <option value="£">GBP (£)</option>
+                                        <option value="¥">JPY (¥)</option>
+                                        <option value="₹">INR (₹)</option>
+                                        <option value="C$">CAD (C$)</option>
+                                        <option value="A$">AUD (A$)</option>
+                                        <option value="CHF">CHF (CHF)</option>
+                                        <option value="¥">CNY (¥)</option>
+                                        <option value="₽">RUB (₽)</option>
+                                        <option value="R$">BRL (R$)</option>
+                                        <option value="Other">Other</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="baths" maxlength="2" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                    <label for="">Number of Bathrooms</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="beds" maxlength="2" id="" placeholder="" onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');" required>
+                                    <label for="">Number of Bedrooms</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="area" maxlength="6" id="" placeholder=""onkeydown="if(event.key==='.'){event.preventDefault();}"  oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');">
+                                    <label for="">Total Home Square Feet</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-control" style="background-color: #fff; padding-top: 10px" name="property_type" id="" placeholder=""required>
+                                        <option selected disabled value="">Type of Property</option>
+                                        <option value="Single Family Residence">Single Family Residence</option>
+                                        <option value="Townhouse">Townhouse</option>
+                                        <option value="Multi Family Residence">Multi Family Residence</option>
+                                        <option value="Mixed">Mixed</option>
+                                        <option value="Other">Other</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="" name="text" id=""></textarea>
+                                    <label for="message">Brief Listing Description</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-5">
+                            <h3 class="mb-3">Location Information</h3>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="address_street" id="" placeholder="" required>
+                                    <label for="">Address</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="address_zipcode" maxlength="5" id="" placeholder=""required>
+                                    <label for="">Zipcode</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" name="address_city" id="" placeholder=""required>
+                                    <label for="">City</label>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-control" style="background-color: #fff; padding-top: 10px" name="address_state" id="" placeholder="" required>
+                                        <option selected disabled value="">State</option>
+                                        <option value="AL">AL</option>
+                                        <option value="AK">AK</option>
+                                        <option value="AZ">AZ</option>
+                                        <option value="AR">AR</option>
+                                        <option value="CA">CA</option>
+                                        <option value="CO">CO</option>
+                                        <option value="CT">CT</option>
+                                        <option value="DE">DE</option>
+                                        <option value="FL">FL</option>
+                                        <option value="GA">GA</option>
+                                        <option value="HI">HI</option>
+                                        <option value="ID">ID</option>
+                                        <option value="IL">IL</option>
+                                        <option value="IN">IN</option>
+                                        <option value="IA">IA</option>
+                                        <option value="KS">KS</option>
+                                        <option value="KY">KY</option>
+                                        <option value="LA">LA</option>
+                                        <option value="ME">ME</option>
+                                        <option value="MD">MD</option>
+                                        <option value="MA">MA</option>
+                                        <option value="MI">MI</option>
+                                        <option value="MN">MN</option>
+                                        <option value="MS">MS</option>
+                                        <option value="MO">MO</option>
+                                        <option value="MT">MT</option>
+                                        <option value="NE">NE</option>
+                                        <option value="NV">NV</option>
+                                        <option value="NH">NH</option>
+                                        <option value="NJ">NJ</option>
+                                        <option value="NM">NM</option>
+                                        <option value="NY">NY</option>
+                                        <option value="NC">NC</option>
+                                        <option value="ND">ND</option>
+                                        <option value="OH">OH</option>
+                                        <option value="OK">OK</option>
+                                        <option value="OR">OR</option>
+                                        <option value="PA">PA</option>
+                                        <option value="RI">RI</option>
+                                        <option value="SC">SC</option>
+                                        <option value="SD">SD</option>
+                                        <option value="TN">TN</option>
+                                        <option value="TX">TX</option>
+                                        <option value="UT">UT</option>
+                                        <option value="VT">VT</option>
+                                        <option value="VA">VA</option>
+                                        <option value="WA">WA</option>
+                                        <option value="WV">WV</option>
+                                        <option value="WI">WI</option>
+                                        <option value="WY">WY</option>
+                                    </select>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>                  
+                        </div>
+                        <div class="row g-3 mb-5">
+                            <h3 class="mb-3">Other Information</h3>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-control" style="background-color: #fff; padding-top: 10px" name="marketing_status_simplified_cd" id="" placeholder="" required>
+                                        <option selected disabled value="">Marketing Status</option>
+                                        <option value="Coming Soon">Coming Soon</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="For Sale">For Sale</option>
+                                        <option value="Under Contract">Under Contract</option>
+                                        <option value="Sold">Sold</option>
+                                        <option value="Withdrawn">Withdrawn</option>
+                                        <option value="Expired">Expired</option>
+                                        <option value="Archived">Archived</option>
+                                        <option value="Off Market">Off Market</option>
+                                        <option value="Other">Other</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input class="form-control" name="img_src" id="" placeholder="">
+                                    <label for="">Image SRC</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-control" style="background-color: #fff; padding-top: 10px" name="status_type" id="" placeholder=""required>
+                                        <option selected disabled value="">Type of Listing</option>
+                                        <option value="FOR_SALE">For Rent</option>
+                                        <option value="FOR_RENT">For Sale</option>
+                                        <option value="Other">Other</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Submit Button -->
-                        <button type="submit">Submit</button>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                        </div>
                     </form>
             </div>
         </div>
@@ -166,6 +304,7 @@
     <!-- Create Property Form End -->
 
 
+<!-- footer start -->
 <!-- footer start -->
 @include('footer')
 <!-- footer end -->
