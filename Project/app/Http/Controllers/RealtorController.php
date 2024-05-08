@@ -27,10 +27,19 @@ class RealtorController extends Controller
         return view('realtorEditor', ['realtor' => $realtor]);
     }
 
-    // WIP, will dynamically update user & realtor table based on what values are passed
+    // WIP, will update realtor data based on what values are passed while logged in
     public function editConfirm(Request $request){
-        $input = $request->all();
-        // DB::table('users')
+        DB::table('realtors')
+        ->where('realtor_id', Auth::id())
+        ->update([
+            'city' => $request->updateCity,
+            'specialty' => $request->updateSpecialty,
+            'available_days' => $request->updateDays,
+            'available_hours' => $request->updateHours,
+            'available_days' => $request->updateDays,
+            'contact_agent' => $request->updateAgent
+        ]);
+        return redirect()->back();
     }
 
     public function viewRealtorByURL(string $name){
@@ -40,6 +49,7 @@ class RealtorController extends Controller
             ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
     }
+    
     public function uploadProfileImage(Request $request){
         $image = $request->file('image');
         $imageContent = file_get_contents($image->path());

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Phillow - Contact Us</title>
+        <title>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -89,11 +89,12 @@
         <h2>Contact Agent: {{ $realtor->contact_agent }}</h2>
         
 
-        @if(Auth::check())
+        @if(Auth::check() == true && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
         <button><a href="/edit/{{ $realtor->firstName }}{{ $realtor->lastName }}">Edit Profile</a></button>
         @endif
+
         @else
-        <p>No realtor found.</p>
+        <p>Realtor not found.</p>
         @endif
     </div>
     

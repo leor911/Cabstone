@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Profile Editing</title>
+        <title>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -83,11 +83,11 @@
 
     {{-- If you're logged in, this is what you will see. --}}
 
-    @if(Auth::user()->role_name == "realtor")
+    @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
     <div class = "realtor-info">
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
         <div>
-            <form action="{{ route("/editConfirm") }}" method="POST">
+            <form action="{{ route("edit.confirm") }}" method="POST">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
@@ -107,8 +107,8 @@
                 </select>
                 
                 {{-- Will worry about this later --}}
-                {{-- <label for="">Upload Profile Image:</label> --}}
-                {{-- <input type="file" name="image" accept="image/png, image/jpeg"> --}}
+                <label for="">Upload Profile Image:</label>
+                <input type="file" name="image" accept="image/png, image/jpeg">
                 <button style="background-color: lightgray">Submit</button>
             </form>
         </div>
