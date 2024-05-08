@@ -52,14 +52,12 @@ Route::get('/contact',function(){
 });
 
 //Property List page routes
-//Property List page routes
 Route::get('/propertyLists',function(){
     return view('propertyList');
 });
 
 //Edit Profile Route
-Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
-Route::get('/edit/{name}', [RealtorController::class, 'viewEditRealtor']);
+Route::get('/edit', [RealtorController::class, 'viewEditRealtor']);
 Route::post('/edit/confirm', [RealtorController::class, 'editConfirm'])->name('edit.confirm');
 Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
 
@@ -70,11 +68,8 @@ Route::get('/realtor', function () {
 });
 
 //Realtor routes
-Route::get('/realtorDashboard', function () {
-    return view('realtorDashboard');
-});
+Route::get('/realtorDashboard', [RealtorController::class, 'viewHomePage']);
 
-Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
 //Admin routes
 Route::get('/admin', function () {
     return view('adminDashboard');

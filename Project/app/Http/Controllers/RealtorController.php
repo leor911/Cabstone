@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Realtors;
-
 class RealtorController extends Controller
 {
     public function getRealtors(){
@@ -19,10 +15,11 @@ class RealtorController extends Controller
         $realtors = $this->getRealtors();
         return view("realtor", ['realtors' => $realtors]);
     }
-    public function viewEditRealtor(string $name){
+
+    public function viewEditRealtor(){
         $realtor = DB::table('users')
         ->join('realtors', 'users.id', 'realtors.realtor_id')
-        ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
+        ->where('realtor_id', '=', Auth::id())
         ->first();
         return view('realtorEditor', ['realtor' => $realtor]);
     }
@@ -61,10 +58,10 @@ class RealtorController extends Controller
         return redirect()->back();
     }
 
-    public function viewRealtorByURL(string $name){
+    public function viewHomePage(){
         $realtor = DB::table('users')
             ->join('realtors', 'users.id', 'realtors.realtor_id')
-            ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
+            ->where('realtor_id', '=', Auth::id())
             ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
     }

@@ -30,9 +30,8 @@
         <link href="css/style.css" rel="stylesheet">
         <style>
             img{
-                border-radius: 50%;
-                max-width: 50%;
-                height: 5%;
+                border-radius: 25%;
+                max-height: 300px;
             }
             p, ul, li {
                 font-family: Forum, cursive;
@@ -96,8 +95,8 @@
         <h2>Contact Agent: {{ $realtor->contact_agent }}</h2>
         
 
-        @if(Auth::check() == true && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
-        <button><a href="/edit/{{ $realtor->firstName }}{{ $realtor->lastName }}">Edit Profile</a></button>
+        @if(Auth::check() == true && Auth::user()->email == $realtor->email)
+        <button><a href="/edit">Edit Profile</a></button>
         @endif
 
         @else
