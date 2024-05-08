@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Phillow - Contact Us</title>
+    <title>Phillow - Register</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -42,6 +42,30 @@
             align-items: center;
             min-height: 100vh;
         }
+        
+        .error {
+            color: red;
+        }
+
+        .form-floating {
+            position: relative;
+            width: 90%;
+        }
+
+        .requiredAstrik {
+            color: red;
+            position: absolute;
+            top: 20%;
+            transform: translateY(-100%);
+            transform: translateX(-150%);
+            left: 0;
+        }
+
+        .form-control {
+            padding-left: 20px;
+            padding-right: 10px; /* Add some padding to the right to separate from the asterisk */
+            width: calc(100% - 30px); /* Adjust the width to accommodate for the asterisk */
+        }
     </style>
 </head>
 
@@ -60,87 +84,110 @@
 @include('header')
 <!-- header end -->
 
+    <!-- Register Form Start -->
 
-    <div class="center-form">
-        <form method="POST" action="{{ route('register') }}" class="w-50">
-            @csrf
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Register New Phillow Account</h1>
+                    <p>Enter all the <span class="error">* required</span> information below</p>
+                </div>
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="row g-3 mb-5">
+                            <h3 class="mb-3">User Information</h3>
+                            <!-- First Name -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="firstName" class="form-control" type="text" name="firstName" :value="old('firstName')" required autofocus autocomplete="firstName" />
+                                    <label for="">First Name</label>
+                                    <x-input-error :messages="$errors->get('firstName')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="lastName" class="form-control" type="text" name="lastName" :value="old('lastName')" required autofocus autocomplete="lastName" />
+                                    <label for="">Last Name</label>
+                                    <x-input-error :messages="$errors->get('lastName')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Email Address -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" />
+                                    <label for="">Email</label>
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="phoneNo" class="form-control" type="int" name="phoneNo" :value="old('phoneNo')" />
+                                    <label for="">Phone Number</label>
+                                    <x-input-error :messages="$errors->get('phoneNo')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Pick a Role -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <select id="role_name" name="role_name" class="form-control" required autocomplete="role">
+                                        <option value="pickSomething">Select a Role:</option>
+                                        <option value="customer">Customer</option>
+                                        <option value="realtor">Realtor</option>
+                                   </select>
+                                   <label for="">Role</label>
+                                    <x-input-error :messages="$errors->get('role')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Password -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="password" class="form-control"
+                                                    type="password"
+                                                    name="password"
+                                                    required autocomplete="new-password" />
+                                    <label for="">Password</label>
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Confirm Password -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="password_confirmation" class="form-control"
+                                                    type="password"
+                                                    name="password_confirmation" required autocomplete="new-password" />
+                                    <label for="">Confirm Password</label>
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Submit Button -->
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                        </div>
 
-            <!-- First Name -->
-            <div class="mb-3">
-                <x-input-label for="firstName" :value="__('First Name:')" />
-                <x-text-input id="firstName" class="form-control" type="text" name="firstName" :value="old('firstName')" required autofocus autocomplete="firstName" />
-                <x-input-error :messages="$errors->get('firstName')" class="mt-2" />
+                    </form>
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </a>
+                    </div>
             </div>
-
-            <!-- Last Name -->
-            <div class="mb-3">
-                <x-input-label for="lastName" :value="__('Last Name:')" />
-                <x-text-input id="lastName" class="form-control" type="text" name="lastName" :value="old('lastName')" required autofocus autocomplete="lastName" />
-                <x-input-error :messages="$errors->get('lastName')" class="mt-2" />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mb-3">
-                <x-input-label for="email" :value="__('Email:')" />
-                <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" />
-                <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-
-            <!-- Phone Number -->
-            <div class="mb-3">
-                <x-input-label for="phoneNo" :value="__('Phone Number:')" />
-                <x-text-input id="phoneNo" class="form-control" type="int" name="phoneNo" :value="old('phoneNo')" />
-                <x-input-error :messages="$errors->get('phoneNo')" class="mt-2" />
-            </div>
-
-            <!-- Pick a Role -->
-            <div class="mb-3">
-                <x-input-label for="role_name" :value="__('Role')" />
-
-                <select id="role_name" name="role_name" class="form-control" required autocomplete="role">
-                    <option value="pickSomething">Select a Role:</option>
-                    <option value="customer">Customer</option>
-                    <option value="realtor">Realtor</option>
-                    <option value="admin">Admin</option>
-               </select>
-
-                <x-input-error :messages="$errors->get('role')" class="mt-2" />
-            </div>
-            
-            <!-- Password -->
-            <div class="mb-3">
-                <x-input-label for="password" :value="__('Password')" />
-
-                <x-text-input id="password" class="form-control"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mb-3">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-text-input id="password_confirmation" class="form-control"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
-
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center mt-4">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-primary-button>
-                    {{ __('register') }}
-                </x-primary-button>
-            </div>
-        </form>
+        </div>
     </div>
+    <!-- Register Form End -->
+
 
 <!-- footer start -->
 @include('footer')
