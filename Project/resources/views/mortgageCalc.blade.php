@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Phillow - Create Property</title>
+    <title>Phillow - Mortgage Calculator</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
