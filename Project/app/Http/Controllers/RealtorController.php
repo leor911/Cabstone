@@ -55,7 +55,7 @@ class RealtorController extends Controller
             'contact_agent' => $request->updateAgent,
             'profile_image' => $profilePath
         ]);
-        return redirect()->back();
+        return redirect()->route('/realtorDashboard');
     }
 
     public function viewHomePage(){

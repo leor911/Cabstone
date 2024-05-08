@@ -3,7 +3,7 @@
         border: none;
         background-color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-        font-size: 10%;
+        font-size: 10pt;
         font-weight: bolder;
     }
 </style>
