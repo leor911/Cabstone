@@ -3,6 +3,8 @@
         border: none;
         background-color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 10%;
+        font-weight: bolder;
     }
 </style>
 
@@ -24,7 +26,9 @@
             'contact' => 'Contact',
             'createProperty' => 'Create Property',
             'mortgage-calc' => 'Mortgage Calculator',
+            'mortgage-result' => 'Mortgage Calculator',
             'about' => 'About',
+            'realtor' => 'Realtors',
             'propertyList' => 'Property List',
             'termsOfService' => 'Terms of Service'
         ];
@@ -56,24 +60,15 @@
 @guest
     <a href="{{ url('/register') }}" class="nav-link">Register</a>
     @endguest
-  <a href="{{ route('login') }}" class="nav-link">Sign In</a>
+  <a href="{{ route('login') }}" class="nav-link">Login</a>
 
     @endauth
 
                 <a href="{{ url('/') }}" class="nav-link active">Home</a>
                 <a href="{{ url('/about') }}" class="nav-link">About</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="{{ url('/properties') }}" class="dropdown-item">Property List</a>
-                        <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
-                        <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
-                    </div>
-                </div>
-
-                <a href="{{ url('/mortgage-result') }}" class="nav-link">Mortgage Calculator</a>
-                <a href="{{ url('/realtor') }}" class="nav-link">Search Realtors</a>
+                <a href="{{ url('/property-listings') }}" class="nav-link">Properties</a>
+                <a href="{{ url('/mortgage-result') }}" class="nav-link">Calculator</a>
+                <a href="{{ url('/realtor') }}" class="nav-link">Realtors</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Contact</a>
             </div>
 

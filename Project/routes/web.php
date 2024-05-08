@@ -65,16 +65,14 @@ Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('p
 
 
 //Realtor routes
-Route::get('/realtor', function () {
-    return view('realtor');
-});
-
-//Realtor routes
 Route::get('/realtorDashboard', function () {
     return view('realtorDashboard');
 });
 
 Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
+
+Route::get('/realtor',[ViewPropertiesController::class,'displayAgents']);
+
 //Admin routes
 Route::get('/admin', function () {
     return view('adminDashboard');
