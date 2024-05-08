@@ -107,7 +107,6 @@
                                     <h5 class="card-title">{{ $agent->full_name }}</h5>
                                     <p class="card-text">Business Name: {{ $agent->business_name }}</p>
                                     <p class="card-text">Phone Number: {{ $agent->phone_number }}</p>
-                                    <p class="card-text">Profile Link: <a href="{{ $agent->profile_link }}">{{ $agent->profile_link }}</a></p>
                                     @if ($agent->is_top_agent)
                                         <p class="card-text">This agent is a top agent.</p>
                                     @endif
