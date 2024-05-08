@@ -1,12 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Realtors;
-
 class RealtorController extends Controller
 {
     public function getRealtors(){
@@ -19,16 +15,35 @@ class RealtorController extends Controller
         $realtors = $this->getRealtors();
         return view("realtor", ['realtors' => $realtors]);
     }
-    public function viewEditRealtor(string $name){
+
+    public function viewEditRealtor(){
         $realtor = DB::table('users')
         ->join('realtors', 'users.id', 'realtors.realtor_id')
-        ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
+        ->where('realtor_id', '=', Auth::id())
         ->first();
         return view('realtorEditor', ['realtor' => $realtor]);
     }
 
     // WIP, will update realtor data based on what values are passed while logged in
     public function editConfirm(Request $request){
+        $request->validate([
+            'image' => 'nullable|mimes:png,jpg,jpeg',
+        ]);
+
+        if($request->file('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+
+            $filename = time().'.'.$extension;
+
+            $path = public_path('img');
+            $file->move($path, $filename);
+
+            $profilePath = 'img/' . $filename;
+        }else{
+            $profilePath = null;
+        }
+
         DB::table('realtors')
         ->where('realtor_id', Auth::id())
         ->update([
@@ -37,24 +52,17 @@ class RealtorController extends Controller
             'available_days' => $request->updateDays,
             'available_hours' => $request->updateHours,
             'available_days' => $request->updateDays,
-            'contact_agent' => $request->updateAgent
+            'contact_agent' => $request->updateAgent,
+            'profile_image' => $profilePath
         ]);
-        return redirect()->back();
+        return redirect()->route('/realtorDashboard');
     }
 
-    public function viewRealtorByURL(string $name){
+    public function viewHomePage(){
         $realtor = DB::table('users')
             ->join('realtors', 'users.id', 'realtors.realtor_id')
-            ->whereRaw("concat(users.firstName, users.lastName) LIKE ?", $name)
+            ->where('realtor_id', '=', Auth::id())
             ->first();
         return view('realtorDashboard', ['realtor' => $realtor]);
-    }
-    
-    public function uploadProfileImage(Request $request){
-        $image = $request->file('image');
-        $imageContent = file_get_contents($image->path());
-        $imageContentBinary = '0x'. bin2hex($imageContent);
-        DB::table('realtors')->where('id', Auth::user()->id)->updateOrInsert(['profile_image' => $imageContentBinary]);
-        return redirect()->back();
     }
 }

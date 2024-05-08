@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</title>
+        <title>Phillow - Elevate Your Living</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        
+    
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
-        
+    
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,53 +18,52 @@
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-        
+    
         <!-- Libraries Stylesheet -->
         <link href="lib/animate/animate.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        
+    
         <!-- Customized Bootstrap Stylesheet -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
+    
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <link href="img/favicon.ico" rel="icon">
+    
         <style>
             p, ul, li {
-                font-family: Forum, cursive;
-                margin: 10px 0; /* Add margin for spacing between paragraphs and list items */
+                font-family: Forum,cursive;
             }
             h1, a {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
-            .center-form {
+    
+            #slideShow {
                 display: flex;
                 justify-content: center;
-                align-items: center;
-                min-height: 50vh;
             }
-            .login-form-container {
-                max-width: 400px;
-                width: 100%;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #ffffff;
+            .top{
+                padding-top: 50px;
             }
-            .login-form-container form > div {
-                margin-bottom: 15px; /* Add margin between form elements */
-            }
-            .realtor-info{
-                width: inherit;
-                height: inherit;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 10px;
-                gap: 5px;
-            }
-
-            </style>
-</head>
+            .modal-dialog {
+        margin: auto;
+        top: 25%;
+        transform: translateY(-50%);
+        max-width: 50%; /* Adjust the maximum width of the modal as needed */
+    }
+    
+    .modal-content {
+        width: 100%;
+    }
+    
+    .modal-body {
+        max-height: calc(100vh - 200px); /* Adjust the maximum height of the modal body as needed */
+        overflow-y: auto;
+    }
+    
+    
+        </style>
+    </head>
 
 <body>
     @if(Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
@@ -85,9 +84,10 @@
 
     @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
     <div class = "realtor-info">
+
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
         <div>
-            <form action="{{ route("edit.confirm") }}" method="POST">
+            <form action="{{ route("edit.confirm") }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
@@ -106,9 +106,8 @@
                     <option value="Cooper Honert">Cooper Honert</option>
                 </select>
                 
-                {{-- Will worry about this later --}}
                 <label for="">Upload Profile Image:</label>
-                <input type="file" name="image" accept="image/png, image/jpeg">
+                <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
                 <button style="background-color: lightgray">Submit</button>
             </form>
         </div>

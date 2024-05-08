@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('available_days')->nullable();
             $table->string('available_hours')->nullable();
             $table->enum('contact_agent', ['Cooper Honert', 'Jack Korosec', 'Leo Rivera', 'Connor Hamilton'])->nullable();
-            $table->binary('profile_image')->nullable();
+            $table->string('profile_image')->nullable();
             $table->timestamps();
             $table->foreign('realtor_id')
             ->references('id')
