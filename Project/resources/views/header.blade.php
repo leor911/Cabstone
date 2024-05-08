@@ -50,7 +50,7 @@
     <div class="dropdown-menu rounded-0 m-0">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="dropdown-item">Sign Out</button>
+            <button type="submit" class="dropdown-item">submit</button>
         </form>
     </div>
 
@@ -66,7 +66,7 @@
 
                 <a href="{{ url('/') }}" class="nav-link active">Home</a>
                 <a href="{{ url('/about') }}" class="nav-link">About</a>
-                <a href="{{ url('/property-listings') }}" class="nav-link">Properties</a>
+                <a href="{{ url('/propertylistings') }}" class="nav-link">Properties</a>
                 <a href="{{ url('/mortgage-result') }}" class="nav-link">Calculator</a>
                 <a href="{{ url('/realtor') }}" class="nav-link">Realtors</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Contact</a>
