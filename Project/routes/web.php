@@ -28,24 +28,14 @@ use App\Http\Controllers\Auth\Admin\LoginController;
 */
 
 //Index routes
-
 Route::get('/', [ViewPropertiesController::class, 'viewPropertiesIndex'])->name('index')->middleware('rolecheck:realtor');
 
-
-Route::get('/propertyListIndex', [Zillow::class, 'getPropertyDetailsIndex'])->name('propertyIndex.listings');
-Route::get('/fetch-property-data', [Zillow::class, 'fetchDataFromAPI'])->name('fetch.property.data');
-Route::get('/store-property-data', [Zillow::class, 'storeDataToDatabase'])->name('store.property.data');
-Route::get('/fetch-agent-details', [Zillow::class, 'fetchAgentDetails'])->name('fetch.agent.details');
-
-
+Route::get('/propertylistings', [ViewPropertiesController::class, 'viewProperties'])->name('listings')->middleware('rolecheck:realtor');
+//login routes
 Route::get('/login', function(){
     return view('login');
 });
-
-Route::get('/login', function(){
-    return view('login');
-});
-
+//edit profile
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 //Map routes
@@ -67,6 +57,13 @@ Route::get('/propertyLists',function(){
     return view('propertyList');
 });
 
+
+Route::get('/realtor',[ViewPropertiesController::class,'displayAgents']);
+
+Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
+
+Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
+
 Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
 
 
@@ -85,11 +82,11 @@ Route::get('/admin', function () {
     return view('adminDashboard');
 });
 
-Route::get('/propertyList',[ViewPropertiesController::class,'viewProperties']);
-
+//t.o.s link
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
 });
+
 
 Route::get('/test',function(){
     return view('/test5');
@@ -103,21 +100,18 @@ Route::get('/test2', [Zillow::class, 'agentDetails'])->name('test.show');
 
 Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
+
 //Create Property page routes
 Route::get('/createProperty', function () {
     return view('createProperty');
 })->middleware('rolecheck:realtor');
-
-
 Route::post('/createProperty',[CreatePropertyController::class,'createProperty']);
 
 require __DIR__.'/auth.php';
 
-
+//mortgage calc
 Route::get('/mortgage-calc', [MortgageCalculator::class, 'showCalculator'])->name('mortgage.calculator');
-
 Route::post('/mortgage-calc', [MortgageCalculator::class, 'calculate'])->name('mortgage.calculate');
-
 Route::get('/mortgage-result', function () {
     return view('mortgageCalc');
 })->name('mortgage.result');
@@ -126,3 +120,9 @@ Route::get('/mortgage-result', function () {
 Route::get('/header',function(){
     return view('/header');
 });
+
+Route::get('/test2', [test::class, ''])->name('agent.results');
+
+
+
+Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');
