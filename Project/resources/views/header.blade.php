@@ -29,6 +29,7 @@
         $currentPage = basename(request()->url());
         $pageNames = [
             'register' => 'Register',
+            'edit' => 'Edit Profile',
             'login' => 'Login',
             'contact' => 'Contact',
             'createProperty' => 'Create Property',
