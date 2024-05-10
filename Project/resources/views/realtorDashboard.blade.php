@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Phillow - Contact Us</title>
+    <title>Phillow - Realtor Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -104,16 +104,41 @@
                 margin-bottom: 15px; /* Add margin between form elements */
             }
             .realtor-info{
-                width: inherit;
+                /* width: inherit; */
+                width: 50%;
+                margin: 20px auto;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 padding: 10px;
                 gap: 5px;
+                /* border: 2px solid red; */
+                border-radius: 20px;
+                background-color: #f0f0f0
+            }
+            .realtor-info h6{
+                border-bottom: 2px solid #000;
+                margin-bottom: 2em;
+            }
+            .realtor-info h2{
+                margin-bottom: 30px;
             }
             button{
                 font-size: 25pt;
+                color: #fff;
+            }
+            a:link{
+                color: #fff;
+            }
+            a:visited{
+                color: #fff
+            }
+            a:hover{
+                color: #fff
+            }
+            a:active{
+                color: #fff;
             }
             </style>
 </head>
@@ -141,14 +166,21 @@
         @endif
 
         <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
-        <h2>City: {{ $realtor->city }}</h2>
-        <h2>Specialty: {{ $realtor->specialty }}</h2>
-        <h2>Available Days: {{ $realtor->available_days }}</h2>
-        <h2>Available Hours: {{ $realtor->available_hours }}</h2>
-        <h2>Contact Agent: {{ $realtor->contact_agent }}</h2>
+        <h4>City:</h4>
+        <h6>{{ $realtor->city }}</h6>
+        <h4>Specialty:</h4>
+        <h6>{{ $realtor->specialty }}</h6>
+        <h4>Available Days:</h4>
+        <h6>{{ $realtor->available_days }}</h6>
+        <h4>Available Hours:</h4>
+        <h6>{{ $realtor->available_hours }}</h6>
+        <h4>Contact Agent:</h4>
+        <h6>{{ $realtor->contact_agent }}</h6>
         
         @if(Auth::check() == true && Auth::user()->email == $realtor->email)
-        <button><a href="/edit">Edit Profile</a></button>
+        {{-- <button><a href="/edit">Edit Profile</a></button> --}}
+        <button class="btn btn-primary w-25 py-3"><a href="/edit">Edit Profile</a></button>
+
         @endif
 
         @else
