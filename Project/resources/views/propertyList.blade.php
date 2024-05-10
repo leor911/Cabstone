@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Adjustments to ensure only the right half scrolls */
+        p, ul, li {
+            font-family: Forum, cursive;
+            margin: 10px 0; /* Add margin for spacing between paragraphs and list items */
+        }
+        h1, a {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
         body,
         html {
             margin: 0;
@@ -95,15 +102,15 @@
             margin-bottom: 20px;
         }
         #pac-input {
-    position: absolute;
-    margin-top: 1%; /* Adjust top position as needed */
-    margin-left: 20%; /* Adjust left position as needed */
-    z-index: 1000; /* Ensure search bar is above other elements */
-}
+            position: absolute;
+            margin-top: 1%; /* Adjust top position as needed */
+            margin-left: 20%; /* Adjust left position as needed */
+            z-index: 1000; /* Ensure search bar is above other elements */
+        }
 
-#pagnation{
-    margin-left: 50%;
-}
+        #pagnation{
+            margin-left: 50%;
+        }
     </style>
 </head>
 
@@ -177,11 +184,11 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <div class="row g-5" id="foot">
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>2040 lane ln, lacaster,USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(778)-989-0987</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Phillow@Phillow-houses.biz</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>5820 E W.T. Harris Blvd, Charlotte, NC 28215</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(704)-989-0987</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>phillowphillow1@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/channel/UCBZ7dKiwCwSMY8jtZBMfayQ"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <!-- Add more footer content -->
@@ -192,18 +199,7 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
                     <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
                     <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
-                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
-                </div>
-                <!-- Add more footer content -->
-                <!-- Example: -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Photo Gallery</h5>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">
-                        </div>
-                        <!-- Add more images -->
-                    </div>
+                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Conditions</a>
                 </div>
                 <!-- Add more footer content -->
                 <!-- Example: -->
@@ -211,6 +207,16 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <a href="{{ url('/') }}" class="navbar-brand d-flex justify-content-center">
                         <img src="img/logo-no-background2.jpg" alt="Logo" style="max-width: 150px; height: auto;">
                     </a>
+                </div>
+                <div class="container">
+                    <div class="copyright">
+                        <div class="row">
+                            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                &copy; 2024 Phillow, All Rights Reserved. 
+                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
