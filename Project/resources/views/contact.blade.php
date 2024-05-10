@@ -184,7 +184,7 @@
     const marker = new google.maps.Marker({
       position: { lat: 35.235035747790704, lng: -80.73652296211786 },
       map: map,
-      title: "Starting Location"
+      title: "Phillow HeadQuarters"
     });
 
     // Create the search box and link it to the UI element.
