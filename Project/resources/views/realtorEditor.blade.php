@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Phillow - Elevate Your Living</title>
+        <title>Phillow - Profile Editing</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -37,6 +37,9 @@
             h1, a {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
+            button{
+
+            }
     
             #slideShow {
                 display: flex;
@@ -61,11 +64,32 @@
         overflow-y: auto;
     }
     
+    .realtor-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .realtor-info{
+        height: 600px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #input-buttons{
+        width: 100px;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
     
         </style>
     </head>
 
 <body>
+    <div class="container-xxl bg-white p-0">
     @if(Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -83,11 +107,11 @@
     {{-- If you're logged in, this is what you will see. --}}
 
     @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
-    <div class = "realtor-info">
+    <div>
+        <div class="realtor-container">
 
-        <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
-        <div>
-            <form action="{{ route("edit.confirm") }}" method="POST" enctype="multipart/form-data">
+            <h2 id="realtor_name">{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
+            <form class = "realtor-info" action="{{ route("edit.confirm") }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
@@ -107,8 +131,10 @@
                 </select>
                 
                 <label for="">Upload Profile Image:</label>
-                <input type="file" name="image" accept="image/png, image/jpeg, image/jpg">
-                <button style="background-color: lightgray">Submit</button>
+                <input class="file_input" type="file" name="image" accept="image/png, image/jpeg, image/jpg">
+                <div style="display: flex; justify-content: center;">
+                    <button class="btn btn-primary w-25 py-3">Submit</button>
+                </div>
             </form>
         </div>
     @else
@@ -130,5 +156,6 @@
     
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+</div>
 </body>
 </html>
