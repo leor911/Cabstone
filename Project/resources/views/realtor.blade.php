@@ -79,64 +79,86 @@
             background-color: transparent;
             border: 1px solid #007bff;
             border-radius: 5px;
-            margin: 0 5px; /* Add margin to separate the links */
+            margin: 0 5px; 
         }
         .page-link:hover {
             background-color: #007bff;
             color: #fff;
         }
+        .justify-content-center.align-items-center {
+    height: calc(100vh - 150px); 
+}
     </style>
 </head>
-
 <body>
-<div class="container-xxl bg-white p-0">
-    <!-- Header start -->
-    @include('header')
-    <!-- Header end -->
-    <!-- Realtor Account Information -->
-    <div class="container-xxl py-5">
-        <div class="">
-            <h1 class="mt-4 d-flex justify-content-center">Our Agents</h1>
-            @if ($agents->count() > 0)
-                <div class="row realtors">
-                    @foreach ($agents as $agent)
-                        <div class="col-md-6 mb-4">
-                            <div class="card">
-                                <img src="{{ $agent->profile_photo_src }}" class="card-img-top" alt="Agent Photo">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $agent->full_name }}</h5>
-                                    <p class="card-text">Business Name: {{ $agent->business_name }}</p>
-                                    <p class="card-text">Phone Number: {{ $agent->phone_number }}</p>
-                                    <p class="card-text">Profile Link: <a href="{{ $agent->profile_link }}">{{ $agent->profile_link }}</a></p>
-                                    @if ($agent->is_top_agent)
-                                        <p class="card-text">This agent is a top agent.</p>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
+    <div class="container-xxl bg-white p-0">
+        <!-- Header start -->
+        @include('header')
+        <!-- Header end -->
 
-                <div class="mt-4 d-flex justify-content-center"> <!-- Added margin-top -->
-                    @include('pagnation_template', ['paginator' => $agents])
-                </div>
-            @else
-                <p>No agent details found for the provided name.</p>
-            @endif
+        <!-- Search form -->
+        <form action="{{ route('displayAgents') }}" method="GET" class="mb-4">
+            <div class="input-group" style="width:50%; margin: 0px auto; margin-top:2%">
+                <input type="text" class="form-control" placeholder="Search agents..." name="query">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+
+        <div class="container-xxl py-5">
+            <div class="">
+                <h1 class="mt-4 d-flex justify-content-center">Our Agents</h1>
+                @if ($agents->count() == 1)
+                    <div class="row justify-content-center align-items-center"> 
+                @else
+                    <div class="row realtors">
+                @endif
+                    <!-- Agent cards loop -->
+                    @foreach ($agents as $agent)
+    <div class="col-md-6 mb-4">
+        <!-- Agent card -->
+        <div class="card">
+            <!-- Agent photo -->
+            <img src="{{ $agent->profile_photo_src }}" class="card-img-top" alt="Agent Photo">
+            <!-- Card body -->
+            <div class="card-body">
+                <!-- Agent name -->
+                <h5 class="card-title">{{ $agent->full_name }}</h5>
+                <!-- Business name -->
+                <p class="card-text">Business Name: {{ $agent->business_name }}</p>
+                <!-- Phone number -->
+                <p class="card-text">Phone Number: {{ $agent->phone_number }}</p>
+                <!-- Check if agent is top -->
+                @if ($agent->is_top_agent)
+                    <p class="card-text">This agent is a top agent.</p>
+                @endif
+            </div>
         </div>
     </div>
-    <!-- Footer -->
-    @include('footer')
+@endforeach
+                </div>
 
-    <!-- Back to Top Button -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-</div>
+                <!-- Pagination -->
+                <div class="mt-4 d-flex justify-content-center"> 
+                    @include('pagnation_template', ['paginator' => $agents])
+                </div>
+            </div>
+        </div>
 
+        <!-- No agent found message -->
+        @if ($agents->isEmpty())
+            <p style="text-align: center;">No agent details found for the provided name.</p>
+        @endif
 
+        <!-- Footer -->
+        @include('footer')
+
+        <!-- Back to Top Button -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
 
     <!-- Your JavaScript code here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-       </script>
+    <!-- Other scripts -->
 </body>
 </html>
