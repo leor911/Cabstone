@@ -51,7 +51,6 @@ class RealtorController extends Controller
             'specialty' => $request->updateSpecialty,
             'available_days' => $request->updateDays,
             'available_hours' => $request->updateHours,
-            'available_days' => $request->updateDays,
             'contact_agent' => $request->updateAgent,
             'profile_image' => $profilePath
         ]);
