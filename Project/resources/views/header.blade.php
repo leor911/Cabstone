@@ -3,6 +3,15 @@
         border: none;
         background-color: white;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 10pt;
+        font-weight: bolder;
+    }
+    .nav1{
+        color: black;
+    }
+    .add-property-text{
+        justify-content: center;
+        align-items: center;
     }
 </style>
 
@@ -20,12 +29,15 @@
         $currentPage = basename(request()->url());
         $pageNames = [
             'register' => 'Register',
+            'edit' => 'Edit Profile',
             'login' => 'Login',
             'contact' => 'Contact',
             'createProperty' => 'Create Property',
             'mortgage-calc' => 'Mortgage Calculator',
+            'mortgage-result' => 'Mortgage Calculator',
             'about' => 'About',
-            'propertyList' => 'Property List',
+            'realtor' => 'Realtors',
+            'propertylistings' => 'Properties',
             'termsOfService' => 'Terms of Service'
         ];
         $pageTitle = $pageNames[$currentPage] ?? 'Home';
@@ -46,8 +58,13 @@
     <div class="dropdown-menu rounded-0 m-0">
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-            <button type="submit" class="dropdown-item">Sign Out</button>
+            <button type="submit" class="dropdown-item">Signout</button>
         </form>
+        @auth
+        @if(Auth::user()->isRealtor())
+        <a href="{{ url('/realtorDashboard') }}" class="dropdown-item">View Profile</a>        
+        @endif
+        @endauth
     </div>
 
 </div>
@@ -56,32 +73,23 @@
 @guest
     <a href="{{ url('/register') }}" class="nav-link">Register</a>
     @endguest
-  <a href="{{ route('login') }}" class="nav-link">Sign In</a>
+  <a href="{{ route('login') }}" class="nav-link">Login</a>
 
     @endauth
 
                 <a href="{{ url('/') }}" class="nav-link active">Home</a>
                 <a href="{{ url('/about') }}" class="nav-link">About</a>
-
-                <div class="nav-item dropdown">
-                    <a href="#propertyTypes" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="{{ url('/properties') }}" class="dropdown-item">Property List</a>
-                        <a href="{{ url('/') }}#PropertyTypes" class="dropdown-item">Property Type</a>
-                        <a href="{{ url('/about') }}#propertyAgents" class="dropdown-item">Property Agent</a>
-                    </div>
-                </div>
-
-                <a href="{{ url('/mortgage-result') }}" class="nav-link">Mortgage Calculator</a>
-                <a href="{{ url('/realtor') }}" class="nav-link">Search Realtors</a>
+                <a href="{{ url('/propertylistings') }}" class="nav-link">Properties</a>
+                <a href="{{ url('/mortgage-result') }}" class="nav-link">Calculator</a>
+                <a href="{{ url('/realtor') }}" class="nav-link">Realtors</a>
                 <a href="{{ url('/contact') }}" class="nav-link">Contact</a>
-            </div>
 
-            @auth
-            @if(Auth::user()->isRealtor())
-            <a href="{{ url('/createProperty') }}" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
-            @endif
-            @endauth
+                @auth
+                @if(Auth::user()->isRealtor())
+                <a href="{{ url('/createProperty') }}" class="btn btn-primary px-3 d-none d-lg-flex add-property-text">Add Property</a>
+                @endif
+                @endauth
+            </div>
         </div>
     </nav>
 </header>

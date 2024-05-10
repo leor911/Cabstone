@@ -113,90 +113,82 @@
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
                                 </div>
                                 <h6>Apartment</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
                                 </div>
                                 <h6>Villa</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-house.png" alt="Icon">
                                 </div>
                                 <h6>Home</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
                                 </div>
                                 <h6>Office</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-building.png" alt="Icon">
                                 </div>
                                 <h6>Building</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-neighborhood.png" alt="Icon">
                                 </div>
                                 <h6>Townhouse</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-condominium.png" alt="Icon">
                                 </div>
                                 <h6>Shop</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertyList') }}">
+                        <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/propertylistings') }}">
                             <div class="rounded p-4">
                                 <div class="icon mb-3">
                                     <img class="img-fluid" src="img/icon-luxury.png" alt="Icon">
                                 </div>
                                 <h6>Garage</h6>
-                                <span>123 Properties</span>
                             </div>
                         </a>
                     </div>
@@ -210,29 +202,30 @@
             <div class="col-md-6 animated fadeIn">
                 <div class="owl-carousel header-carousel">
                     <!-- Slides content -->
-                    @foreach ($properties as $property)
-                    <div class="owl-carousel-item">
-                        <div class="property-item rounded overflow-hidden">
-                            <div class="position-relative overflow-hidden">
-                            <a href="/property/{{ $property->id }}" class="property-link" target="_blank">
-    <img class="img-fluid" src="{{ $property->img_src }}" alt="Property Image">
-</a>
-                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $property->marketing_status_simplified_cd }}</div>
-                                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $property->raw_home_status_cd }}</div>
-                            </div>
-                            <div class="p-4 pb-0">
-                                <h5 class="text-primary mb-3">${{ $property->price }}</h5>
-                                <h5 class="mb-3">{{ $property->address_street }}</h5>
-                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $property->city }}, {{ $property->state }}, {{ $property->zipcode }}</p>
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2"></i> {{ $property->area }} Sqft&nbsp; </small>
-                                <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2"></i> {{ $property->beds }} Bed &nbsp;</small>
-                                <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2"></i> {{ $property->baths }} Bath &nbsp;</small>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                    @foreach ($properties->take(5) as $property)
+    <div class="owl-carousel-item">
+        <div class="property-item rounded overflow-hidden">
+            <div class="position-relative overflow-hidden">
+                <a href="/property/{{ $property->id }}" class="property-link" target="_blank">
+                    <img class="img-fluid" src="{{ $property->img_src }}" alt="Property Image">
+                </a>
+                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">{{ $property->marketing_status_simplified_cd }}</div>
+                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">{{ $property->raw_home_status_cd }}</div>
+            </div>
+            <div class="p-4 pb-0">
+                <h5 class="text-primary mb-3">${{ number_format($property->price) }}</h5>
+                <h5 class="mb-3">{{ $property->address_street }}</h5>
+                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $property->city }}, {{ $property->state }}, {{ $property->zipcode }}</p>
+            </div>
+            <div class="d-flex border-top">
+                <small class="sf" class="flex-fill text-center border-end py-2"> <i class="fa fa-ruler-combined text-primary me-2"></i> {{ $property->area }} Sqft&nbsp; </small>
+                <small class="bed" class="flex-fill text-center border-end py-2"> <i class="fa fa-bed text-primary me-2"></i> {{ $property->beds }} Bed &nbsp;</small>
+                <small class="bath" class="flex-fill text-center py-2"> <i class="fa fa-bath text-primary me-2"></i> {{ $property->baths }} Bath &nbsp;</small>
+            </div>
+        </div>
+    </div>
+@endforeach
+
                 </div>
             </div>
         </div>

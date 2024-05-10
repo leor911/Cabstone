@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         /* Adjustments to ensure only the right half scrolls */
+        p, ul, li {
+            font-family: Forum, cursive;
+            margin: 10px 0; /* Add margin for spacing between paragraphs and list items */
+        }
+        h1, a {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
         body,
         html {
             margin: 0;
@@ -39,7 +46,7 @@
 
         #map {
             width: 100%;
-            height: 100%;
+            height: 83%;
         }
 
         .right-column {
@@ -94,6 +101,16 @@
         .props {
             margin-bottom: 20px;
         }
+        #pac-input {
+            position: absolute;
+            margin-top: 1%; /* Adjust top position as needed */
+            margin-left: 20%; /* Adjust left position as needed */
+            z-index: 1000; /* Ensure search bar is above other elements */
+        }
+
+        #pagnation{
+            margin-left: 50%;
+        }
     </style>
 </head>
 
@@ -103,6 +120,7 @@
 
     <div class="container-fluid">
         <div class="left-column">
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
             <div id="map"></div>
         </div>
         <div class="right-column">
@@ -110,7 +128,7 @@
             <div class="container-fluid property-listings">
             <?php
 $propertiesArray = json_decode(json_encode($properties), true);
-$perPage = 12;
+$perPage = 10;
 $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
 $startIndex = ($currentPage - 1) * $perPage;
 $endIndex = min($startIndex + $perPage, count($propertiesArray));
@@ -129,7 +147,7 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     </div>
                 </div>
                 <div class="p-4 pb-0 text-center">
-                    <h5 class="text-primary mb-3">${{ $properties[$i]->price }}</h5>
+                <h5 class="text-primary mb-3 pt-2">${{ number_format($properties[$i]->price) }}</h5>
                     <h5 class="mb-3">{{ $properties[$i]->address }}</h5>
                     <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ $properties[$i]->address_street }}, {{ $properties[$i]->city }}, {{ $properties[$i]->state }}</p>
                 </div>
@@ -147,10 +165,12 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
 
 </div>
 <!-- Pagination -->
-<nav aria-label="Page navigation" class="mt-5">
+<nav aria-label="Page navigation" class="mt-5" id="pagnation">
     <ul class="pagination justify-content-center">
         @php
         $numPages = ceil(count($propertiesArray) / $perPage);
+        // Adjusting numPages to the maximum possible value
+        $numPages = 2;
         @endphp
         @for ($i = 1; $i <= $numPages; $i++)
         <li class="page-item @if($currentPage == $i) active @endif"><a class="page-link" href="?page={{ $i }}">{{ $i }}</a></li>
@@ -164,14 +184,11 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <div class="row g-5" id="foot">
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-white mb-4">Get In Touch</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>2040 lane ln, lacaster,USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(778)-989-0987</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Phillow@Phillow-houses.biz</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>5820 E W.T. Harris Blvd, Charlotte, NC 28215</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(704)-989-0987</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>phillowphillow1@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/channel/UCBZ7dKiwCwSMY8jtZBMfayQ"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <!-- Add more footer content -->
@@ -182,18 +199,7 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <a class="btn btn-link text-white-50" href="{{ url('/contact') }}">Contact Us</a>
                     <a class="btn btn-link text-white-50" href="{{ url('/about') }}#ourServices">Our Services</a>
                     <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}#privacyPolicy">Privacy Policy</a>
-                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Condition</a>
-                </div>
-                <!-- Add more footer content -->
-                <!-- Example: -->
-                <div class="col-lg-3 col-md-6">
-                    <h5 class="text-white mb-4">Photo Gallery</h5>
-                    <div class="row g-2 pt-2">
-                        <div class="col-4">
-                            <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">
-                        </div>
-                        <!-- Add more images -->
-                    </div>
+                    <a class="btn btn-link text-white-50" href="{{url('/termsOfService')}}">Terms & Conditions</a>
                 </div>
                 <!-- Add more footer content -->
                 <!-- Example: -->
@@ -201,6 +207,16 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
                     <a href="{{ url('/') }}" class="navbar-brand d-flex justify-content-center">
                         <img src="img/logo-no-background2.jpg" alt="Logo" style="max-width: 150px; height: auto;">
                     </a>
+                </div>
+                <div class="container">
+                    <div class="copyright">
+                        <div class="row">
+                            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                &copy; 2024 Phillow, All Rights Reserved. 
+                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,38 +228,29 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
             
 
     <!-- Modal -->
-    <div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div id="propertyImageCarousel" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <!-- Carousel items will be dynamically populated here -->
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#propertyImageCarousel" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#propertyImageCarousel" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-6" id="propertyDetails">
-                            <!-- Property details will be dynamically populated here -->
-                        </div>
+    <!-- Modal -->
+<div class="modal fade" id="propertyModal" tabindex="-1" aria-labelledby="propertyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg"> <!-- Centered modal dialog -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="propertyModalLabel">Property Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Property image -->
+                        <div id="propertyImage"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Property description -->
+                        <div id="propertyDescription"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -257,51 +264,107 @@ $endIndex = min($startIndex + $perPage, count($propertiesArray));
     
     <!-- Slide Show -->
     <script>
-        var map = L.map('map').setView([51.505, -0.09], 13);
-        var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        });
-        osm.addTo(map);
 
-        $(document).ready(function () {
-            $('.property-link').click(function (event) {
-                event.preventDefault();
+$(document).ready(function() {
+    $('.property-link').click(function(event) {
+        // Prevent the default behavior of the anchor tag
+        event.preventDefault();
 
-                var propertyContainer = $(this).closest('.property-item');
-                var propertyDetails = propertyContainer.find('.p-4').html();
-                var squareFeet = propertyContainer.find('.sf').text().trim();
-                var beds = propertyContainer.find('.bed').text().trim();
-                var baths = propertyContainer.find('.bath').text().trim();
-                var imageUrls = propertyContainer.find('.image-list').data('images');
+        // Retrieve property details from the clicked property element
+        var propertyContainer = $(this).closest('.property-item');
+        var propertyDetails = propertyContainer.find('.p-4').html(); // Get property description
+        var squareFeet = propertyContainer.find('.sf').text().trim(); // Get square feet
+        var beds = propertyContainer.find('.bed').text().trim(); // Get number of beds
+        var baths = propertyContainer.find('.bath').text().trim(); // Get number of baths
+        var imageUrl = propertyContainer.find('img').attr('src');
 
-                var detailsHtml = '<p><strong>Beds:</strong> ' + beds + '</p>' +
-                    '<p><strong>Baths:</strong> ' + baths + '</p>' +
-                    '<p><strong>Square Feet:</strong> ' + squareFeet + '</p>';
+        // Debugging: Print retrieved data to console
+        console.log("Square Feet: ", squareFeet);
+        console.log("Beds: ", beds);
+        console.log("Baths: ", baths);
 
-                $('#propertyImageCarousel .carousel-inner').empty(); // Clear existing carousel items
+        // Construct the HTML for the property details
+        var detailsHtml = '<p><strong>Beds:</strong> ' + beds + '</p>' +
+                          '<p><strong>Baths:</strong> ' + baths + '</p>' +
+                          '<p><strong>Square Feet:</strong> ' + squareFeet + '</p>';
 
-                if (imageUrls && imageUrls.length > 0) {
-                    $.each(imageUrls, function (index, imageUrl) {
-                        var activeClass = index === 0 ? 'active' : '';
-                        var carouselItem = '<div class="carousel-item ' + activeClass + '">' +
-                            '<img class="d-block w-100" src="' + imageUrl + '" alt="Property Image">' +
-                            '</div>';
-                        $('#propertyImageCarousel .carousel-inner').append(carouselItem);
-                    });
-                } else {
-                    // If no images are available, display a placeholder
-                    var placeholderItem = '<div class="carousel-item active">' +
-                        '<img class="d-block w-100" src="img/no-image-placeholder.jpg" alt="No Image Available">' +
-                        '</div>';
-                    $('#propertyImageCarousel .carousel-inner').append(placeholderItem);
-                }
+        // Populate modal body with property details
+        $('#propertyImage').html('<img class="img-fluid" src="' + imageUrl + '" alt="Property Image">');
+        $('#propertyDescription').html(propertyDetails + detailsHtml);
 
-                $('#propertyDetails').html(propertyDetails + detailsHtml);
-
-                $('#propertyModal').modal('show');
-            });
-        });
+        // Show the modal
+        $('#propertyModal').modal('show');
+    });
+});
     </script>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC92z665c3Q4ymF4mB8MmXRsSJ9uIrDOIA&callback=initAutocomplete&libraries=places&v=weekly" defer></script>
+
+<!-- JavaScript code for Places Search Box -->
+<script>
+  // Initialize the Places Search Box
+  function initAutocomplete() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 40.12150192260742, lng: -100.45039367675781 },
+      zoom: 5,
+      mapTypeId: "roadmap",
+    });
+    
+    // Create the search box and link it to the UI element.
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    let markers = [];
+
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+
+      if (places.length == 0) {
+        return;
+      }
+
+      // Clear out the old markers.
+      markers.forEach((marker) => {
+        marker.setMap(null);
+      });
+      markers = [];
+
+      // For each place, get the icon, name, and location.
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) {
+          console.log("Returned place contains no geometry");
+          return;
+        }
+
+        // Create a marker for each place with address as the title.
+        const marker = new google.maps.Marker({
+          map,
+          title: place.formatted_address,
+          position: place.geometry.location,
+        });
+
+        // Push the marker to the markers array.
+        markers.push(marker);
+
+        if (place.geometry.viewport) {
+          // Only geocodes have viewport.
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+      map.fitBounds(bounds);
+    });
+  }
+</script>
 </body>
 
 </html>

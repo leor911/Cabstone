@@ -51,54 +51,24 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
-//Property List page routes
-//Property List page routes
-Route::get('/propertyLists',function(){
-    return view('propertyList');
-});
+Route::get('/realtor', [ViewPropertiesController::class, 'displayAgents'])->name('displayAgents');
+Route::get('/realtor/search', [ViewPropertiesController::class, 'searchAgents'])->name('searchAgents');
 
 
-Route::get('/realtor',[ViewPropertiesController::class,'displayAgents']);
 
-Route::get('/realtorDashboard/{name}', [RealtorController::class, 'viewRealtorByURL']);
+//Edit Profile Route
+Route::get('/edit', [RealtorController::class, 'viewEditRealtor']);
 
-Route::post('/uploadImage', [RealtorController::class, 'uploadProfileImage']);
-
-Route::get('/property-listings', [Zillow::class, 'getPropertyDetails'])->name('property.listings');
-
+Route::post('/edit/confirm', [RealtorController::class, 'editConfirm'])->name('edit.confirm');
 
 //Realtor routes
-Route::get('/realtor', function () {
-    return view('realtor');
-});
+Route::get('/realtorDashboard', [RealtorController::class, 'viewHomePage']);
 
-//Realtor routes
-Route::get('/realtorDashboard', function () {
-    return view('realtorDashboard');
-});
-
-//Admin routes
-Route::get('/admin', function () {
-    return view('adminDashboard');
-});
 
 //t.o.s link
 Route::get('/termsOfService',function(){
     return view('/termsOfService');
 });
-
-
-Route::get('/test',function(){
-    return view('/test5');
-})->name('test5');
-
-//Test
-Route::get('/test2', [Zillow::class, 'agentDetails'])->name('test.show');
-
-
-
-
-Route::get('/properties', [Zillow::class, 'getPropertyDetails']);
 
 
 //Create Property page routes
@@ -120,9 +90,3 @@ Route::get('/mortgage-result', function () {
 Route::get('/header',function(){
     return view('/header');
 });
-
-Route::get('/test2', [test::class, ''])->name('agent.results');
-
-
-
-Route::get('/agent-results', [Zillow::class, 'findAgent'])->name('agent.results');

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Phillow - Contact Us</title>
+    <title>Phillow - Login</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -37,12 +37,6 @@
     h1, a {
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     }
-    .center-form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 50vh;
-    }
     .login-form-container {
         max-width: 400px; 
         width: 100%;
@@ -53,6 +47,36 @@
     .login-form-container form > div {
         margin-bottom: 15px; /* Add margin between form elements */
     }
+    .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .error {
+            color: red;
+        }
+
+        .form-floating {
+            position: relative;
+            width: 90%;
+        }
+
+        .requiredAstrik {
+            color: red;
+            position: absolute;
+            top: 20%;
+            transform: translateY(-100%);
+            transform: translateX(-150%);
+            left: 0;
+        }
+
+        .form-control {
+            padding-left: 20px;
+            padding-right: 10px; /* Add some padding to the right to separate from the asterisk */
+            width: calc(100% - 30px); /* Adjust the width to accommodate for the asterisk */
+        }
 </style>
 </head>
 
@@ -73,28 +97,47 @@
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <div class="center-form">
-            <div class="login-form-container">
-                <form method="POST" action="{{ route('login') }}">
-                    @csrf
-                    <!-- Email Address -->
-                    <div>
-                        <x-input-label for="email" :value="__('Email')" />
-                        <br>
-                        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
-                    <!-- Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
-                        <br>
-                        <x-text-input id="password" class="block mt-1 w-full"
-                                        type="password"
-                                        name="password"
-                                        required autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-                    <!-- Remember Me -->
+         <!-- Login Form Start -->
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="mb-3">Login with Phillow Account</h1>
+                    <p>Enter all the <span class="error">* required</span> information below</p>
+                </div>
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="row g-3 mb-5">
+                            <h3 class="mb-3">User Information</h3>
+                            <!-- Email Address -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username"/>
+                                    <label for="">Email</label>
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                            <!-- Password -->
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                    <x-text-input id="password" class="form-control"
+                                                    type="password"
+                                                    name="password"
+                                                    required autocomplete="current-password"  />
+                                    <label for="">Password</label>
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                    <div class="requiredAstrik">*</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                        </div>
+                                            <!-- Remember Me -->
                     <div class="block mt-4">
                         <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
@@ -102,23 +145,17 @@
                         </label>
                     </div>
                     <div class="flex items-center justify-end mt-4">
-    @if (Route::has('password.request'))
-        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-            {{ __('Forgot your password?') }}
-        </a>
-    @endif
-    <br><br>
-    <button type="submit" class="btn btn-primary ms-3">
-        {{ __('Log in') }}
-    </button>
-</div>
-                </form>
+                    @if (Route::has('password.request'))
+                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
+                            {{ __('Forgot your password?') }}
+                        </a>
+                    @endif
+                    </div>
+                    </form>
             </div>
         </div>
-
-      
-
-
+    </div>
+    <!-- Login Form End -->
 
         <!-- footer start -->
         @include('footer')

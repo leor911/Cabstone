@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Profile Editing</title>
+        <title>Phillow - Profile Editing</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        
+    
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
-        
+    
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,55 +18,78 @@
         <!-- Icon Font Stylesheet -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-        
+    
         <!-- Libraries Stylesheet -->
         <link href="lib/animate/animate.min.css" rel="stylesheet">
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        
+    
         <!-- Customized Bootstrap Stylesheet -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        
+    
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <link href="img/favicon.ico" rel="icon">
+    
         <style>
             p, ul, li {
-                font-family: Forum, cursive;
-                margin: 10px 0; /* Add margin for spacing between paragraphs and list items */
+                font-family: Forum,cursive;
             }
             h1, a {
                 font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             }
-            .center-form {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 50vh;
-            }
-            .login-form-container {
-                max-width: 400px;
-                width: 100%;
-                padding: 20px;
-                border-radius: 10px;
-                background-color: #ffffff;
-            }
-            .login-form-container form > div {
-                margin-bottom: 15px; /* Add margin between form elements */
-            }
-            .realtor-info{
-                width: inherit;
-                height: inherit;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 10px;
-                gap: 5px;
-            }
+            button{
 
-            </style>
-</head>
+            }
+    
+            #slideShow {
+                display: flex;
+                justify-content: center;
+            }
+            .top{
+                padding-top: 50px;
+            }
+            .modal-dialog {
+        margin: auto;
+        top: 25%;
+        transform: translateY(-50%);
+        max-width: 50%; /* Adjust the maximum width of the modal as needed */
+    }
+    
+    .modal-content {
+        width: 100%;
+    }
+    
+    .modal-body {
+        max-height: calc(100vh - 200px); /* Adjust the maximum height of the modal body as needed */
+        overflow-y: auto;
+    }
+    
+    .realtor-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+    }
+    
+    .realtor-info{
+        height: 600px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    #input-buttons{
+        width: 100px;
+        border: 2px solid black;
+        border-radius: 12px;
+    }
+    
+        </style>
+    </head>
 
 <body>
+    <div class="container-xxl bg-white p-0">
     @if(Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName)
     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -82,12 +105,12 @@
     <!-- header end -->
 
     {{-- If you're logged in, this is what you will see. --}}
+    @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
+    <div>
+        <div class="realtor-container">
 
-    @if(Auth::user()->role_name == "realtor")
-    <div class = "realtor-info">
-        <h2>{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
-        <div>
-            <form action="{{ route("/editConfirm") }}" method="POST">
+            <h2 id="realtor_name">{{ ucfirst($realtor->firstName) }} {{ ucfirst($realtor->lastName) }}</h2>
+            <form class = "realtor-info" action="{{ route("edit.confirm") }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label for="updateCity">City:</label>
                 <input type="text" id="updateCity" name="updateCity" value="{{ $realtor->city }}">
@@ -106,10 +129,11 @@
                     <option value="Cooper Honert">Cooper Honert</option>
                 </select>
                 
-                {{-- Will worry about this later --}}
-                {{-- <label for="">Upload Profile Image:</label> --}}
-                {{-- <input type="file" name="image" accept="image/png, image/jpeg"> --}}
-                <button style="background-color: lightgray">Submit</button>
+                <label for="">Upload Profile Image:</label>
+                <input class="file_input" type="file" name="image" accept="image/png, image/jpeg, image/jpg">
+                <div style="display: flex; justify-content: center;">
+                    <button class="btn btn-primary w-25 py-3">Submit</button>
+                </div>
             </form>
         </div>
     @else
@@ -131,5 +155,6 @@
     
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+</div>
 </body>
 </html>
