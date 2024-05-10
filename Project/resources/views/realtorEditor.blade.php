@@ -105,7 +105,6 @@
     <!-- header end -->
 
     {{-- If you're logged in, this is what you will see. --}}
-
     @if(Auth::user()->role_name == "realtor" && Auth::user()->firstName == $realtor->firstName && Auth::user()->lastName == $realtor->lastName || Auth::user()->role_name == "admin")
     <div>
         <div class="realtor-container">

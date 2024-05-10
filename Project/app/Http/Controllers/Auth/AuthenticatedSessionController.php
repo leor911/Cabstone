@@ -58,6 +58,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         
+        if(Auth::user()->role_name = 'realtor'){
+            $url = '/realtorDashboard';
+        }
+        
         return redirect()->intended($url);
     }
 
