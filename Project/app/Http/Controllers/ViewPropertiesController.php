@@ -85,16 +85,27 @@ class ViewPropertiesController extends Controller
             return view('index', compact('properties'));
         }
 
-        public function displayAgents()
+        public function displayAgents(Request $request)
         {
-            // Retrieve agent data from the database and paginate it
-            $agents = DB::table('professionals')
-                        ->select('full_name', 'business_name', 'phone_number', 'profile_link', 'profile_photo_src', 'is_top_agent')
-                        ->paginate(10); // Show 10 agents per page
+            // Retrieve the search query from the request
+            $query = $request->input('query');
         
-            // Pass the paginated agent data to the Blade view
+            // If there's a search query, filter agents based on it
+            if ($query) {
+                $agents = DB::table('professionals')
+                            ->where('full_name', 'like', "%$query%")
+                            ->orWhere('business_name', 'like', "%$query%")
+                            ->orWhere('phone_number', 'like', "%$query%")
+                            ->paginate(10);
+            } else {
+                // Otherwise, retrieve all agents and paginate them
+                $agents = DB::table('professionals')->paginate(10);
+            }
+        
+            // Pass the agent data to the Blade view
             return view('realtor', compact('agents'));
         }
+
 
 
         
