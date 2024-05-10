@@ -62,6 +62,9 @@ class RealtorController extends Controller
             ->join('realtors', 'users.id', 'realtors.realtor_id')
             ->where('realtor_id', '=', Auth::id())
             ->first();
-        return view('realtorDashboard', ['realtor' => $realtor]);
+            if(is_null(Auth::user())){
+                return redirect('/');
+            }
+            return view('realtorDashboard', ['realtor' => $realtor]);
     }
 }
